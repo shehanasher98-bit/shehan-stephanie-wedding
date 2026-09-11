@@ -10,6 +10,7 @@
 
     <title>Shehan & Stephanie</title>
 
+
     <!-- WhatsApp / Social Preview -->
 
     <meta property="og:title"
@@ -24,7 +25,29 @@
     <meta property="og:url"
           content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/">
 
-    <link rel="stylesheet" href="style.css?v=4">
+    <meta property="og:image"
+          content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
+
+    <meta property="og:image:alt"
+          content="Shehan & Stephanie">
+
+
+    <!-- Social Preview -->
+
+    <meta name="twitter:card"
+          content="summary_large_image">
+
+    <meta name="twitter:title"
+          content="Shehan & Stephanie">
+
+    <meta name="twitter:description"
+          content="">
+
+    <meta name="twitter:image"
+          content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
+
+
+    <link rel="stylesheet" href="style.css?v=6">
 
 </head>
 
@@ -40,15 +63,9 @@
 
         <div class="intro-card">
 
-            <div class="intro-symbol">✦</div>
-
-            <div class="intro-line"></div>
-
             <button id="startButton">
                 <span>TAP TO BEGIN</span>
             </button>
-
-            <div class="intro-symbol bottom-symbol">✦</div>
 
         </div>
 
@@ -198,7 +215,6 @@
 
         startButton.addEventListener("click", async () => {
 
-
             startScreen.classList.add("launching");
 
 
@@ -224,7 +240,6 @@
 
             }, 900);
 
-
         });
 
 
@@ -235,9 +250,7 @@
 
         weddingVideo.addEventListener("ended", () => {
 
-
             videoScreen.classList.add("finished");
-
 
             saveDate.classList.add("show");
 
@@ -250,7 +263,6 @@
 
             });
 
-
         });
 
 
@@ -261,21 +273,17 @@
 
         shareButton.addEventListener("click", async (event) => {
 
-
             event.preventDefault();
 
 
             const shareData = {
 
-
                 title:
                     "Shehan & Stephanie",
-
 
                 text:
                     "Shehan & Stephanie\n" +
                     "12 • 12 • 2026",
-
 
                 url:
                     window.location.href
@@ -283,11 +291,7 @@
             };
 
 
-
-            /* MOBILE SHARE */
-
             if (navigator.share) {
-
 
                 try {
 
@@ -301,14 +305,7 @@
 
                 }
 
-
-            }
-
-
-            /* DESKTOP / OTHER BROWSERS */
-
-            else {
-
+            } else {
 
                 const whatsappText =
                     encodeURIComponent(
@@ -329,9 +326,7 @@
 
                 );
 
-
             }
-
 
         });
 
