@@ -16,7 +16,9 @@
 
 <body>
 
-    <!-- TAP TO BEGIN -->
+    <!-- =========================
+         TAP TO BEGIN
+    ========================= -->
 
     <div class="start-screen" id="startScreen">
 
@@ -27,7 +29,9 @@
     </div>
 
 
-    <!-- VIDEO -->
+    <!-- =========================
+         VIDEO
+    ========================= -->
 
     <div class="video-screen" id="videoScreen">
 
@@ -49,7 +53,9 @@
     </div>
 
 
-    <!-- FINAL SAVE THE DATE -->
+    <!-- =========================
+         FINAL SAVE THE DATE
+    ========================= -->
 
     <main class="save-date" id="saveDate">
 
@@ -107,7 +113,7 @@
         </section>
 
 
-        <!-- WHATSAPP SHARE -->
+        <!-- SHARE -->
 
         <a
             class="share-button"
@@ -121,7 +127,9 @@
     </main>
 
 
-    <!-- JAVASCRIPT -->
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
 
     <script>
 
@@ -189,7 +197,7 @@
 
 
         /* =========================
-           WHATSAPP SHARE
+           SHARE
         ========================= */
 
         shareButton.addEventListener("click", async (event) => {
@@ -198,13 +206,15 @@
 
             const shareData = {
 
-                title: "Shehan & Stephanie — Save the Date",
+                title:
+                    "Shehan & Stephanie — Save the Date",
 
                 text:
                     "Shehan & Stephanie are getting married! " +
                     "Save the Date — 12 • 12 • 2026",
 
-                url: window.location.href
+                url:
+                    window.location.href
 
             };
 
@@ -227,13 +237,14 @@
 
                 const whatsappText =
                     encodeURIComponent(
-                        "Shehan & Stephanie — Save the Date 💍\n" +
+                        "Shehan & Stephanie — Save the Date\n" +
                         "12 • 12 • 2026\n\n" +
                         window.location.href
                     );
 
                 window.open(
-                    "https://wa.me/?text=" + whatsappText,
+                    "https://wa.me/?text=" +
+                    whatsappText,
                     "_blank"
                 );
 
