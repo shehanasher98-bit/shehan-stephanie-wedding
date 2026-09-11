@@ -10,21 +10,39 @@
 
     <title>Shehan & Stephanie — Save the Date</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
 
 </head>
 
 <body>
 
     <!-- =========================
-         TAP TO BEGIN
+         FANCY OPENING SCREEN
     ========================= -->
 
     <div class="start-screen" id="startScreen">
 
-        <button id="startButton">
-            TAP TO BEGIN
-        </button>
+        <div class="intro-card">
+
+            <div class="intro-symbol">✦</div>
+
+            <p class="intro-names">
+                Shehan & Stephanie
+            </p>
+
+            <p class="intro-subtitle">
+                Save the Date
+            </p>
+
+            <div class="intro-line"></div>
+
+            <button id="startButton">
+                <span>TAP TO BEGIN</span>
+            </button>
+
+            <div class="intro-symbol bottom-symbol">✦</div>
+
+        </div>
 
     </div>
 
@@ -59,9 +77,6 @@
 
     <main class="save-date" id="saveDate">
 
-
-        <!-- INTRO -->
-
         <section class="intro">
 
             <p>
@@ -73,8 +88,6 @@
         </section>
 
 
-        <!-- COUPLE -->
-
         <section class="couple">
 
             <h1>
@@ -83,8 +96,6 @@
 
         </section>
 
-
-        <!-- STORY -->
 
         <section class="story">
 
@@ -102,8 +113,6 @@
         </section>
 
 
-        <!-- DATE -->
-
         <section class="date">
 
             <p>
@@ -113,8 +122,6 @@
         </section>
 
 
-        <!-- SHARE -->
-
         <a
             class="share-button"
             href="#"
@@ -122,7 +129,6 @@
         >
             Share This Save the Date
         </a>
-
 
     </main>
 
@@ -158,9 +164,16 @@
 
         startButton.addEventListener("click", async () => {
 
-            startScreen.classList.add("hidden");
+            /*
+             * Start the fancy transition
+             */
 
-            videoScreen.classList.add("active");
+            startScreen.classList.add("launching");
+
+            /*
+             * Start video immediately after
+             * the user's tap so sound is allowed.
+             */
 
             try {
 
@@ -174,6 +187,19 @@
                 );
 
             }
+
+            /*
+             * Give the red transition time
+             * before revealing the video.
+             */
+
+            setTimeout(() => {
+
+                startScreen.classList.add("hidden");
+
+                videoScreen.classList.add("active");
+
+            }, 900);
 
         });
 
@@ -197,7 +223,7 @@
 
 
         /* =========================
-           SHARE
+           WHATSAPP / SHARE
         ========================= */
 
         shareButton.addEventListener("click", async (event) => {
@@ -210,7 +236,7 @@
                     "Shehan & Stephanie — Save the Date",
 
                 text:
-                    "Shehan & Stephanie are getting married! " +
+                    "Shehan & Stephanie are getting married!\n" +
                     "Save the Date — 12 • 12 • 2026",
 
                 url:
