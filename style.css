@@ -148,30 +148,38 @@ body {
 
     text-align: center;
 
-    margin-bottom: 10vh;
+    /* Reduced gap before names */
+    margin-bottom: 7vh;
 
     opacity: 0;
     transform: translateY(35px);
 }
 
 .intro p {
-    font-family: Anton, Impact, sans-serif;
+    /*
+       Lighter font instead of heavy Anton
+    */
+    font-family: Arial, sans-serif;
 
-    font-size: clamp(55px, 8vw, 125px);
+    font-size: clamp(32px, 5.5vw, 75px);
 
-    line-height: 1.02;
+    font-weight: 500;
 
-    letter-spacing: 1.5px;
+    line-height: 1.15;
+
+    letter-spacing: 1px;
+
+    color: #b40016;
 
     overflow-wrap: break-word;
 }
 
-.intro strong {
+.intro span {
     display: block;
 
-    font-size: 1em;
+    font-weight: 500;
 
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
 /* =========================
@@ -322,23 +330,30 @@ body {
         width: 100%;
         max-width: 390px;
 
-        margin-bottom: 75px;
+        /* Less space before names */
+        margin-bottom: 55px;
 
         padding: 0 5px;
     }
 
     .intro p {
-        font-size: clamp(38px, 10.5vw, 58px);
+        font-family: Arial, sans-serif;
 
-        line-height: 1.08;
+        font-size: clamp(30px, 8.5vw, 48px);
 
-        letter-spacing: 1.5px;
+        font-weight: 500;
+
+        line-height: 1.18;
+
+        letter-spacing: 0.8px;
+
+        color: #b40016;
     }
 
-    .intro strong {
-        font-size: 1em;
+    .intro span {
+        font-weight: 500;
 
-        margin-top: 10px;
+        margin-top: 7px;
     }
 
     /* =========================
@@ -352,9 +367,14 @@ body {
         margin-bottom: 70px;
 
         padding: 0 15px;
+
+        /* Pull names slightly closer */
+        margin-top: -10px;
     }
 
     .couple h1 {
+        font-family: Anton, Impact, sans-serif;
+
         font-size: clamp(42px, 11vw, 65px);
 
         line-height: 1.08;
@@ -428,24 +448,26 @@ body {
         max-width: 350px;
 
         padding: 0;
+
+        margin-bottom: 50px;
     }
 
     .intro p {
-        font-size: 37px;
+        font-size: 29px;
 
-        line-height: 1.08;
+        line-height: 1.18;
 
-        letter-spacing: 1.2px;
+        letter-spacing: 0.6px;
     }
 
-    .intro strong {
-        font-size: 1em;
-
-        margin-top: 10px;
+    .intro span {
+        margin-top: 7px;
     }
 
     .couple {
         padding: 0 10px;
+
+        margin-top: -10px;
 
         margin-bottom: 65px;
     }
