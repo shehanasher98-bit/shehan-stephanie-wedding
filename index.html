@@ -10,7 +10,7 @@
 
     <title>Shehan & Stephanie — Save the Date</title>
 
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
 
 </head>
 
@@ -25,14 +25,6 @@
         <div class="intro-card">
 
             <div class="intro-symbol">✦</div>
-
-            <p class="intro-names">
-                Shehan & Stephanie
-            </p>
-
-            <p class="intro-subtitle">
-                Save the Date
-            </p>
 
             <div class="intro-line"></div>
 
@@ -77,6 +69,8 @@
 
     <main class="save-date" id="saveDate">
 
+        <!-- INTRO -->
+
         <section class="intro">
 
             <p>
@@ -88,6 +82,8 @@
         </section>
 
 
+        <!-- COUPLE -->
+
         <section class="couple">
 
             <h1>
@@ -96,6 +92,8 @@
 
         </section>
 
+
+        <!-- STORY -->
 
         <section class="story">
 
@@ -113,6 +111,8 @@
         </section>
 
 
+        <!-- DATE -->
+
         <section class="date">
 
             <p>
@@ -121,6 +121,8 @@
 
         </section>
 
+
+        <!-- SHARE -->
 
         <a
             class="share-button"
@@ -164,15 +166,11 @@
 
         startButton.addEventListener("click", async () => {
 
-            /*
-             * Start the fancy transition
-             */
-
             startScreen.classList.add("launching");
 
             /*
-             * Start video immediately after
-             * the user's tap so sound is allowed.
+             * Start immediately after the tap.
+             * This allows sound on mobile browsers.
              */
 
             try {
@@ -187,11 +185,6 @@
                 );
 
             }
-
-            /*
-             * Give the red transition time
-             * before revealing the video.
-             */
 
             setTimeout(() => {
 
@@ -223,7 +216,7 @@
 
 
         /* =========================
-           WHATSAPP / SHARE
+           SHARE
         ========================= */
 
         shareButton.addEventListener("click", async (event) => {
