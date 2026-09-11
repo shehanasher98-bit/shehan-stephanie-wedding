@@ -11,12 +11,32 @@
 
 <body>
 
-    <main class="save-date">
+    <!-- TAP TO BEGIN SCREEN -->
+    <div class="start-screen" id="startScreen">
+        <button id="startButton">TAP TO BEGIN</button>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="video-screen" id="videoScreen">
+        <video
+            id="weddingVideo"
+            playsinline
+            preload="auto"
+        >
+            <source src="save-the-date.mp4" type="video/mp4">
+            Your browser does not support video playback.
+        </video>
+    </div>
+
+    <!-- FINAL SAVE THE DATE -->
+    <main class="save-date" id="saveDate">
 
         <section class="intro">
-            <p>Out of every possibility,<br>
-            life chose this one.<br>
-            <strong>Us.</strong></p>
+            <p>
+                Out of every possibility,<br>
+                life chose this one.<br>
+                <strong>Us.</strong>
+            </p>
         </section>
 
         <section class="couple">
@@ -40,6 +60,41 @@
         </section>
 
     </main>
+
+    <script>
+        const startScreen = document.getElementById("startScreen");
+        const startButton = document.getElementById("startButton");
+        const videoScreen = document.getElementById("videoScreen");
+        const weddingVideo = document.getElementById("weddingVideo");
+        const saveDate = document.getElementById("saveDate");
+
+        startButton.addEventListener("click", async () => {
+
+            startScreen.classList.add("hidden");
+
+            videoScreen.classList.add("active");
+
+            try {
+                await weddingVideo.play();
+            } catch (error) {
+                console.log("Video could not start:", error);
+            }
+
+        });
+
+        weddingVideo.addEventListener("ended", () => {
+
+            videoScreen.classList.add("finished");
+
+            saveDate.classList.add("show");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+    </script>
 
 </body>
 </html>
