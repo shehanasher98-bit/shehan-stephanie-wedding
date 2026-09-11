@@ -28,10 +28,12 @@ body {
     inset: 0;
     z-index: 100;
     background: #f4f0e8;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 1s ease, visibility 1s ease;
+
+    transition: opacity 1.2s ease, visibility 1.2s ease;
 }
 
 .start-screen.hidden {
@@ -44,17 +46,25 @@ body {
     border: 2px solid #b40016;
     background: transparent;
     color: #b40016;
-    padding: 18px 34px;
+
+    padding: 17px 30px;
+
     font-family: Anton, Impact, sans-serif;
-    font-size: 22px;
+    font-size: 20px;
     letter-spacing: 3px;
+
     cursor: pointer;
-    transition: all 0.3s ease;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
 }
 
 #startButton:hover {
     background: #b40016;
     color: #f4f0e8;
+    transform: scale(1.03);
 }
 
 /* =========================
@@ -65,10 +75,15 @@ body {
     position: fixed;
     inset: 0;
     z-index: 90;
+
     background: #000;
+
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1.2s ease, visibility 1.2s ease;
+
+    transition:
+        opacity 1.5s ease,
+        visibility 1.5s ease;
 }
 
 .video-screen.active {
@@ -84,6 +99,7 @@ body {
 #weddingVideo {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
     display: block;
 }
@@ -95,18 +111,23 @@ body {
 .save-date {
     min-height: 100vh;
     width: 100%;
-    padding: 8vh 6vw;
+
+    padding: 12vh 6vw 10vh;
+
     display: flex;
     flex-direction: column;
+
     justify-content: center;
     align-items: center;
+
+    text-align: center;
 
     opacity: 0;
     visibility: hidden;
 
     transition:
-        opacity 1.8s ease,
-        visibility 1.8s ease;
+        opacity 2s ease,
+        visibility 2s ease;
 }
 
 .save-date.show {
@@ -119,15 +140,25 @@ body {
 ========================= */
 
 .intro {
+    width: 100%;
+    max-width: 1100px;
+
     text-align: center;
-    margin-bottom: 8vh;
+    margin-bottom: 10vh;
+
+    opacity: 0;
+    transform: translateY(35px);
 }
 
 .intro p {
     font-family: Anton, Impact, sans-serif;
+
     font-size: clamp(55px, 8vw, 130px);
+
     line-height: 0.9;
     text-transform: uppercase;
+
+    overflow-wrap: break-word;
 }
 
 .intro strong {
@@ -140,15 +171,25 @@ body {
 ========================= */
 
 .couple {
+    width: 100%;
+    max-width: 1400px;
+
     text-align: center;
-    margin-bottom: 7vh;
+    margin-bottom: 9vh;
+
+    opacity: 0;
+    transform: translateY(35px);
 }
 
 .couple h1 {
     font-family: Anton, Impact, sans-serif;
-    font-size: clamp(70px, 11vw, 180px);
-    line-height: 0.85;
+
+    font-size: clamp(65px, 10vw, 175px);
+
+    line-height: 0.88;
     text-transform: uppercase;
+
+    overflow-wrap: break-word;
 }
 
 /* =========================
@@ -156,15 +197,29 @@ body {
 ========================= */
 
 .story {
+    width: 100%;
+    max-width: 850px;
+
     text-align: center;
-    color: #111;
-    font-size: clamp(18px, 2vw, 28px);
-    line-height: 1.6;
-    margin-bottom: 7vh;
+
+    color: #b40016;
+
+    font-size: clamp(18px, 2vw, 27px);
+
+    line-height: 1.55;
+
+    margin-bottom: 8vh;
+
+    opacity: 0;
+    transform: translateY(35px);
 }
 
 .story p {
     margin-bottom: 28px;
+}
+
+.story p:last-child {
+    margin-bottom: 0;
 }
 
 /* =========================
@@ -172,14 +227,60 @@ body {
 ========================= */
 
 .date {
+    width: 100%;
     text-align: center;
+
+    opacity: 0;
+    transform: translateY(35px);
 }
 
 .date p {
     font-family: Anton, Impact, sans-serif;
-    font-size: clamp(45px, 7vw, 110px);
+
+    font-size: clamp(45px, 7vw, 105px);
+
     line-height: 1;
+
     color: #b40016;
+
+    white-space: nowrap;
+}
+
+/* =========================
+   CINEMATIC REVEAL
+========================= */
+
+.save-date.show .intro {
+    animation: revealText 2s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.save-date.show .couple {
+    animation: revealText 2s ease forwards;
+    animation-delay: 2.2s;
+}
+
+.save-date.show .story {
+    animation: revealText 2s ease forwards;
+    animation-delay: 3.6s;
+}
+
+.save-date.show .date {
+    animation: revealText 2s ease forwards;
+    animation-delay: 5.2s;
+}
+
+@keyframes revealText {
+
+    0% {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =========================
@@ -189,36 +290,105 @@ body {
 @media (max-width: 600px) {
 
     .save-date {
-        padding: 8vh 5vw;
+        min-height: 100svh;
+
+        padding: 70px 22px 60px;
+
+        justify-content: flex-start;
+
+        overflow: hidden;
     }
 
     .intro {
-        margin-bottom: 10vh;
+        max-width: 100%;
+        margin-bottom: 75px;
     }
 
     .intro p {
-        font-size: clamp(48px, 14vw, 80px);
+        font-size: clamp(48px, 14vw, 76px);
+
+        line-height: 0.88;
+        letter-spacing: -1px;
+    }
+
+    .intro strong {
+        font-size: 1.15em;
+        margin-top: 5px;
     }
 
     .couple {
-        margin-bottom: 8vh;
+        max-width: 100%;
+        margin-bottom: 65px;
     }
 
     .couple h1 {
-        font-size: clamp(52px, 15vw, 90px);
+        font-size: clamp(50px, 14vw, 82px);
+
+        line-height: 0.88;
+        letter-spacing: -1px;
     }
 
     .story {
+        max-width: 330px;
+
         font-size: 17px;
-        line-height: 1.5;
+        line-height: 1.55;
+
+        margin-bottom: 65px;
+
+        color: #b40016;
+    }
+
+    .story p {
+        margin-bottom: 25px;
+    }
+
+    .date {
+        max-width: 100%;
     }
 
     .date p {
-        font-size: clamp(40px, 12vw, 65px);
+        font-size: clamp(38px, 11vw, 60px);
+
+        letter-spacing: -1px;
+        white-space: normal;
     }
 
     #startButton {
-        font-size: 19px;
-        padding: 16px 28px;
+        font-size: 18px;
+
+        padding: 16px 26px;
+        letter-spacing: 2.5px;
+    }
+}
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-width: 380px) {
+
+    .save-date {
+        padding-left: 17px;
+        padding-right: 17px;
+    }
+
+    .intro p {
+        font-size: 45px;
+    }
+
+    .couple h1 {
+        font-size: 47px;
+    }
+
+    .story {
+        font-size: 16px;
+        max-width: 300px;
+
+        color: #b40016;
+    }
+
+    .date p {
+        font-size: 36px;
     }
 }
