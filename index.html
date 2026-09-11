@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -10,13 +11,12 @@
     <title>Shehan & Stephanie — Save the Date</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <!-- =========================
-         TAP TO BEGIN
-    ========================= -->
+    <!-- TAP TO BEGIN -->
 
     <div class="start-screen" id="startScreen">
 
@@ -27,9 +27,7 @@
     </div>
 
 
-    <!-- =========================
-         VIDEO
-    ========================= -->
+    <!-- VIDEO -->
 
     <div class="video-screen" id="videoScreen">
 
@@ -51,25 +49,19 @@
     </div>
 
 
-    <!-- =========================
-         FINAL SAVE THE DATE
-    ========================= -->
+    <!-- FINAL SAVE THE DATE -->
 
     <main class="save-date" id="saveDate">
 
 
-        <!-- OPENING MESSAGE -->
+        <!-- INTRO -->
 
         <section class="intro">
 
             <p>
-
                 Out of every possibility,<br>
-
                 life chose this one.<br>
-
                 <span>Us.</span>
-
             </p>
 
         </section>
@@ -115,12 +107,21 @@
         </section>
 
 
+        <!-- WHATSAPP SHARE -->
+
+        <a
+            class="share-button"
+            href="#"
+            id="shareButton"
+        >
+            Share This Save the Date
+        </a>
+
+
     </main>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
+    <!-- JAVASCRIPT -->
 
     <script>
 
@@ -138,6 +139,9 @@
 
         const saveDate =
             document.getElementById("saveDate");
+
+        const shareButton =
+            document.getElementById("shareButton");
 
 
         /* =========================
@@ -180,6 +184,60 @@
                 top: 0,
                 behavior: "smooth"
             });
+
+        });
+
+
+        /* =========================
+           WHATSAPP SHARE
+        ========================= */
+
+        shareButton.addEventListener("click", async (event) => {
+
+            event.preventDefault();
+
+            const shareData = {
+
+                title: "Shehan & Stephanie — Save the Date",
+
+                text:
+                    "Shehan & Stephanie are getting married! " +
+                    "Save the Date — 12 • 12 • 2026",
+
+                url: window.location.href
+
+            };
+
+
+            if (navigator.share) {
+
+                try {
+
+                    await navigator.share(shareData);
+
+                } catch (error) {
+
+                    console.log(
+                        "Share cancelled."
+                    );
+
+                }
+
+            } else {
+
+                const whatsappText =
+                    encodeURIComponent(
+                        "Shehan & Stephanie — Save the Date 💍\n" +
+                        "12 • 12 • 2026\n\n" +
+                        window.location.href
+                    );
+
+                window.open(
+                    "https://wa.me/?text=" + whatsappText,
+                    "_blank"
+                );
+
+            }
 
         });
 
