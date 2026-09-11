@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
+:root {
+    --off-white: #F5F1E8;
+    --red: #B40016;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,8 +18,8 @@ body {
 }
 
 body {
-    background: #f4f0e8;
-    color: #b40016;
+    background: var(--off-white);
+    color: var(--red);
     font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
@@ -27,7 +32,8 @@ body {
     position: fixed;
     inset: 0;
     z-index: 100;
-    background: #f4f0e8;
+
+    background: var(--off-white);
 
     display: flex;
     justify-content: center;
@@ -45,9 +51,9 @@ body {
 }
 
 #startButton {
-    border: 2px solid #b40016;
+    border: 2px solid var(--red);
     background: transparent;
-    color: #b40016;
+    color: var(--red);
 
     padding: 17px 30px;
 
@@ -64,8 +70,8 @@ body {
 }
 
 #startButton:hover {
-    background: #b40016;
-    color: #f4f0e8;
+    background: var(--red);
+    color: var(--off-white);
     transform: scale(1.03);
 }
 
@@ -101,6 +107,7 @@ body {
 #weddingVideo {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
     display: block;
 }
@@ -114,6 +121,8 @@ body {
 
     min-height: 100vh;
     width: 100%;
+
+    background: var(--off-white);
 
     padding: 10vh 6vw 8vh;
 
@@ -141,7 +150,7 @@ body {
 }
 
 /* =========================
-   SUBTLE FILM OVERLAY
+   SUBTLE FILM TEXTURE
 ========================= */
 
 .save-date::before {
@@ -152,7 +161,7 @@ body {
 
     pointer-events: none;
 
-    opacity: 0.12;
+    opacity: 0.08;
 
     background-image:
         radial-gradient(
@@ -195,7 +204,7 @@ body {
 
     letter-spacing: 1px;
 
-    color: #b40016;
+    color: var(--red);
 
     overflow-wrap: break-word;
 }
@@ -238,7 +247,7 @@ body {
 
     letter-spacing: 1.5px;
 
-    color: #b40016;
+    color: var(--red);
 
     overflow-wrap: break-word;
 }
@@ -256,7 +265,7 @@ body {
 
     text-align: center;
 
-    color: #b40016;
+    color: var(--red);
 
     font-size: clamp(18px, 2vw, 27px);
 
@@ -301,7 +310,7 @@ body {
 
     line-height: 1;
 
-    color: #b40016;
+    color: var(--red);
 
     letter-spacing: 2px;
 
@@ -323,11 +332,11 @@ body {
 
     padding: 13px 25px;
 
-    border: 1.5px solid #b40016;
+    border: 1.5px solid var(--red);
 
     background: transparent;
 
-    color: #b40016;
+    color: var(--red);
 
     text-decoration: none;
 
@@ -342,7 +351,6 @@ body {
     text-transform: uppercase;
 
     opacity: 0;
-
     transform: translateY(25px);
 
     transition:
@@ -352,8 +360,8 @@ body {
 }
 
 .share-button:hover {
-    background: #b40016;
-    color: #f4f0e8;
+    background: var(--red);
+    color: var(--off-white);
     transform: translateY(-2px);
 }
 
@@ -427,6 +435,8 @@ body {
     .save-date {
         min-height: 100svh;
 
+        background: var(--off-white);
+
         padding: 45px 18px 55px;
 
         justify-content: flex-start;
@@ -439,7 +449,7 @@ body {
     .intro {
         max-width: 390px;
 
-        margin-bottom: 48px;
+        margin-bottom: 35px;
 
         padding: 0 5px;
     }
@@ -454,6 +464,8 @@ body {
         line-height: 1.18;
 
         letter-spacing: 0.8px;
+
+        color: var(--red);
     }
 
     .intro span {
@@ -467,7 +479,7 @@ body {
     .couple {
         max-width: 100%;
 
-        margin-bottom: 55px;
+        margin-bottom: 42px;
 
         padding: 0 12px;
 
@@ -495,9 +507,9 @@ body {
 
         line-height: 1.55;
 
-        margin-bottom: 50px;
+        margin-bottom: 42px;
 
-        color: #b40016;
+        color: var(--red);
     }
 
     .story p {
@@ -533,7 +545,7 @@ body {
     }
 
     /* =========================
-       BUTTON
+       START BUTTON
     ========================= */
 
     #startButton {
@@ -559,7 +571,7 @@ body {
     .intro {
         max-width: 350px;
 
-        margin-bottom: 45px;
+        margin-bottom: 32px;
     }
 
     .intro p {
@@ -573,7 +585,7 @@ body {
     .couple {
         padding: 0 8px;
 
-        margin-bottom: 52px;
+        margin-bottom: 40px;
     }
 
     .couple h1 {
@@ -589,7 +601,7 @@ body {
 
         max-width: 300px;
 
-        margin-bottom: 45px;
+        margin-bottom: 40px;
     }
 
     .date {
