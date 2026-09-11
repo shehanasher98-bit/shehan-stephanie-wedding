@@ -8,17 +8,33 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Shehan & Stephanie — Save the Date</title>
+    <title>Shehan & Stephanie</title>
+
+    <!-- WhatsApp / Social Preview -->
+
+    <meta property="og:title"
+          content="Shehan & Stephanie">
+
+    <meta property="og:description"
+          content="">
+
+    <meta property="og:type"
+          content="website">
+
+    <meta property="og:url"
+          content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/">
 
     <link rel="stylesheet" href="style.css?v=4">
 
 </head>
 
+
 <body>
 
-    <!-- =========================
-         FANCY OPENING SCREEN
-    ========================= -->
+
+    <!-- ==================================================
+         OPENING SCREEN
+    ================================================== -->
 
     <div class="start-screen" id="startScreen">
 
@@ -39,9 +55,10 @@
     </div>
 
 
-    <!-- =========================
+
+    <!-- ==================================================
          VIDEO
-    ========================= -->
+    ================================================== -->
 
     <div class="video-screen" id="videoScreen">
 
@@ -63,11 +80,13 @@
     </div>
 
 
-    <!-- =========================
+
+    <!-- ==================================================
          FINAL SAVE THE DATE
-    ========================= -->
+    ================================================== -->
 
     <main class="save-date" id="saveDate">
+
 
         <!-- INTRO -->
 
@@ -82,6 +101,7 @@
         </section>
 
 
+
         <!-- COUPLE -->
 
         <section class="couple">
@@ -91,6 +111,7 @@
             </h1>
 
         </section>
+
 
 
         <!-- STORY -->
@@ -111,6 +132,7 @@
         </section>
 
 
+
         <!-- DATE -->
 
         <section class="date">
@@ -120,6 +142,7 @@
             </p>
 
         </section>
+
 
 
         <!-- SHARE -->
@@ -132,46 +155,52 @@
             Share This Save the Date
         </a>
 
+
     </main>
 
 
-    <!-- =========================
+
+    <!-- ==================================================
          JAVASCRIPT
-    ========================= -->
+    ================================================== -->
 
     <script>
+
 
         const startScreen =
             document.getElementById("startScreen");
 
+
         const startButton =
             document.getElementById("startButton");
+
 
         const videoScreen =
             document.getElementById("videoScreen");
 
+
         const weddingVideo =
             document.getElementById("weddingVideo");
 
+
         const saveDate =
             document.getElementById("saveDate");
+
 
         const shareButton =
             document.getElementById("shareButton");
 
 
-        /* =========================
+
+        /* ==================================================
            START VIDEO
-        ========================= */
+        ================================================== */
 
         startButton.addEventListener("click", async () => {
 
+
             startScreen.classList.add("launching");
 
-            /*
-             * Start immediately after the tap.
-             * This allows sound on mobile browsers.
-             */
 
             try {
 
@@ -186,6 +215,7 @@
 
             }
 
+
             setTimeout(() => {
 
                 startScreen.classList.add("hidden");
@@ -194,43 +224,58 @@
 
             }, 900);
 
+
         });
 
 
-        /* =========================
+
+        /* ==================================================
            VIDEO FINISHED
-        ========================= */
+        ================================================== */
 
         weddingVideo.addEventListener("ended", () => {
 
+
             videoScreen.classList.add("finished");
+
 
             saveDate.classList.add("show");
 
+
             window.scrollTo({
+
                 top: 0,
+
                 behavior: "smooth"
+
             });
+
 
         });
 
 
-        /* =========================
+
+        /* ==================================================
            SHARE
-        ========================= */
+        ================================================== */
 
         shareButton.addEventListener("click", async (event) => {
 
+
             event.preventDefault();
+
 
             const shareData = {
 
+
                 title:
-                    "Shehan & Stephanie — Save the Date",
+                    "Shehan & Stephanie",
+
 
                 text:
-                    "Shehan & Stephanie are getting married!\n" +
-                    "Save the Date — 12 • 12 • 2026",
+                    "Shehan & Stephanie\n" +
+                    "12 • 12 • 2026",
+
 
                 url:
                     window.location.href
@@ -238,7 +283,11 @@
             };
 
 
+
+            /* MOBILE SHARE */
+
             if (navigator.share) {
+
 
                 try {
 
@@ -252,26 +301,43 @@
 
                 }
 
-            } else {
-
-                const whatsappText =
-                    encodeURIComponent(
-                        "Shehan & Stephanie — Save the Date\n" +
-                        "12 • 12 • 2026\n\n" +
-                        window.location.href
-                    );
-
-                window.open(
-                    "https://wa.me/?text=" +
-                    whatsappText,
-                    "_blank"
-                );
 
             }
 
+
+            /* DESKTOP / OTHER BROWSERS */
+
+            else {
+
+
+                const whatsappText =
+                    encodeURIComponent(
+
+                        "Shehan & Stephanie\n" +
+                        "12 • 12 • 2026\n\n" +
+                        window.location.href
+
+                    );
+
+
+                window.open(
+
+                    "https://wa.me/?text=" +
+                    whatsappText,
+
+                    "_blank"
+
+                );
+
+
+            }
+
+
         });
 
+
     </script>
+
 
 </body>
 
