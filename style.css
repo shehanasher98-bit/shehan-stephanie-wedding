@@ -27,7 +27,6 @@ body {
     position: fixed;
     inset: 0;
     z-index: 100;
-
     background: #f4f0e8;
 
     display: flex;
@@ -85,8 +84,8 @@ body {
     visibility: hidden;
 
     transition:
-        opacity 1.5s ease,
-        visibility 1.5s ease;
+        opacity 2s ease,
+        visibility 2s ease;
 }
 
 .video-screen.active {
@@ -102,7 +101,6 @@ body {
 #weddingVideo {
     width: 100%;
     height: 100%;
-
     object-fit: cover;
     display: block;
 }
@@ -112,10 +110,12 @@ body {
 ========================= */
 
 .save-date {
+    position: relative;
+
     min-height: 100vh;
     width: 100%;
 
-    padding: 12vh 6vw 10vh;
+    padding: 10vh 6vw 8vh;
 
     display: flex;
     flex-direction: column;
@@ -129,8 +129,10 @@ body {
     visibility: hidden;
 
     transition:
-        opacity 2s ease,
-        visibility 2s ease;
+        opacity 2.5s ease,
+        visibility 2.5s ease;
+
+    overflow: hidden;
 }
 
 .save-date.show {
@@ -139,26 +141,50 @@ body {
 }
 
 /* =========================
-   INTRO TEXT
+   SUBTLE FILM OVERLAY
+========================= */
+
+.save-date::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.12;
+
+    background-image:
+        radial-gradient(
+            rgba(180, 0, 22, 0.08) 1px,
+            transparent 1px
+        );
+
+    background-size: 4px 4px;
+
+    mix-blend-mode: multiply;
+}
+
+/* =========================
+   INTRO
 ========================= */
 
 .intro {
+    position: relative;
+    z-index: 2;
+
     width: 100%;
     max-width: 1050px;
 
     text-align: center;
 
-    /* Reduced gap before names */
-    margin-bottom: 7vh;
+    margin-bottom: 5vh;
 
     opacity: 0;
     transform: translateY(35px);
 }
 
 .intro p {
-    /*
-       Lighter font instead of heavy Anton
-    */
     font-family: Arial, sans-serif;
 
     font-size: clamp(32px, 5.5vw, 75px);
@@ -187,12 +213,15 @@ body {
 ========================= */
 
 .couple {
+    position: relative;
+    z-index: 2;
+
     width: 100%;
     max-width: 1400px;
 
     text-align: center;
 
-    margin-bottom: 9vh;
+    margin-bottom: 7vh;
 
     opacity: 0;
     transform: translateY(35px);
@@ -209,6 +238,8 @@ body {
 
     letter-spacing: 1.5px;
 
+    color: #b40016;
+
     overflow-wrap: break-word;
 }
 
@@ -217,6 +248,9 @@ body {
 ========================= */
 
 .story {
+    position: relative;
+    z-index: 2;
+
     width: 100%;
     max-width: 850px;
 
@@ -228,7 +262,7 @@ body {
 
     line-height: 1.55;
 
-    margin-bottom: 8vh;
+    margin-bottom: 6vh;
 
     opacity: 0;
     transform: translateY(35px);
@@ -247,12 +281,17 @@ body {
 ========================= */
 
 .date {
+    position: relative;
+    z-index: 2;
+
     width: 100%;
 
     text-align: center;
 
     opacity: 0;
     transform: translateY(35px);
+
+    margin-bottom: 45px;
 }
 
 .date p {
@@ -264,9 +303,58 @@ body {
 
     color: #b40016;
 
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 
     white-space: nowrap;
+}
+
+/* =========================
+   WHATSAPP SHARE
+========================= */
+
+.share-button {
+    position: relative;
+    z-index: 2;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 25px;
+
+    border: 1.5px solid #b40016;
+
+    background: transparent;
+
+    color: #b40016;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.share-button:hover {
+    background: #b40016;
+    color: #f4f0e8;
+    transform: translateY(-2px);
 }
 
 /* =========================
@@ -274,23 +362,28 @@ body {
 ========================= */
 
 .save-date.show .intro {
-    animation: revealText 2s ease forwards;
+    animation: revealText 1.8s ease forwards;
     animation-delay: 0.8s;
 }
 
 .save-date.show .couple {
-    animation: revealText 2s ease forwards;
+    animation: revealText 1.8s ease forwards;
     animation-delay: 2.2s;
 }
 
 .save-date.show .story {
-    animation: revealText 2s ease forwards;
+    animation: revealText 1.8s ease forwards;
     animation-delay: 3.6s;
 }
 
 .save-date.show .date {
-    animation: revealText 2s ease forwards;
+    animation: dateReveal 2.2s ease forwards;
     animation-delay: 5.2s;
+}
+
+.save-date.show .share-button {
+    animation: revealText 1.5s ease forwards;
+    animation-delay: 7.3s;
 }
 
 @keyframes revealText {
@@ -306,6 +399,25 @@ body {
     }
 }
 
+@keyframes dateReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.94);
+        letter-spacing: 8px;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        letter-spacing: 2px;
+    }
+}
+
 /* =========================
    MOBILE
 ========================= */
@@ -315,11 +427,9 @@ body {
     .save-date {
         min-height: 100svh;
 
-        padding: 55px 18px 60px;
+        padding: 45px 18px 55px;
 
         justify-content: flex-start;
-
-        overflow: hidden;
     }
 
     /* =========================
@@ -327,11 +437,9 @@ body {
     ========================= */
 
     .intro {
-        width: 100%;
         max-width: 390px;
 
-        /* Less space before names */
-        margin-bottom: 55px;
+        margin-bottom: 48px;
 
         padding: 0 5px;
     }
@@ -346,13 +454,9 @@ body {
         line-height: 1.18;
 
         letter-spacing: 0.8px;
-
-        color: #b40016;
     }
 
     .intro span {
-        font-weight: 500;
-
         margin-top: 7px;
     }
 
@@ -361,20 +465,16 @@ body {
     ========================= */
 
     .couple {
-        width: 100%;
         max-width: 100%;
 
-        margin-bottom: 70px;
+        margin-bottom: 55px;
 
-        padding: 0 15px;
+        padding: 0 12px;
 
-        /* Pull names slightly closer */
-        margin-top: -10px;
+        margin-top: -5px;
     }
 
     .couple h1 {
-        font-family: Anton, Impact, sans-serif;
-
         font-size: clamp(42px, 11vw, 65px);
 
         line-height: 1.08;
@@ -395,13 +495,13 @@ body {
 
         line-height: 1.55;
 
-        margin-bottom: 65px;
+        margin-bottom: 50px;
 
         color: #b40016;
     }
 
     .story p {
-        margin-bottom: 25px;
+        margin-bottom: 24px;
     }
 
     /* =========================
@@ -409,15 +509,27 @@ body {
     ========================= */
 
     .date {
-        max-width: 100%;
+        margin-bottom: 35px;
     }
 
     .date p {
-        font-size: clamp(38px, 11vw, 60px);
+        font-size: clamp(37px, 10.5vw, 58px);
 
-        letter-spacing: 0;
+        letter-spacing: 1px;
 
         white-space: normal;
+    }
+
+    /* =========================
+       SHARE
+    ========================= */
+
+    .share-button {
+        padding: 12px 22px;
+
+        font-size: 13px;
+
+        letter-spacing: 1.2px;
     }
 
     /* =========================
@@ -447,9 +559,7 @@ body {
     .intro {
         max-width: 350px;
 
-        padding: 0;
-
-        margin-bottom: 50px;
+        margin-bottom: 45px;
     }
 
     .intro p {
@@ -460,16 +570,10 @@ body {
         letter-spacing: 0.6px;
     }
 
-    .intro span {
-        margin-top: 7px;
-    }
-
     .couple {
-        padding: 0 10px;
+        padding: 0 8px;
 
-        margin-top: -10px;
-
-        margin-bottom: 65px;
+        margin-bottom: 52px;
     }
 
     .couple h1 {
@@ -485,10 +589,20 @@ body {
 
         max-width: 300px;
 
-        color: #b40016;
+        margin-bottom: 45px;
+    }
+
+    .date {
+        margin-bottom: 30px;
     }
 
     .date p {
-        font-size: 36px;
+        font-size: 35px;
+    }
+
+    .share-button {
+        font-size: 12px;
+
+        padding: 11px 20px;
     }
 }
