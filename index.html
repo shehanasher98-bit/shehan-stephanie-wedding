@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Shehan & Stephanie — Save the Date</title>
 
@@ -11,39 +14,82 @@
 
 <body>
 
-    <!-- TAP TO BEGIN SCREEN -->
+    <!-- =========================
+         TAP TO BEGIN
+    ========================= -->
+
     <div class="start-screen" id="startScreen">
-        <button id="startButton">TAP TO BEGIN</button>
+
+        <button id="startButton">
+            TAP TO BEGIN
+        </button>
+
     </div>
 
-    <!-- VIDEO -->
+
+    <!-- =========================
+         VIDEO
+    ========================= -->
+
     <div class="video-screen" id="videoScreen">
+
         <video
             id="weddingVideo"
             playsinline
             preload="auto"
         >
-            <source src="save-the-date.mp4" type="video/mp4">
+
+            <source
+                src="save-the-date.mp4"
+                type="video/mp4"
+            >
+
             Your browser does not support video playback.
+
         </video>
+
     </div>
 
-    <!-- FINAL SAVE THE DATE -->
+
+    <!-- =========================
+         FINAL SAVE THE DATE
+    ========================= -->
+
     <main class="save-date" id="saveDate">
 
+
+        <!-- OPENING MESSAGE -->
+
         <section class="intro">
+
             <p>
+
                 Out of every possibility,<br>
+
                 life chose this one.<br>
-                <strong>Us.</strong>
+
+                <span>Us.</span>
+
             </p>
+
         </section>
+
+
+        <!-- COUPLE -->
 
         <section class="couple">
-            <h1>Shehan & Stephanie</h1>
+
+            <h1>
+                Shehan & Stephanie
+            </h1>
+
         </section>
 
+
+        <!-- STORY -->
+
         <section class="story">
+
             <p>
                 What began as two separate stories<br>
                 will now become one.
@@ -51,22 +97,52 @@
 
             <p>
                 With love and joy,<br>
-                we invite you to celebrate the beginning of our forever.
+                we invite you to celebrate the beginning
+                of our forever.
             </p>
+
         </section>
 
+
+        <!-- DATE -->
+
         <section class="date">
-            <p>12 • 12 • 2026</p>
+
+            <p>
+                12 • 12 • 2026
+            </p>
+
         </section>
+
 
     </main>
 
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
     <script>
-        const startScreen = document.getElementById("startScreen");
-        const startButton = document.getElementById("startButton");
-        const videoScreen = document.getElementById("videoScreen");
-        const weddingVideo = document.getElementById("weddingVideo");
-        const saveDate = document.getElementById("saveDate");
+
+        const startScreen =
+            document.getElementById("startScreen");
+
+        const startButton =
+            document.getElementById("startButton");
+
+        const videoScreen =
+            document.getElementById("videoScreen");
+
+        const weddingVideo =
+            document.getElementById("weddingVideo");
+
+        const saveDate =
+            document.getElementById("saveDate");
+
+
+        /* =========================
+           START VIDEO
+        ========================= */
 
         startButton.addEventListener("click", async () => {
 
@@ -75,12 +151,24 @@
             videoScreen.classList.add("active");
 
             try {
+
                 await weddingVideo.play();
+
             } catch (error) {
-                console.log("Video could not start:", error);
+
+                console.log(
+                    "Video could not start:",
+                    error
+                );
+
             }
 
         });
+
+
+        /* =========================
+           VIDEO FINISHED
+        ========================= */
 
         weddingVideo.addEventListener("ended", () => {
 
@@ -94,7 +182,9 @@
             });
 
         });
+
     </script>
 
 </body>
+
 </html>
