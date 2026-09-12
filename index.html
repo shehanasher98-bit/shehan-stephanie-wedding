@@ -28,7 +28,7 @@
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css?v=14">
+  <link rel="stylesheet" href="style.css?v=15">
 </head>
 
 <body>
@@ -39,14 +39,17 @@
 
   <div class="start-screen" id="startScreen">
 
-    <!-- Cinematic background -->
+    <!-- Soft moving lights -->
     <div class="ambient-light ambient-one"></div>
     <div class="ambient-light ambient-two"></div>
 
+    <!-- Cinematic light beam -->
     <div class="light-beam"></div>
 
+    <!-- Central glow -->
     <div class="center-glow"></div>
 
+    <!-- Subtle film grain -->
     <div class="grain"></div>
 
     <!-- Interactive light -->
@@ -54,7 +57,7 @@
 
 
     <!-- =================================================
-         ORIGINAL CENTER BOX
+         CENTER BOX
     ================================================== -->
 
     <div class="opening-box" id="openingBox">
@@ -116,8 +119,6 @@
     id="saveDate"
   >
 
-    <!-- Intro -->
-
     <section class="intro">
 
       <p>
@@ -129,8 +130,6 @@
     </section>
 
 
-    <!-- Couple -->
-
     <section class="couple">
 
       <h1>
@@ -139,8 +138,6 @@
 
     </section>
 
-
-    <!-- Story -->
 
     <section class="story">
 
@@ -157,8 +154,6 @@
     </section>
 
 
-    <!-- Date -->
-
     <section class="date">
 
       <p>
@@ -167,8 +162,6 @@
 
     </section>
 
-
-    <!-- Share -->
 
     <section class="share-section">
 
@@ -261,7 +254,7 @@
 
 
     /* =====================================================
-       MOUSE / POINTER
+       POINTER
     ====================================================== */
 
     document.addEventListener(
@@ -298,7 +291,7 @@
         }
 
         if (
-          event.touches.length > 0
+          event.touches.length
         ) {
 
           moveLight(
@@ -316,7 +309,7 @@
 
 
     /* =====================================================
-       START VIDEO
+       TAP TO BEGIN
     ====================================================== */
 
     startButton.addEventListener(
@@ -333,18 +326,18 @@
 
 
         /*
-          Animate the box away.
+          1. Put video on screen FIRST.
+          This means there is no black gap.
         */
 
-        startScreen.classList.add(
-          "launching"
+        videoScreen.classList.add(
+          "active"
         );
 
 
         /*
-          Start video immediately after
-          the user interaction so sound works
-          on mobile.
+          2. Start video directly from
+          the user's interaction.
         */
 
         try {
@@ -364,23 +357,24 @@
 
 
         /*
-          Bring video forward.
+          3. Fade the opening away.
+          Video is already underneath.
         */
 
-        setTimeout(
+        requestAnimationFrame(
           function() {
 
-            videoScreen.classList.add(
-              "active"
+            startScreen.classList.add(
+              "launching"
             );
 
-          },
-          400
+          }
         );
 
 
         /*
-          Remove opening screen.
+          4. Completely remove the
+          opening after transition.
         */
 
         setTimeout(
@@ -391,7 +385,7 @@
             );
 
           },
-          1200
+          850
         );
 
       }
@@ -399,7 +393,7 @@
 
 
     /* =====================================================
-       VIDEO ENDED
+       VIDEO FINISHED
     ====================================================== */
 
     weddingVideo.addEventListener(
@@ -410,10 +404,6 @@
           "finished"
         );
 
-
-        /*
-          Short pause before final reveal.
-        */
 
         setTimeout(
           function() {
