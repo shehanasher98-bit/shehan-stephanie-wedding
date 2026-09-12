@@ -1,37 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url(
+    'https://fonts.googleapis.com/css2?family=Anton&display=swap'
+);
+
+
+/* ==================================================
+   VARIABLES
+================================================== */
 
 :root {
+
     --off-white: #F3EEE4;
+
     --red: #B40016;
+
     --dark-red: #8E0012;
-}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    --gold: #C9A227;
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
+    --gold-light: #F4D675;
 
-body {
-    background: var(--off-white);
-    color: var(--red);
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
+    --gold-dark: #8F6B12;
+
 }
 
 
 /* ==================================================
-   FANCY START SCREEN
+   RESET
+================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html,
+body {
+
+    width: 100%;
+
+    min-height: 100%;
+
+}
+
+
+body {
+
+    background:
+        var(--off-white);
+
+    color:
+        var(--red);
+
+    font-family:
+        Arial, sans-serif;
+
+    overflow-x: hidden;
+
+}
+
+
+/* ==================================================
+   OPENING SCREEN
 ================================================== */
 
 .start-screen {
+
     position: fixed;
+
     inset: 0;
 
     z-index: 100;
@@ -39,7 +80,7 @@ body {
     background:
         radial-gradient(
             circle at center,
-            rgba(255,255,255,0.55),
+            rgba(255,255,255,0.65),
             transparent 55%
         ),
         var(--off-white);
@@ -47,51 +88,59 @@ body {
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     overflow: hidden;
 
     transition:
+
         opacity 1.3s ease,
-        visibility 1.3s ease,
-        transform 1.3s ease;
+
+        visibility 1.3s ease;
+
 }
 
 
-/* =========================
-   SOFT GLOW
-========================= */
+/* ==================================================
+   SOFT BACKGROUND GLOW
+================================================== */
 
 .start-screen::before {
+
     content: "";
 
     position: absolute;
 
-    width: 70vw;
-    height: 70vw;
+    width: 75vw;
 
-    max-width: 600px;
-    max-height: 600px;
+    height: 75vw;
+
+    max-width: 650px;
+
+    max-height: 650px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(180,0,22,0.08),
+            rgba(201,162,39,0.08),
             transparent 65%
         );
 
     animation:
-        softGlow 5s ease-in-out infinite;
+        softGlow 6s ease-in-out infinite;
+
 }
 
 
-/* =========================
+/* ==================================================
    FILM GRAIN
-========================= */
+================================================== */
 
 .start-screen::after {
+
     content: "";
 
     position: absolute;
@@ -100,138 +149,300 @@ body {
 
     pointer-events: none;
 
-    opacity: 0.12;
+    opacity: 0.10;
 
     background-image:
         radial-gradient(
-            rgba(180,0,22,0.15) 1px,
+            rgba(120,80,10,0.15) 1px,
             transparent 1px
         );
 
     background-size: 5px 5px;
 
     mix-blend-mode: multiply;
+
 }
 
 
-/* =========================
+/* ==================================================
+   RINGS AREA
+================================================== */
+
+.rings-area {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    width: 260px;
+
+    height: 100%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 3;
+
+    pointer-events: none;
+
+}
+
+
+/* ==================================================
+   RING BASE
+================================================== */
+
+.wedding-ring {
+
+    position: absolute;
+
+    left: 50%;
+
+    border-radius: 50%;
+
+    border-style: solid;
+
+    transform-origin: center;
+
+    filter:
+        drop-shadow(
+            0 8px 8px
+            rgba(70,45,0,0.18)
+        );
+
+}
+
+
+/* ==================================================
+   MALE RING
+================================================== */
+
+.male-ring {
+
+    width: 92px;
+
+    height: 92px;
+
+    margin-left: -72px;
+
+    top: -120px;
+
+    border-width: 13px;
+
+    border-color:
+        var(--gold);
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 55%,
+            rgba(255,255,255,0.22) 56%,
+            transparent 65%
+        );
+
+    animation:
+        maleRingFall
+        2.2s
+        cubic-bezier(.18,.72,.22,1)
+        forwards;
+
+}
+
+
+/* ==================================================
+   FEMALE RING
+================================================== */
+
+.female-ring {
+
+    width: 72px;
+
+    height: 72px;
+
+    margin-left: 10px;
+
+    top: -110px;
+
+    border-width: 10px;
+
+    border-color:
+        var(--gold-light);
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 55%,
+            rgba(255,255,255,0.30) 56%,
+            transparent 65%
+        );
+
+    animation:
+        femaleRingFall
+        2.4s
+        cubic-bezier(.18,.72,.22,1)
+        forwards;
+
+    animation-delay:
+        0.25s;
+
+}
+
+
+/* ==================================================
+   GOLD HIGHLIGHT
+================================================== */
+
+.wedding-ring::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -2px;
+
+    border-radius: 50%;
+
+    border:
+        2px solid
+        rgba(255,245,180,0.75);
+
+    opacity: 0.8;
+
+}
+
+
+.wedding-ring::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 20%;
+
+    height: 7%;
+
+    left: 12%;
+
+    top: 18%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.75);
+
+    filter:
+        blur(2px);
+
+    transform:
+        rotate(-30deg);
+
+}
+
+
+/* ==================================================
    INTRO CARD
-========================= */
+================================================== */
 
 .intro-card {
-    position: relative;
 
-    z-index: 2;
+    position: absolute;
 
-    width: 90%;
+    left: 50%;
 
-    max-width: 500px;
+    bottom: 19vh;
 
-    text-align: center;
+    transform:
+        translateX(-50%);
+
+    z-index: 5;
+
+    width: 100%;
 
     display: flex;
 
-    flex-direction: column;
+    justify-content: center;
 
     align-items: center;
+
 }
 
 
-/* =========================
-   TOP SYMBOL
-========================= */
-
-.intro-symbol {
-    color: var(--red);
-
-    font-size: 22px;
-
-    margin-bottom: 30px;
-
-    opacity: 0;
-
-    animation:
-        symbolReveal 1.5s ease forwards,
-        symbolFloat 4s ease-in-out infinite 1.5s;
-}
-
-
-/* =========================
-   DECORATIVE LINE
-========================= */
-
-.intro-line {
-    width: 0;
-
-    height: 1px;
-
-    background: var(--red);
-
-    margin-bottom: 32px;
-
-    animation:
-        lineDraw 1.5s ease forwards;
-
-    animation-delay: 0.5s;
-}
-
-
-/* =========================
-   TAP TO BEGIN
-========================= */
+/* ==================================================
+   TAP BUTTON
+================================================== */
 
 #startButton {
+
     position: relative;
 
-    border: 1px solid var(--red);
+    border:
+        1px solid
+        var(--red);
 
-    background: rgba(243,238,228,0.5);
+    background:
+        rgba(243,238,228,0.60);
 
-    color: var(--red);
+    color:
+        var(--red);
 
-    padding: 16px 30px;
+    padding:
+        16px 30px;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial, sans-serif;
 
-    font-size: 12px;
+    font-size:
+        12px;
 
-    font-weight: 600;
+    font-weight:
+        600;
 
-    letter-spacing: 3px;
+    letter-spacing:
+        3px;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
-    opacity: 0;
+    opacity:
+        0;
 
-    transform: translateY(15px);
+    transform:
+        translateY(15px);
 
     animation:
-        buttonReveal 1.5s ease forwards;
+        buttonReveal
+        1.5s
+        ease
+        forwards;
 
-    animation-delay: 1s;
+    animation-delay:
+        2.25s;
 
     transition:
         color 0.4s ease,
         background 0.4s ease,
         transform 0.3s ease;
+
 }
 
 
-/* =========================
-   BUTTON SHINE
-========================= */
-
 #startButton::before {
+
     content: "";
 
     position: absolute;
 
     top: 0;
+
     left: -120%;
 
     width: 80%;
+
     height: 100%;
 
     background:
@@ -243,66 +454,100 @@ body {
         );
 
     animation:
-        buttonShine 3s ease-in-out infinite;
+        buttonShine
+        3s
+        ease-in-out
+        infinite;
 
-    animation-delay: 2.5s;
+    animation-delay:
+        3.5s;
+
 }
 
 
 #startButton span {
+
     position: relative;
 
     z-index: 2;
+
 }
 
 
 #startButton:hover {
-    background: var(--red);
 
-    color: var(--off-white);
+    background:
+        var(--red);
 
-    transform: scale(1.04);
+    color:
+        var(--off-white);
+
+    transform:
+        scale(1.04);
+
 }
 
 
-/* =========================
-   BOTTOM SYMBOL
-========================= */
-
-.bottom-symbol {
-    margin-top: 30px;
-
-    margin-bottom: 0;
-
-    animation-delay: 1.5s;
-}
-
-
-/* =========================
-   LAUNCH
-========================= */
+/* ==================================================
+   LAUNCH ANIMATION
+================================================== */
 
 .start-screen.launching {
+
     animation:
-        screenLaunch 1s cubic-bezier(.7,0,.2,1) forwards;
+        screenLaunch
+        1s
+        cubic-bezier(.7,0,.2,1)
+        forwards;
+
 }
+
+
+.start-screen.launching .male-ring {
+
+    animation:
+        maleRingLaunch
+        0.8s
+        ease
+        forwards;
+
+}
+
+
+.start-screen.launching .female-ring {
+
+    animation:
+        femaleRingLaunch
+        0.8s
+        ease
+        forwards;
+
+}
+
 
 .start-screen.launching .intro-card {
+
     animation:
-        launchCard 0.8s ease forwards;
+        launchCard
+        0.8s
+        ease
+        forwards;
+
 }
 
 
-/* =========================
+/* ==================================================
    HIDDEN
-========================= */
+================================================== */
 
 .start-screen.hidden {
+
     opacity: 0;
 
     visibility: hidden;
 
     pointer-events: none;
+
 }
 
 
@@ -311,13 +556,15 @@ body {
 ================================================== */
 
 .video-screen {
+
     position: fixed;
 
     inset: 0;
 
     z-index: 90;
 
-    background: #000;
+    background:
+        #000;
 
     opacity: 0;
 
@@ -326,21 +573,30 @@ body {
     transition:
         opacity 1.4s ease,
         visibility 1.4s ease;
+
 }
 
+
 .video-screen.active {
+
     opacity: 1;
 
     visibility: visible;
+
 }
 
+
 .video-screen.finished {
+
     opacity: 0;
 
     visibility: hidden;
+
 }
 
+
 #weddingVideo {
+
     width: 100%;
 
     height: 100%;
@@ -348,6 +604,7 @@ body {
     object-fit: cover;
 
     display: block;
+
 }
 
 
@@ -356,15 +613,18 @@ body {
 ================================================== */
 
 .save-date {
+
     position: relative;
 
     min-height: 100vh;
 
     width: 100%;
 
-    background: var(--off-white);
+    background:
+        var(--off-white);
 
-    padding: 10vh 6vw 8vh;
+    padding:
+        10vh 6vw 8vh;
 
     display: flex;
 
@@ -385,12 +645,16 @@ body {
         visibility 2.5s ease;
 
     overflow: hidden;
+
 }
 
+
 .save-date.show {
+
     opacity: 1;
 
     visibility: visible;
+
 }
 
 
@@ -399,6 +663,7 @@ body {
 ================================================== */
 
 .save-date::before {
+
     content: "";
 
     position: absolute;
@@ -418,6 +683,7 @@ body {
     background-size: 4px 4px;
 
     mix-blend-mode: multiply;
+
 }
 
 
@@ -426,6 +692,7 @@ body {
 ================================================== */
 
 .intro {
+
     position: relative;
 
     z-index: 2;
@@ -440,31 +707,53 @@ body {
 
     opacity: 0;
 
-    transform: translateY(35px);
+    transform:
+        translateY(35px);
+
 }
+
 
 .intro p {
-    font-family: Arial, sans-serif;
 
-    font-size: clamp(32px, 5.5vw, 75px);
+    font-family:
+        Arial, sans-serif;
 
-    font-weight: 500;
+    font-size:
+        clamp(
+            32px,
+            5.5vw,
+            75px
+        );
 
-    line-height: 1.15;
+    font-weight:
+        500;
 
-    letter-spacing: 1px;
+    line-height:
+        1.15;
 
-    color: var(--red);
+    letter-spacing:
+        1px;
 
-    overflow-wrap: break-word;
+    color:
+        var(--red);
+
+    overflow-wrap:
+        break-word;
+
 }
 
+
 .intro span {
-    display: block;
 
-    font-weight: 500;
+    display:
+        block;
 
-    margin-top: 6px;
+    font-weight:
+        500;
+
+    margin-top:
+        6px;
+
 }
 
 
@@ -473,6 +762,7 @@ body {
 ================================================== */
 
 .couple {
+
     position: relative;
 
     z-index: 2;
@@ -487,23 +777,41 @@ body {
 
     opacity: 0;
 
-    transform: translateY(35px);
+    transform:
+        translateY(35px);
 
-    padding: 0 10px;
+    padding:
+        0 10px;
+
 }
 
+
 .couple h1 {
-    font-family: Anton, Impact, sans-serif;
 
-    font-size: clamp(65px, 10vw, 170px);
+    font-family:
+        Anton,
+        Impact,
+        sans-serif;
 
-    line-height: 1.05;
+    font-size:
+        clamp(
+            65px,
+            10vw,
+            170px
+        );
 
-    letter-spacing: 1.5px;
+    line-height:
+        1.05;
 
-    color: var(--red);
+    letter-spacing:
+        1.5px;
 
-    overflow-wrap: break-word;
+    color:
+        var(--red);
+
+    overflow-wrap:
+        break-word;
+
 }
 
 
@@ -512,6 +820,7 @@ body {
 ================================================== */
 
 .story {
+
     position: relative;
 
     z-index: 2;
@@ -522,25 +831,43 @@ body {
 
     text-align: center;
 
-    color: var(--red);
+    color:
+        var(--red);
 
-    font-size: clamp(18px, 2vw, 27px);
+    font-size:
+        clamp(
+            18px,
+            2vw,
+            27px
+        );
 
-    line-height: 1.55;
+    line-height:
+        1.55;
 
-    margin-bottom: 6vh;
+    margin-bottom:
+        6vh;
 
     opacity: 0;
 
-    transform: translateY(35px);
+    transform:
+        translateY(35px);
+
 }
+
 
 .story p {
-    margin-bottom: 28px;
+
+    margin-bottom:
+        28px;
+
 }
 
+
 .story p:last-child {
-    margin-bottom: 0;
+
+    margin-bottom:
+        0;
+
 }
 
 
@@ -549,6 +876,7 @@ body {
 ================================================== */
 
 .date {
+
     position: relative;
 
     z-index: 2;
@@ -559,23 +887,41 @@ body {
 
     opacity: 0;
 
-    transform: translateY(35px);
+    transform:
+        translateY(35px);
 
-    margin-bottom: 45px;
+    margin-bottom:
+        45px;
+
 }
 
+
 .date p {
-    font-family: Anton, Impact, sans-serif;
 
-    font-size: clamp(45px, 7vw, 105px);
+    font-family:
+        Anton,
+        Impact,
+        sans-serif;
 
-    line-height: 1;
+    font-size:
+        clamp(
+            45px,
+            7vw,
+            105px
+        );
 
-    color: var(--red);
+    line-height:
+        1;
 
-    letter-spacing: 2px;
+    color:
+        var(--red);
 
-    white-space: nowrap;
+    letter-spacing:
+        2px;
+
+    white-space:
+        nowrap;
+
 }
 
 
@@ -584,6 +930,7 @@ body {
 ================================================== */
 
 .share-button {
+
     position: relative;
 
     z-index: 2;
@@ -594,42 +941,63 @@ body {
 
     justify-content: center;
 
-    padding: 13px 25px;
+    padding:
+        13px 25px;
 
-    border: 1.5px solid var(--red);
+    border:
+        1.5px solid
+        var(--red);
 
-    background: transparent;
+    background:
+        transparent;
 
-    color: var(--red);
+    color:
+        var(--red);
 
-    text-decoration: none;
+    text-decoration:
+        none;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        sans-serif;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    font-weight: 600;
+    font-weight:
+        600;
 
-    letter-spacing: 1.5px;
+    letter-spacing:
+        1.5px;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 
-    opacity: 0;
+    opacity:
+        0;
 
-    transform: translateY(25px);
+    transform:
+        translateY(25px);
 
     transition:
         background 0.3s ease,
         color 0.3s ease,
         transform 0.3s ease;
+
 }
 
+
 .share-button:hover {
-    background: var(--red);
 
-    color: var(--off-white);
+    background:
+        var(--red);
 
-    transform: translateY(-2px);
+    color:
+        var(--off-white);
+
+    transform:
+        translateY(-2px);
+
 }
 
 
@@ -638,38 +1006,72 @@ body {
 ================================================== */
 
 .save-date.show .intro {
-    animation:
-        revealText 1.8s ease forwards;
 
-    animation-delay: 0.8s;
+    animation:
+        revealText
+        1.8s
+        ease
+        forwards;
+
+    animation-delay:
+        0.8s;
+
 }
+
 
 .save-date.show .couple {
-    animation:
-        revealText 1.8s ease forwards;
 
-    animation-delay: 2.2s;
+    animation:
+        revealText
+        1.8s
+        ease
+        forwards;
+
+    animation-delay:
+        2.2s;
+
 }
+
 
 .save-date.show .story {
-    animation:
-        revealText 1.8s ease forwards;
 
-    animation-delay: 3.6s;
+    animation:
+        revealText
+        1.8s
+        ease
+        forwards;
+
+    animation-delay:
+        3.6s;
+
 }
+
 
 .save-date.show .date {
-    animation:
-        dateReveal 2.2s ease forwards;
 
-    animation-delay: 5.2s;
+    animation:
+        dateReveal
+        2.2s
+        ease
+        forwards;
+
+    animation-delay:
+        5.2s;
+
 }
 
-.save-date.show .share-button {
-    animation:
-        revealText 1.5s ease forwards;
 
-    animation-delay: 7.3s;
+.save-date.show .share-button {
+
+    animation:
+        revealText
+        1.5s
+        ease
+        forwards;
+
+    animation-delay:
+        7.3s;
+
 }
 
 
@@ -680,188 +1082,370 @@ body {
 @keyframes softGlow {
 
     0% {
-        transform: scale(0.9);
-        opacity: 0.5;
+
+        transform:
+            scale(0.9);
+
+        opacity:
+            0.5;
+
     }
 
     50% {
-        transform: scale(1.1);
-        opacity: 1;
+
+        transform:
+            scale(1.1);
+
+        opacity:
+            1;
+
     }
 
     100% {
-        transform: scale(0.9);
-        opacity: 0.5;
+
+        transform:
+            scale(0.9);
+
+        opacity:
+            0.5;
+
     }
+
 }
 
 
-@keyframes symbolReveal {
+@keyframes maleRingFall {
 
-    from {
-        opacity: 0;
+    0% {
 
-        transform:
-            scale(0.5)
-            rotate(-30deg);
-    }
-
-    to {
-        opacity: 1;
+        top:
+            -120px;
 
         transform:
-            scale(1)
-            rotate(0);
+            rotate(-35deg)
+            scale(0.75);
+
+        opacity:
+            0;
+
     }
-}
 
+    20% {
 
-@keyframes symbolFloat {
+        opacity:
+            1;
 
-    0%,
+    }
+
+    75% {
+
+        transform:
+            rotate(350deg)
+            scale(1.03);
+
+    }
+
     100% {
-        transform: translateY(0);
+
+        top:
+            38%;
+
+        transform:
+            rotate(360deg)
+            scale(1);
+
+        opacity:
+            1;
+
     }
 
-    50% {
-        transform: translateY(-5px);
-    }
 }
 
 
-@keyframes lineDraw {
+@keyframes femaleRingFall {
 
-    from {
-        width: 0;
+    0% {
 
-        opacity: 0;
+        top:
+            -110px;
+
+        transform:
+            rotate(40deg)
+            scale(0.65);
+
+        opacity:
+            0;
+
     }
 
-    to {
-        width: 150px;
+    20% {
 
-        opacity: 1;
+        opacity:
+            1;
+
     }
+
+    75% {
+
+        transform:
+            rotate(-330deg)
+            scale(1.04);
+
+    }
+
+    100% {
+
+        top:
+            calc(38% + 8px);
+
+        transform:
+            rotate(-360deg)
+            scale(1);
+
+        opacity:
+            1;
+
+    }
+
+}
+
+
+@keyframes maleRingLaunch {
+
+    0% {
+
+        transform:
+            rotate(360deg)
+            scale(1);
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        transform:
+            translate(
+                -55px,
+                -20px
+            )
+            rotate(450deg)
+            scale(1.3);
+
+        opacity:
+            0;
+
+    }
+
+}
+
+
+@keyframes femaleRingLaunch {
+
+    0% {
+
+        transform:
+            rotate(-360deg)
+            scale(1);
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        transform:
+            translate(
+                55px,
+                20px
+            )
+            rotate(-450deg)
+            scale(1.3);
+
+        opacity:
+            0;
+
+    }
+
 }
 
 
 @keyframes buttonReveal {
 
     from {
-        opacity: 0;
+
+        opacity:
+            0;
 
         transform:
             translateY(15px);
+
     }
 
     to {
-        opacity: 1;
+
+        opacity:
+            1;
 
         transform:
             translateY(0);
+
     }
+
 }
 
 
 @keyframes buttonShine {
 
     0% {
-        left: -120%;
+
+        left:
+            -120%;
+
     }
 
     35%,
     100% {
-        left: 140%;
+
+        left:
+            140%;
+
     }
+
 }
 
 
 @keyframes screenLaunch {
 
     0% {
-        background: var(--off-white);
+
+        background:
+            var(--off-white);
+
     }
 
     55% {
-        background: var(--red);
+
+        background:
+            var(--red);
+
     }
 
     100% {
-        background: #000;
 
-        opacity: 0;
+        background:
+            #000;
 
-        visibility: hidden;
+        opacity:
+            0;
+
+        visibility:
+            hidden;
+
     }
+
 }
 
 
 @keyframes launchCard {
 
     0% {
-        opacity: 1;
+
+        opacity:
+            1;
 
         transform:
+            translateX(-50%)
             scale(1);
+
     }
 
     40% {
+
         transform:
+            translateX(-50%)
             scale(0.96);
+
     }
 
     100% {
-        opacity: 0;
+
+        opacity:
+            0;
 
         transform:
+            translateX(-50%)
             scale(1.08);
+
     }
+
 }
 
 
 @keyframes revealText {
 
     0% {
-        opacity: 0;
+
+        opacity:
+            0;
 
         transform:
             translateY(35px);
+
     }
 
     100% {
-        opacity: 1;
+
+        opacity:
+            1;
 
         transform:
             translateY(0);
+
     }
+
 }
 
 
 @keyframes dateReveal {
 
     0% {
-        opacity: 0;
+
+        opacity:
+            0;
 
         transform:
             translateY(40px)
             scale(0.94);
 
-        letter-spacing: 8px;
+        letter-spacing:
+            8px;
+
     }
 
     60% {
-        opacity: 1;
+
+        opacity:
+            1;
+
     }
 
     100% {
-        opacity: 1;
+
+        opacity:
+            1;
 
         transform:
             translateY(0)
             scale(1);
 
-        letter-spacing: 2px;
+        letter-spacing:
+            2px;
+
     }
+
 }
 
 
@@ -871,123 +1455,233 @@ body {
 
 @media (max-width: 600px) {
 
-    /* Opening */
 
-    .intro-symbol {
-        font-size: 19px;
+    .rings-area {
 
-        margin-bottom: 24px;
+        width:
+            220px;
+
     }
 
-    .intro-line {
-        margin-bottom: 28px;
+
+    .male-ring {
+
+        width:
+            78px;
+
+        height:
+            78px;
+
+        margin-left:
+            -62px;
+
+        border-width:
+            11px;
+
     }
+
+
+    .female-ring {
+
+        width:
+            61px;
+
+        height:
+            61px;
+
+        margin-left:
+            8px;
+
+        border-width:
+            9px;
+
+    }
+
+
+    .intro-card {
+
+        bottom:
+            18vh;
+
+    }
+
 
     #startButton {
-        padding: 15px 25px;
 
-        font-size: 11px;
+        padding:
+            15px 25px;
 
-        letter-spacing: 2.5px;
+        font-size:
+            11px;
+
+        letter-spacing:
+            2.5px;
+
     }
 
-    .bottom-symbol {
-        margin-top: 26px;
-    }
-
-
-    /* Final screen */
 
     .save-date {
-        min-height: 100svh;
 
-        padding: 45px 18px 55px;
+        min-height:
+            100svh;
 
-        justify-content: flex-start;
+        padding:
+            45px 18px 55px;
+
+        justify-content:
+            flex-start;
+
     }
 
 
     .intro {
-        max-width: 390px;
 
-        margin-bottom: 35px;
+        max-width:
+            390px;
 
-        padding: 0 5px;
+        margin-bottom:
+            35px;
+
+        padding:
+            0 5px;
+
     }
+
 
     .intro p {
-        font-size: clamp(30px, 8.5vw, 48px);
 
-        font-weight: 500;
+        font-size:
+            clamp(
+                30px,
+                8.5vw,
+                48px
+            );
 
-        line-height: 1.18;
+        font-weight:
+            500;
 
-        letter-spacing: 0.8px;
+        line-height:
+            1.18;
+
+        letter-spacing:
+            0.8px;
+
     }
 
+
     .intro span {
-        margin-top: 7px;
+
+        margin-top:
+            7px;
+
     }
 
 
     .couple {
-        max-width: 100%;
 
-        margin-bottom: 42px;
+        max-width:
+            100%;
 
-        padding: 0 12px;
+        margin-bottom:
+            42px;
 
-        margin-top: -5px;
+        padding:
+            0 12px;
+
+        margin-top:
+            -5px;
+
     }
 
+
     .couple h1 {
-        font-size: clamp(42px, 11vw, 65px);
 
-        line-height: 1.08;
+        font-size:
+            clamp(
+                42px,
+                11vw,
+                65px
+            );
 
-        letter-spacing: 1.5px;
+        line-height:
+            1.08;
 
-        word-spacing: 2px;
+        letter-spacing:
+            1.5px;
+
+        word-spacing:
+            2px;
+
     }
 
 
     .story {
-        max-width: 330px;
 
-        font-size: 17px;
+        max-width:
+            330px;
 
-        line-height: 1.55;
+        font-size:
+            17px;
 
-        margin-bottom: 42px;
+        line-height:
+            1.55;
 
-        color: var(--red);
+        margin-bottom:
+            42px;
+
+        color:
+            var(--red);
+
     }
 
+
     .story p {
-        margin-bottom: 24px;
+
+        margin-bottom:
+            24px;
+
     }
 
 
     .date {
-        margin-bottom: 35px;
+
+        margin-bottom:
+            35px;
+
     }
 
+
     .date p {
-        font-size: clamp(37px, 10.5vw, 58px);
 
-        letter-spacing: 1px;
+        font-size:
+            clamp(
+                37px,
+                10.5vw,
+                58px
+            );
 
-        white-space: normal;
+        letter-spacing:
+            1px;
+
+        white-space:
+            normal;
+
     }
 
 
     .share-button {
-        padding: 12px 22px;
 
-        font-size: 13px;
+        padding:
+            12px 22px;
 
-        letter-spacing: 1.2px;
+        font-size:
+            13px;
+
+        letter-spacing:
+            1.2px;
+
     }
+
 }
 
 
@@ -997,76 +1691,156 @@ body {
 
 @media (max-width: 380px) {
 
-    .intro-symbol {
-        font-size: 18px;
+
+    .rings-area {
+
+        width:
+            200px;
+
     }
 
-    .intro-line {
-        margin-bottom: 25px;
+
+    .male-ring {
+
+        width:
+            70px;
+
+        height:
+            70px;
+
+        margin-left:
+            -55px;
+
+        border-width:
+            10px;
+
     }
+
+
+    .female-ring {
+
+        width:
+            55px;
+
+        height:
+            55px;
+
+        margin-left:
+            7px;
+
+        border-width:
+            8px;
+
+    }
+
+
+    .intro-card {
+
+        bottom:
+            17vh;
+
+    }
+
 
     #startButton {
-        font-size: 10px;
 
-        padding: 14px 22px;
-    }
+        font-size:
+            10px;
 
-    .bottom-symbol {
-        margin-top: 24px;
+        padding:
+            14px 22px;
+
     }
 
 
     .intro {
-        max-width: 350px;
 
-        margin-bottom: 32px;
+        max-width:
+            350px;
+
+        margin-bottom:
+            32px;
+
     }
 
+
     .intro p {
-        font-size: 29px;
 
-        line-height: 1.18;
+        font-size:
+            29px;
 
-        letter-spacing: 0.6px;
+        line-height:
+            1.18;
+
+        letter-spacing:
+            0.6px;
+
     }
 
 
     .couple {
-        padding: 0 8px;
 
-        margin-bottom: 40px;
+        padding:
+            0 8px;
+
+        margin-bottom:
+            40px;
+
     }
 
+
     .couple h1 {
-        font-size: 41px;
 
-        line-height: 1.08;
+        font-size:
+            41px;
 
-        letter-spacing: 1.2px;
+        line-height:
+            1.08;
+
+        letter-spacing:
+            1.2px;
+
     }
 
 
     .story {
-        font-size: 16px;
 
-        max-width: 300px;
+        font-size:
+            16px;
 
-        margin-bottom: 40px;
+        max-width:
+            300px;
+
+        margin-bottom:
+            40px;
+
     }
 
 
     .date {
-        margin-bottom: 30px;
+
+        margin-bottom:
+            30px;
+
     }
 
+
     .date p {
-        font-size: 35px;
+
+        font-size:
+            35px;
+
     }
 
 
     .share-button {
-        font-size: 12px;
 
-        padding: 11px 20px;
+        font-size:
+            12px;
+
+        padding:
+            11px 20px;
+
     }
+
 }
