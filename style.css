@@ -15,11 +15,7 @@
 
     --dark-red: #8E0012;
 
-    --gold: #C9A227;
-
-    --gold-light: #F4D675;
-
-    --gold-dark: #8F6B12;
+    --soft-red: rgba(180,0,22,0.12);
 
 }
 
@@ -66,7 +62,7 @@ body {
 
 
 /* ==================================================
-   OPENING SCREEN
+   CINEMATIC OPENING
 ================================================== */
 
 .start-screen {
@@ -77,14 +73,6 @@ body {
 
     z-index: 100;
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(255,255,255,0.65),
-            transparent 55%
-        ),
-        var(--off-white);
-
     display: flex;
 
     justify-content: center;
@@ -93,17 +81,22 @@ body {
 
     overflow: hidden;
 
+    background:
+        var(--off-white);
+
+    opacity: 1;
+
+    visibility: visible;
+
     transition:
-
-        opacity 1.3s ease,
-
-        visibility 1.3s ease;
+        opacity 1s ease,
+        visibility 1s ease;
 
 }
 
 
 /* ==================================================
-   SOFT BACKGROUND GLOW
+   SUBTLE BACKGROUND GLOW
 ================================================== */
 
 .start-screen::before {
@@ -112,25 +105,20 @@ body {
 
     position: absolute;
 
-    width: 75vw;
-
-    height: 75vw;
-
-    max-width: 650px;
-
-    max-height: 650px;
-
-    border-radius: 50%;
+    inset: -20%;
 
     background:
         radial-gradient(
-            circle,
-            rgba(201,162,39,0.08),
-            transparent 65%
+            ellipse at 50% 45%,
+            rgba(180,0,22,0.07),
+            transparent 48%
         );
 
     animation:
-        softGlow 6s ease-in-out infinite;
+        breathingGlow
+        7s
+        ease-in-out
+        infinite;
 
 }
 
@@ -149,222 +137,250 @@ body {
 
     pointer-events: none;
 
-    opacity: 0.10;
+    opacity: 0.09;
 
     background-image:
         radial-gradient(
-            rgba(120,80,10,0.15) 1px,
+            rgba(120,0,15,0.18) 1px,
             transparent 1px
         );
 
-    background-size: 5px 5px;
+    background-size:
+        5px 5px;
 
-    mix-blend-mode: multiply;
-
-}
-
-
-/* ==================================================
-   RINGS AREA
-================================================== */
-
-.rings-area {
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 0;
-
-    width: 260px;
-
-    height: 100%;
-
-    transform:
-        translateX(-50%);
-
-    z-index: 3;
-
-    pointer-events: none;
+    mix-blend-mode:
+        multiply;
 
 }
 
 
 /* ==================================================
-   RING BASE
+   MOVING LIGHT ORB
 ================================================== */
 
-.wedding-ring {
+.light-orb {
 
     position: absolute;
 
-    left: 50%;
+    width: 42vw;
+
+    height: 42vw;
+
+    max-width: 500px;
+
+    max-height: 500px;
 
     border-radius: 50%;
-
-    border-style: solid;
-
-    transform-origin: center;
-
-    filter:
-        drop-shadow(
-            0 8px 8px
-            rgba(70,45,0,0.18)
-        );
-
-}
-
-
-/* ==================================================
-   MALE RING
-================================================== */
-
-.male-ring {
-
-    width: 92px;
-
-    height: 92px;
-
-    margin-left: -72px;
-
-    top: -120px;
-
-    border-width: 13px;
-
-    border-color:
-        var(--gold);
 
     background:
         radial-gradient(
             circle,
-            transparent 55%,
-            rgba(255,255,255,0.22) 56%,
-            transparent 65%
+            rgba(180,0,22,0.12),
+            rgba(180,0,22,0.03) 35%,
+            transparent 70%
         );
-
-    animation:
-        maleRingFall
-        2.2s
-        cubic-bezier(.18,.72,.22,1)
-        forwards;
-
-}
-
-
-/* ==================================================
-   FEMALE RING
-================================================== */
-
-.female-ring {
-
-    width: 72px;
-
-    height: 72px;
-
-    margin-left: 10px;
-
-    top: -110px;
-
-    border-width: 10px;
-
-    border-color:
-        var(--gold-light);
-
-    background:
-        radial-gradient(
-            circle,
-            transparent 55%,
-            rgba(255,255,255,0.30) 56%,
-            transparent 65%
-        );
-
-    animation:
-        femaleRingFall
-        2.4s
-        cubic-bezier(.18,.72,.22,1)
-        forwards;
-
-    animation-delay:
-        0.25s;
-
-}
-
-
-/* ==================================================
-   GOLD HIGHLIGHT
-================================================== */
-
-.wedding-ring::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: -2px;
-
-    border-radius: 50%;
-
-    border:
-        2px solid
-        rgba(255,245,180,0.75);
-
-    opacity: 0.8;
-
-}
-
-
-.wedding-ring::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 20%;
-
-    height: 7%;
-
-    left: 12%;
-
-    top: 18%;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,0.75);
 
     filter:
-        blur(2px);
+        blur(10px);
 
     transform:
-        rotate(-30deg);
-
-}
-
-
-/* ==================================================
-   INTRO CARD
-================================================== */
-
-.intro-card {
-
-    position: absolute;
+        translate(-50%, -50%);
 
     left: 50%;
 
-    bottom: 19vh;
+    top: 42%;
+
+    animation:
+        orbMovement
+        8s
+        ease-in-out
+        infinite;
+
+}
+
+
+/* ==================================================
+   LIGHT BEAM
+================================================== */
+
+.light-beam {
+
+    position: absolute;
+
+    width: 160%;
+
+    height: 25%;
+
+    left: -30%;
+
+    top: 30%;
 
     transform:
-        translateX(-50%);
+        rotate(-8deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.38),
+            transparent
+        );
+
+    filter:
+        blur(30px);
+
+    opacity:
+        0.35;
+
+    animation:
+        beamMove
+        8s
+        ease-in-out
+        infinite;
+
+}
+
+
+/* ==================================================
+   OPENING CONTENT
+================================================== */
+
+.opening-content {
+
+    position: relative;
 
     z-index: 5;
 
-    width: 100%;
+    width: 90%;
+
+    max-width: 720px;
+
+    text-align: center;
 
     display: flex;
 
-    justify-content: center;
+    flex-direction: column;
 
     align-items: center;
+
+}
+
+
+/* ==================================================
+   OPENING MESSAGE
+================================================== */
+
+.opening-message {
+
+    color:
+        var(--red);
+
+    opacity:
+        0;
+
+    transform:
+        translateY(28px);
+
+    animation:
+        openingMessage
+        2s
+        cubic-bezier(.2,.7,.2,1)
+        forwards;
+
+    animation-delay:
+        0.5s;
+
+}
+
+
+.opening-message p {
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            25px,
+            5vw,
+            55px
+        );
+
+    font-weight:
+        400;
+
+    line-height:
+        1.25;
+
+    letter-spacing:
+        0.5px;
+
+}
+
+
+.opening-us {
+
+    margin-top:
+        10px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            31px,
+            6vw,
+            68px
+        );
+
+    font-weight:
+        500;
+
+    line-height:
+        1;
+
+    opacity:
+        0;
+
+    transform:
+        scale(0.92);
+
+    animation:
+        usReveal
+        1.8s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+
+    animation-delay:
+        1.8s;
+
+}
+
+
+/* ==================================================
+   TAP AREA
+================================================== */
+
+.tap-area {
+
+    margin-top:
+        55px;
+
+    opacity:
+        0;
+
+    transform:
+        translateY(20px);
+
+    animation:
+        tapReveal
+        1.5s
+        ease
+        forwards;
+
+    animation-delay:
+        3.1s;
 
 }
 
@@ -375,23 +391,24 @@ body {
 
 #startButton {
 
-    position: relative;
+    position:
+        relative;
 
     border:
-        1px solid
-        var(--red);
+        0;
 
     background:
-        rgba(243,238,228,0.60);
+        transparent;
 
     color:
         var(--red);
 
     padding:
-        16px 30px;
+        12px 8px;
 
     font-family:
-        Arial, sans-serif;
+        Arial,
+        sans-serif;
 
     font-size:
         12px;
@@ -400,102 +417,162 @@ body {
         600;
 
     letter-spacing:
-        3px;
+        3.5px;
 
     cursor:
         pointer;
-
-    overflow:
-        hidden;
-
-    opacity:
-        0;
-
-    transform:
-        translateY(15px);
-
-    animation:
-        buttonReveal
-        1.5s
-        ease
-        forwards;
-
-    animation-delay:
-        2.25s;
-
-    transition:
-        color 0.4s ease,
-        background 0.4s ease,
-        transform 0.3s ease;
-
-}
-
-
-#startButton::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: -120%;
-
-    width: 80%;
-
-    height: 100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(180,0,22,0.15),
-            transparent
-        );
-
-    animation:
-        buttonShine
-        3s
-        ease-in-out
-        infinite;
-
-    animation-delay:
-        3.5s;
-
-}
-
-
-#startButton span {
-
-    position: relative;
-
-    z-index: 2;
-
-}
-
-
-#startButton:hover {
-
-    background:
-        var(--red);
-
-    color:
-        var(--off-white);
-
-    transform:
-        scale(1.04);
 
 }
 
 
 /* ==================================================
-   LAUNCH ANIMATION
+   BUTTON UNDERLINE
+================================================== */
+
+#startButton i {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    bottom:
+        0;
+
+    width:
+        0;
+
+    height:
+        1px;
+
+    background:
+        var(--red);
+
+    transform:
+        translateX(-50%);
+
+    transition:
+        width 0.5s ease;
+
+}
+
+
+#startButton:hover i {
+
+    width:
+        100%;
+
+}
+
+
+/* ==================================================
+   BUTTON PULSE
+================================================== */
+
+#startButton::after {
+
+    content: "";
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        4px;
+
+    height:
+        4px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--red);
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    opacity:
+        0;
+
+    animation:
+        buttonPulse
+        2.5s
+        ease-out
+        infinite;
+
+    animation-delay:
+        4.5s;
+
+}
+
+
+/* ==================================================
+   TOUCH LIGHT
+================================================== */
+
+.touch-light {
+
+    position:
+        fixed;
+
+    width:
+        220px;
+
+    height:
+        220px;
+
+    border-radius:
+        50%;
+
+    pointer-events:
+        none;
+
+    z-index:
+        4;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(180,0,22,0.07),
+            transparent 65%
+        );
+
+    opacity:
+        0;
+
+    transition:
+        opacity 0.6s ease;
+
+}
+
+
+.touch-light.active {
+
+    opacity:
+        1;
+
+}
+
+
+/* ==================================================
+   LAUNCH
 ================================================== */
 
 .start-screen.launching {
 
     animation:
-        screenLaunch
+        cinematicLaunch
         1s
         cubic-bezier(.7,0,.2,1)
         forwards;
@@ -503,10 +580,11 @@ body {
 }
 
 
-.start-screen.launching .male-ring {
+.start-screen.launching
+.opening-content {
 
     animation:
-        maleRingLaunch
+        contentLaunch
         0.8s
         ease
         forwards;
@@ -514,22 +592,12 @@ body {
 }
 
 
-.start-screen.launching .female-ring {
+.start-screen.launching
+.light-orb {
 
     animation:
-        femaleRingLaunch
-        0.8s
-        ease
-        forwards;
-
-}
-
-
-.start-screen.launching .intro-card {
-
-    animation:
-        launchCard
-        0.8s
+        launchGlow
+        1s
         ease
         forwards;
 
@@ -542,11 +610,14 @@ body {
 
 .start-screen.hidden {
 
-    opacity: 0;
+    opacity:
+        0;
 
-    visibility: hidden;
+    visibility:
+        hidden;
 
-    pointer-events: none;
+    pointer-events:
+        none;
 
 }
 
@@ -557,18 +628,23 @@ body {
 
 .video-screen {
 
-    position: fixed;
+    position:
+        fixed;
 
-    inset: 0;
+    inset:
+        0;
 
-    z-index: 90;
+    z-index:
+        90;
 
     background:
         #000;
 
-    opacity: 0;
+    opacity:
+        0;
 
-    visibility: hidden;
+    visibility:
+        hidden;
 
     transition:
         opacity 1.4s ease,
@@ -579,46 +655,57 @@ body {
 
 .video-screen.active {
 
-    opacity: 1;
+    opacity:
+        1;
 
-    visibility: visible;
+    visibility:
+        visible;
 
 }
 
 
 .video-screen.finished {
 
-    opacity: 0;
+    opacity:
+        0;
 
-    visibility: hidden;
+    visibility:
+        hidden;
 
 }
 
 
 #weddingVideo {
 
-    width: 100%;
+    width:
+        100%;
 
-    height: 100%;
+    height:
+        100%;
 
-    object-fit: cover;
+    object-fit:
+        cover;
 
-    display: block;
+    display:
+        block;
 
 }
 
 
 /* ==================================================
-   SAVE THE DATE
+   FINAL SAVE THE DATE
 ================================================== */
 
 .save-date {
 
-    position: relative;
+    position:
+        relative;
 
-    min-height: 100vh;
+    min-height:
+        100vh;
 
-    width: 100%;
+    width:
+        100%;
 
     background:
         var(--off-white);
@@ -626,53 +713,65 @@ body {
     padding:
         10vh 6vw 8vh;
 
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    align-items: center;
+    align-items:
+        center;
 
-    text-align: center;
+    text-align:
+        center;
 
-    opacity: 0;
+    opacity:
+        0;
 
-    visibility: hidden;
+    visibility:
+        hidden;
 
     transition:
         opacity 2.5s ease,
         visibility 2.5s ease;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
 }
 
 
 .save-date.show {
 
-    opacity: 1;
+    opacity:
+        1;
 
-    visibility: visible;
+    visibility:
+        visible;
 
 }
 
 
-/* ==================================================
-   FILM TEXTURE
-================================================== */
+/* FILM TEXTURE */
 
 .save-date::before {
 
     content: "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    inset: 0;
+    inset:
+        0;
 
-    pointer-events: none;
+    pointer-events:
+        none;
 
-    opacity: 0.08;
+    opacity:
+        0.08;
 
     background-image:
         radial-gradient(
@@ -680,32 +779,41 @@ body {
             transparent 1px
         );
 
-    background-size: 4px 4px;
+    background-size:
+        4px 4px;
 
-    mix-blend-mode: multiply;
+    mix-blend-mode:
+        multiply;
 
 }
 
 
 /* ==================================================
-   INTRO
+   FINAL INTRO
 ================================================== */
 
 .intro {
 
-    position: relative;
+    position:
+        relative;
 
-    z-index: 2;
+    z-index:
+        2;
 
-    width: 100%;
+    width:
+        100%;
 
-    max-width: 1050px;
+    max-width:
+        1050px;
 
-    text-align: center;
+    text-align:
+        center;
 
-    margin-bottom: 5vh;
+    margin-bottom:
+        5vh;
 
-    opacity: 0;
+    opacity:
+        0;
 
     transform:
         translateY(35px);
@@ -716,7 +824,8 @@ body {
 .intro p {
 
     font-family:
-        Arial, sans-serif;
+        Arial,
+        sans-serif;
 
     font-size:
         clamp(
@@ -763,19 +872,26 @@ body {
 
 .couple {
 
-    position: relative;
+    position:
+        relative;
 
-    z-index: 2;
+    z-index:
+        2;
 
-    width: 100%;
+    width:
+        100%;
 
-    max-width: 1400px;
+    max-width:
+        1400px;
 
-    text-align: center;
+    text-align:
+        center;
 
-    margin-bottom: 7vh;
+    margin-bottom:
+        7vh;
 
-    opacity: 0;
+    opacity:
+        0;
 
     transform:
         translateY(35px);
@@ -821,15 +937,20 @@ body {
 
 .story {
 
-    position: relative;
+    position:
+        relative;
 
-    z-index: 2;
+    z-index:
+        2;
 
-    width: 100%;
+    width:
+        100%;
 
-    max-width: 850px;
+    max-width:
+        850px;
 
-    text-align: center;
+    text-align:
+        center;
 
     color:
         var(--red);
@@ -847,7 +968,8 @@ body {
     margin-bottom:
         6vh;
 
-    opacity: 0;
+    opacity:
+        0;
 
     transform:
         translateY(35px);
@@ -877,15 +999,20 @@ body {
 
 .date {
 
-    position: relative;
+    position:
+        relative;
 
-    z-index: 2;
+    z-index:
+        2;
 
-    width: 100%;
+    width:
+        100%;
 
-    text-align: center;
+    text-align:
+        center;
 
-    opacity: 0;
+    opacity:
+        0;
 
     transform:
         translateY(35px);
@@ -926,20 +1053,25 @@ body {
 
 
 /* ==================================================
-   SHARE BUTTON
+   SHARE
 ================================================== */
 
 .share-button {
 
-    position: relative;
+    position:
+        relative;
 
-    z-index: 2;
+    z-index:
+        2;
 
-    display: inline-flex;
+    display:
+        inline-flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
     padding:
         13px 25px;
@@ -1076,162 +1208,105 @@ body {
 
 
 /* ==================================================
-   ANIMATIONS
+   OPENING ANIMATIONS
 ================================================== */
 
-@keyframes softGlow {
+@keyframes breathingGlow {
 
     0% {
 
         transform:
-            scale(0.9);
+            scale(0.95);
 
         opacity:
-            0.5;
+            0.6;
 
     }
 
     50% {
 
         transform:
+            scale(1.05);
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        transform:
+            scale(0.95);
+
+        opacity:
+            0.6;
+
+    }
+
+}
+
+
+@keyframes orbMovement {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.85);
+
+    }
+
+    50% {
+
+        transform:
+            translate(-46%, -54%)
             scale(1.1);
 
-        opacity:
-            1;
-
     }
 
     100% {
 
         transform:
-            scale(0.9);
-
-        opacity:
-            0.5;
+            translate(-50%, -50%)
+            scale(0.85);
 
     }
 
 }
 
 
-@keyframes maleRingFall {
+@keyframes beamMove {
 
     0% {
 
-        top:
-            -120px;
-
         transform:
-            rotate(-35deg)
-            scale(0.75);
+            translateX(-25%)
+            rotate(-8deg);
 
         opacity:
             0;
 
     }
 
-    20% {
+    30% {
 
         opacity:
-            1;
+            0.35;
 
     }
 
-    75% {
-
-        transform:
-            rotate(350deg)
-            scale(1.03);
-
-    }
-
-    100% {
-
-        top:
-            38%;
-
-        transform:
-            rotate(360deg)
-            scale(1);
+    70% {
 
         opacity:
-            1;
-
-    }
-
-}
-
-
-@keyframes femaleRingFall {
-
-    0% {
-
-        top:
-            -110px;
-
-        transform:
-            rotate(40deg)
-            scale(0.65);
-
-        opacity:
-            0;
-
-    }
-
-    20% {
-
-        opacity:
-            1;
-
-    }
-
-    75% {
-
-        transform:
-            rotate(-330deg)
-            scale(1.04);
-
-    }
-
-    100% {
-
-        top:
-            calc(38% + 8px);
-
-        transform:
-            rotate(-360deg)
-            scale(1);
-
-        opacity:
-            1;
-
-    }
-
-}
-
-
-@keyframes maleRingLaunch {
-
-    0% {
-
-        transform:
-            rotate(360deg)
-            scale(1);
-
-        opacity:
-            1;
+            0.2;
 
     }
 
     100% {
 
         transform:
-            translate(
-                -55px,
-                -20px
-            )
-            rotate(450deg)
-            scale(1.3);
+            translateX(25%)
+            rotate(-8deg);
 
         opacity:
             0;
@@ -1241,38 +1316,7 @@ body {
 }
 
 
-@keyframes femaleRingLaunch {
-
-    0% {
-
-        transform:
-            rotate(-360deg)
-            scale(1);
-
-        opacity:
-            1;
-
-    }
-
-    100% {
-
-        transform:
-            translate(
-                55px,
-                20px
-            )
-            rotate(-450deg)
-            scale(1.3);
-
-        opacity:
-            0;
-
-    }
-
-}
-
-
-@keyframes buttonReveal {
+@keyframes openingMessage {
 
     from {
 
@@ -1280,7 +1324,7 @@ body {
             0;
 
         transform:
-            translateY(15px);
+            translateY(28px);
 
     }
 
@@ -1297,39 +1341,109 @@ body {
 }
 
 
-@keyframes buttonShine {
+@keyframes usReveal {
 
-    0% {
+    from {
 
-        left:
-            -120%;
+        opacity:
+            0;
+
+        transform:
+            scale(0.92);
 
     }
 
-    35%,
-    100% {
+    to {
 
-        left:
-            140%;
+        opacity:
+            1;
+
+        transform:
+            scale(1);
 
     }
 
 }
 
 
-@keyframes screenLaunch {
+@keyframes tapReveal {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes buttonPulse {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        opacity:
+            0.4;
+
+    }
+
+    70% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(12);
+
+        opacity:
+            0;
+
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+    }
+
+}
+
+
+@keyframes cinematicLaunch {
 
     0% {
 
         background:
             var(--off-white);
 
+        opacity:
+            1;
+
     }
 
-    55% {
+    45% {
 
         background:
             var(--red);
+
+        opacity:
+            1;
 
     }
 
@@ -1341,15 +1455,12 @@ body {
         opacity:
             0;
 
-        visibility:
-            hidden;
-
     }
 
 }
 
 
-@keyframes launchCard {
+@keyframes contentLaunch {
 
     0% {
 
@@ -1357,16 +1468,7 @@ body {
             1;
 
         transform:
-            translateX(-50%)
             scale(1);
-
-    }
-
-    40% {
-
-        transform:
-            translateX(-50%)
-            scale(0.96);
 
     }
 
@@ -1376,8 +1478,31 @@ body {
             0;
 
         transform:
-            translateX(-50%)
             scale(1.08);
+
+    }
+
+}
+
+
+@keyframes launchGlow {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(3);
+
+        opacity:
+            0;
 
     }
 
@@ -1456,66 +1581,73 @@ body {
 @media (max-width: 600px) {
 
 
-    .rings-area {
+    .opening-content {
 
         width:
-            220px;
+            88%;
 
     }
 
 
-    .male-ring {
+    .opening-message p {
 
-        width:
-            78px;
+        font-size:
+            clamp(
+                24px,
+                7vw,
+                38px
+            );
 
-        height:
-            78px;
-
-        margin-left:
-            -62px;
-
-        border-width:
-            11px;
+        line-height:
+            1.25;
 
     }
 
 
-    .female-ring {
+    .opening-us {
 
-        width:
-            61px;
+        font-size:
+            clamp(
+                30px,
+                8vw,
+                46px
+            );
 
-        height:
-            61px;
-
-        margin-left:
+        margin-top:
             8px;
 
-        border-width:
-            9px;
-
     }
 
 
-    .intro-card {
+    .tap-area {
 
-        bottom:
-            18vh;
+        margin-top:
+            48px;
 
     }
 
 
     #startButton {
 
-        padding:
-            15px 25px;
-
         font-size:
             11px;
 
         letter-spacing:
-            2.5px;
+            2.8px;
+
+        padding:
+            12px 8px;
+
+    }
+
+
+    .touch-light {
+
+        width:
+            180px;
+
+        height:
+            180px;
 
     }
 
@@ -1629,9 +1761,6 @@ body {
         margin-bottom:
             42px;
 
-        color:
-            var(--red);
-
     }
 
 
@@ -1692,63 +1821,26 @@ body {
 @media (max-width: 380px) {
 
 
-    .rings-area {
-
-        width:
-            200px;
-
-    }
-
-
-    .male-ring {
-
-        width:
-            70px;
-
-        height:
-            70px;
-
-        margin-left:
-            -55px;
-
-        border-width:
-            10px;
-
-    }
-
-
-    .female-ring {
-
-        width:
-            55px;
-
-        height:
-            55px;
-
-        margin-left:
-            7px;
-
-        border-width:
-            8px;
-
-    }
-
-
-    .intro-card {
-
-        bottom:
-            17vh;
-
-    }
-
-
-    #startButton {
+    .opening-message p {
 
         font-size:
-            10px;
+            23px;
 
-        padding:
-            14px 22px;
+    }
+
+
+    .opening-us {
+
+        font-size:
+            29px;
+
+    }
+
+
+    .tap-area {
+
+        margin-top:
+            42px;
 
     }
 
