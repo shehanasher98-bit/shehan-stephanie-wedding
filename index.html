@@ -1,499 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+  <title>Shehan & Stephanie</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+  <!-- WhatsApp / Social Preview -->
+  <meta property="og:title" content="Shehan & Stephanie">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/">
+  <meta property="og:image" content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
+  <meta property="og:image:alt" content="Shehan & Stephanie">
 
-    <title>Shehan & Stephanie</title>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shehan & Stephanie">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
-    <!-- ==================================================
-         WHATSAPP / SOCIAL PREVIEW
-    ================================================== -->
-
-    <meta property="og:title"
-          content="Shehan & Stephanie">
-
-    <meta property="og:description"
-          content="">
-
-    <meta property="og:type"
-          content="website">
-
-    <meta property="og:url"
-          content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/">
-
-    <meta property="og:image"
-          content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
-
-    <meta property="og:image:alt"
-          content="Shehan & Stephanie">
-
-
-    <meta name="twitter:card"
-          content="summary_large_image">
-
-    <meta name="twitter:title"
-          content="Shehan & Stephanie">
-
-    <meta name="twitter:description"
-          content="">
-
-    <meta name="twitter:image"
-          content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
-
-
-    <link rel="stylesheet" href="style.css?v=8">
-
+  <link rel="stylesheet" href="style.css?v=10">
 </head>
-
 
 <body>
 
+  <!-- =====================================================
+       OPENING SCREEN
+  ====================================================== -->
 
-    <!-- ==================================================
-         CINEMATIC OPENING
-    ================================================== -->
+  <div class="start-screen" id="startScreen">
 
-    <div class="start-screen" id="startScreen">
+    <div class="opening-glow"></div>
 
+    <div class="rose-scene" id="roseScene">
 
-        <!-- MOVING LIGHT -->
+      <div class="rose-halo"></div>
 
-        <div class="light-orb"></div>
+      <div class="rose-shadow"></div>
 
-        <div class="light-beam"></div>
-
-
-        <!-- INTRO -->
-
-        <div class="opening-content" id="openingContent">
-
-
-            <div class="opening-message">
-
-                <p>
-                    Out of every possibility,
-                </p>
-
-                <p>
-                    life chose this one.
-                </p>
-
-                <div class="opening-us">
-                    Us.
-                </div>
-
-            </div>
-
-
-            <!-- TAP -->
-
-            <div class="tap-area">
-
-                <button
-                    id="startButton"
-                    aria-label="Tap to begin"
-                >
-
-                    <span>
-                        TAP TO BEGIN
-                    </span>
-
-                    <i></i>
-
-                </button>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- TOUCH LIGHT -->
-
-        <div
-            class="touch-light"
-            id="touchLight"
-        ></div>
-
+      <img
+        src="rose.png"
+        class="rose"
+        id="rose"
+        alt="Elegant rose"
+        draggable="false"
+      >
 
     </div>
 
+    <div class="opening-bottom">
 
-
-    <!-- ==================================================
-         VIDEO
-    ================================================== -->
-
-    <div class="video-screen" id="videoScreen">
-
-        <video
-            id="weddingVideo"
-            playsinline
-            preload="auto"
-        >
-
-            <source
-                src="save-the-date.mp4"
-                type="video/mp4"
-            >
-
-            Your browser does not support video playback.
-
-        </video>
+      <button
+        class="start-button"
+        id="startButton"
+        aria-label="Tap to begin"
+      >
+        <span>TAP TO BEGIN</span>
+        <div class="button-line"></div>
+      </button>
 
     </div>
 
+  </div>
 
 
-    <!-- ==================================================
-         FINAL SAVE THE DATE
-    ================================================== -->
+  <!-- =====================================================
+       VIDEO
+  ====================================================== -->
 
-    <main class="save-date" id="saveDate">
+  <div class="video-screen" id="videoScreen">
 
+    <video
+      id="weddingVideo"
+      playsinline
+      preload="auto"
+    >
+      <source src="save-the-date.mp4" type="video/mp4">
+      Your browser does not support video playback.
+    </video>
 
-        <!-- INTRO -->
-
-        <section class="intro">
-
-            <p>
-                Out of every possibility,<br>
-                life chose this one.<br>
-                <span>Us.</span>
-            </p>
-
-        </section>
+  </div>
 
 
+  <!-- =====================================================
+       FINAL SAVE THE DATE
+  ====================================================== -->
 
-        <!-- COUPLE -->
+  <main class="save-date" id="saveDate">
 
-        <section class="couple">
+    <section class="intro">
 
-            <h1>
-                Shehan & Stephanie
-            </h1>
+      <p>
+        Out of every possibility,<br>
+        life chose this one.<br>
+        <span>Us.</span>
+      </p>
 
-        </section>
-
-
-
-        <!-- STORY -->
-
-        <section class="story">
-
-            <p>
-                What began as two separate stories<br>
-                will now become one.
-            </p>
-
-            <p>
-                With love and joy,<br>
-                we invite you to celebrate the beginning
-                of our forever.
-            </p>
-
-        </section>
+    </section>
 
 
+    <section class="couple">
 
-        <!-- DATE -->
+      <h1>
+        Shehan &amp; Stephanie
+      </h1>
 
-        <section class="date">
-
-            <p>
-                12 • 12 • 2026
-            </p>
-
-        </section>
+    </section>
 
 
+    <section class="story">
 
-        <!-- SHARE -->
+      <p>
+        What began as two separate stories<br>
+        will now become one.
+      </p>
 
-        <a
-            class="share-button"
-            href="#"
-            id="shareButton"
-        >
-            Share This Save the Date
-        </a>
+      <p>
+        With love and joy,<br>
+        we invite you to celebrate the beginning of our forever.
+      </p>
 
-
-    </main>
-
-
-
-    <!-- ==================================================
-         JAVASCRIPT
-    ================================================== -->
-
-    <script>
+    </section>
 
 
-        const startScreen =
-            document.getElementById("startScreen");
+    <section class="date">
 
-        const startButton =
-            document.getElementById("startButton");
+      <p>
+        12 • 12 • 2026
+      </p>
 
-        const videoScreen =
-            document.getElementById("videoScreen");
-
-        const weddingVideo =
-            document.getElementById("weddingVideo");
-
-        const saveDate =
-            document.getElementById("saveDate");
-
-        const shareButton =
-            document.getElementById("shareButton");
-
-        const touchLight =
-            document.getElementById("touchLight");
+    </section>
 
 
+    <section class="share-section">
 
-        /* ==================================================
-           OPENING TOUCH / MOUSE LIGHT
-        ================================================== */
+      <button
+        class="share-button"
+        id="shareButton"
+      >
+        Share This Save the Date
+      </button>
 
-        function moveLight(x, y) {
+    </section>
 
-            touchLight.style.left =
-                x + "px";
+  </main>
 
-            touchLight.style.top =
-                y + "px";
 
-            touchLight.classList.add("active");
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script>
+
+    const startScreen = document.getElementById("startScreen");
+    const startButton = document.getElementById("startButton");
+    const videoScreen = document.getElementById("videoScreen");
+    const weddingVideo = document.getElementById("weddingVideo");
+    const saveDate = document.getElementById("saveDate");
+
+    const roseScene = document.getElementById("roseScene");
+    const rose = document.getElementById("rose");
+
+    const shareButton = document.getElementById("shareButton");
+
+
+    /* =====================================================
+       ROSE INTERACTION
+    ====================================================== */
+
+    let pointerX = 0;
+    let pointerY = 0;
+
+    let targetX = 0;
+    let targetY = 0;
+
+    let currentX = 0;
+    let currentY = 0;
+
+    let dragging = false;
+    let lastPointerX = 0;
+
+    let rotation = 0;
+    let velocity = 0;
+
+
+    function animateRose() {
+
+      if (!dragging) {
+
+        rotation += 0.015;
+
+        velocity *= 0.96;
+
+      }
+
+      currentX += (targetX - currentX) * 0.06;
+      currentY += (targetY - currentY) * 0.06;
+
+      const sway =
+        Math.sin(rotation) * 2.5;
+
+      const rotateY =
+        currentX * 8;
+
+      const rotateX =
+        currentY * -4;
+
+      rose.style.transform = `
+        translate3d(${currentX * 4}px, ${currentY * 3}px, 0)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+        rotateZ(${sway + velocity}deg)
+      `;
+
+      requestAnimationFrame(animateRose);
+    }
+
+    animateRose();
+
+
+    /* =====================================================
+       POINTER / TOUCH PARALLAX
+    ====================================================== */
+
+    roseScene.addEventListener(
+      "pointermove",
+      function(event) {
+
+        const rect =
+          roseScene.getBoundingClientRect();
+
+        pointerX =
+          (event.clientX - rect.left) /
+          rect.width - 0.5;
+
+        pointerY =
+          (event.clientY - rect.top) /
+          rect.height - 0.5;
+
+        targetX = pointerX;
+        targetY = pointerY;
+
+        if (dragging) {
+
+          const difference =
+            event.clientX - lastPointerX;
+
+          velocity = difference * 0.08;
+
+          lastPointerX =
+            event.clientX;
+        }
+
+      }
+    );
+
+
+    roseScene.addEventListener(
+      "pointerdown",
+      function(event) {
+
+        dragging = true;
+
+        lastPointerX =
+          event.clientX;
+
+        roseScene.setPointerCapture(
+          event.pointerId
+        );
+
+      }
+    );
+
+
+    roseScene.addEventListener(
+      "pointerup",
+      function(event) {
+
+        dragging = false;
+
+        roseScene.releasePointerCapture(
+          event.pointerId
+        );
+
+      }
+    );
+
+
+    roseScene.addEventListener(
+      "pointercancel",
+      function() {
+
+        dragging = false;
+
+      }
+    );
+
+
+    roseScene.addEventListener(
+      "pointerleave",
+      function() {
+
+        if (!dragging) {
+
+          targetX = 0;
+          targetY = 0;
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       START VIDEO
+    ====================================================== */
+
+    startButton.addEventListener(
+      "click",
+      async function() {
+
+        startButton.disabled = true;
+
+        startScreen.classList.add("launching");
+
+        /*
+          Start the video immediately after the user's
+          interaction so mobile browsers allow sound.
+        */
+
+        try {
+
+          weddingVideo.currentTime = 0;
+
+          await weddingVideo.play();
+
+        } catch (error) {
+
+          console.log(
+            "Video playback error:",
+            error
+          );
 
         }
 
 
-        document.addEventListener(
-            "pointermove",
-            (event) => {
+        /*
+          Give the opening animation time to disappear.
+        */
 
-                if (
-                    !startScreen.classList.contains("hidden")
-                ) {
+        setTimeout(
+          function() {
 
-                    moveLight(
-                        event.clientX,
-                        event.clientY
-                    );
+            startScreen.classList.add("hidden");
 
-                }
+            videoScreen.classList.add("active");
 
-            }
+          },
+          1100
         );
 
+      }
+    );
 
-        document.addEventListener(
-            "pointerdown",
-            (event) => {
 
-                if (
-                    !startScreen.classList.contains("hidden")
-                ) {
+    /* =====================================================
+       VIDEO FINISHED
+    ====================================================== */
 
-                    moveLight(
-                        event.clientX,
-                        event.clientY
-                    );
+    weddingVideo.addEventListener(
+      "ended",
+      function() {
 
-                }
+        videoScreen.classList.add("finished");
 
-            }
+        setTimeout(
+          function() {
+
+            saveDate.classList.add("show");
+
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+
+          },
+          300
         );
 
+      }
+    );
 
 
-        /* ==================================================
-           START VIDEO
-        ================================================== */
+    /* =====================================================
+       SHARE
+    ====================================================== */
 
-        startButton.addEventListener(
-            "click",
-            async () => {
+    shareButton.addEventListener(
+      "click",
+      async function() {
 
+        const shareData = {
 
-                /*
-                 * Add cinematic transition.
-                 */
+          title:
+            "Shehan & Stephanie",
 
-                startScreen.classList.add(
-                    "launching"
-                );
+          text:
+            "Shehan & Stephanie\n12 • 12 • 2026",
 
+          url:
+            window.location.href
 
-                /*
-                 * Start video immediately
-                 * after the user's tap.
-                 *
-                 * This preserves sound on mobile.
-                 */
+        };
 
-                try {
 
-                    await weddingVideo.play();
+        if (
+          navigator.share
+        ) {
 
-                }
+          try {
 
-                catch (error) {
+            await navigator.share(
+              shareData
+            );
 
-                    console.log(
-                        "Video could not start:",
-                        error
-                    );
+          } catch (error) {
 
-                }
+            console.log(
+              "Share cancelled."
+            );
 
+          }
 
-                /*
-                 * Reveal video after transition.
-                 */
+        } else {
 
-                setTimeout(() => {
+          const whatsappText =
+            encodeURIComponent(
+              "Shehan & Stephanie\n" +
+              "12 • 12 • 2026\n\n" +
+              window.location.href
+            );
 
-                    startScreen.classList.add(
-                        "hidden"
-                    );
+          window.open(
+            "https://wa.me/?text=" +
+            whatsappText,
+            "_blank"
+          );
 
-                    videoScreen.classList.add(
-                        "active"
-                    );
+        }
 
-                }, 950);
+      }
+    );
 
-
-            }
-        );
-
-
-
-        /* ==================================================
-           VIDEO FINISHED
-        ================================================== */
-
-        weddingVideo.addEventListener(
-            "ended",
-            () => {
-
-
-                videoScreen.classList.add(
-                    "finished"
-                );
-
-
-                saveDate.classList.add(
-                    "show"
-                );
-
-
-                window.scrollTo({
-
-                    top: 0,
-
-                    behavior: "smooth"
-
-                });
-
-
-            }
-        );
-
-
-
-        /* ==================================================
-           SHARE
-        ================================================== */
-
-        shareButton.addEventListener(
-            "click",
-            async (event) => {
-
-
-                event.preventDefault();
-
-
-                const shareData = {
-
-                    title:
-                        "Shehan & Stephanie",
-
-                    text:
-                        "Shehan & Stephanie\n" +
-                        "12 • 12 • 2026",
-
-                    url:
-                        window.location.href
-
-                };
-
-
-                if (navigator.share) {
-
-
-                    try {
-
-                        await navigator.share(
-                            shareData
-                        );
-
-                    }
-
-                    catch (error) {
-
-                        console.log(
-                            "Share cancelled."
-                        );
-
-                    }
-
-
-                }
-
-                else {
-
-
-                    const whatsappText =
-                        encodeURIComponent(
-
-                            "Shehan & Stephanie\n" +
-                            "12 • 12 • 2026\n\n" +
-                            window.location.href
-
-                        );
-
-
-                    window.open(
-
-                        "https://wa.me/?text=" +
-                        whatsappText,
-
-                        "_blank"
-
-                    );
-
-
-                }
-
-
-            }
-        );
-
-
-    </script>
-
+  </script>
 
 </body>
-
 </html>
