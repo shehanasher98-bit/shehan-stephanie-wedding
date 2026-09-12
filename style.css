@@ -47,7 +47,7 @@ body {
   opacity: 1;
 
   transition:
-    opacity 1s ease;
+    opacity 0.9s ease;
 }
 
 
@@ -81,7 +81,10 @@ body {
 
   animation:
     ambientFloatOne
-    12s ease-in-out infinite alternate;
+    12s
+    ease-in-out
+    infinite
+    alternate;
 }
 
 .ambient-two {
@@ -92,18 +95,25 @@ body {
 
   animation:
     ambientFloatTwo
-    15s ease-in-out infinite alternate;
+    15s
+    ease-in-out
+    infinite
+    alternate;
 }
 
 
 @keyframes ambientFloatOne {
 
   0% {
-    transform: translate3d(-20px, -10px, 0) scale(0.9);
+    transform:
+      translate3d(-20px, -10px, 0)
+      scale(0.9);
   }
 
   100% {
-    transform: translate3d(90px, 80px, 0) scale(1.15);
+    transform:
+      translate3d(90px, 80px, 0)
+      scale(1.15);
   }
 
 }
@@ -112,18 +122,22 @@ body {
 @keyframes ambientFloatTwo {
 
   0% {
-    transform: translate3d(30px, 20px, 0) scale(1);
+    transform:
+      translate3d(30px, 20px, 0)
+      scale(1);
   }
 
   100% {
-    transform: translate3d(-90px, -70px, 0) scale(1.2);
+    transform:
+      translate3d(-90px, -70px, 0)
+      scale(1.2);
   }
 
 }
 
 
 /* =========================================
-   CINEMATIC LIGHT BEAM
+   LIGHT BEAM
 ========================================= */
 
 .light-beam {
@@ -153,7 +167,8 @@ body {
     beamMove
     8s
     ease-in-out
-    infinite alternate;
+    infinite
+    alternate;
 
   pointer-events: none;
 }
@@ -165,6 +180,7 @@ body {
     transform:
       translateX(-25%)
       rotate(-12deg);
+
     opacity: 0.25;
   }
 
@@ -176,6 +192,7 @@ body {
     transform:
       translateX(25%)
       rotate(-12deg);
+
     opacity: 0.35;
   }
 
@@ -305,7 +322,10 @@ body {
 
   color: #861c25;
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
   font-size: 12px;
 
@@ -326,11 +346,11 @@ body {
     2s
     cubic-bezier(.22,1,.36,1)
     forwards;
-
 }
 
 
 .start-button span {
+
   position: relative;
   z-index: 2;
 
@@ -341,8 +361,6 @@ body {
     opacity 0.6s ease;
 }
 
-
-/* Small elegant underline */
 
 .start-button i {
 
@@ -360,7 +378,6 @@ body {
 
   transition:
     width 0.7s cubic-bezier(.77,0,.18,1);
-
 }
 
 
@@ -371,7 +388,6 @@ body {
 .start-button:hover i {
   width: 100%;
 }
-
 
 .start-button:active {
   transform: scale(0.96);
@@ -403,18 +419,12 @@ body {
 
   opacity: 0;
 
-  /*
-    IMPORTANT:
-    No black background.
-    The video underneath becomes visible.
-  */
-
   background: transparent;
 
   pointer-events: none;
 
   transition:
-    opacity 1s
+    opacity 0.9s
     cubic-bezier(.77,0,.18,1);
 }
 
@@ -423,15 +433,14 @@ body {
 
   opacity: 0;
 
-  transform: scale(1.08);
+  transform: scale(1.06);
 
-  filter: blur(5px);
+  filter: blur(4px);
 
   transition:
-    opacity 0.55s ease,
-    transform 0.8s cubic-bezier(.77,0,.18,1),
-    filter 0.55s ease;
-
+    opacity 0.45s ease,
+    transform 0.7s cubic-bezier(.77,0,.18,1),
+    filter 0.45s ease;
 }
 
 
@@ -443,8 +452,7 @@ body {
   opacity: 0;
 
   transition:
-    opacity 0.6s ease;
-
+    opacity 0.5s ease;
 }
 
 
@@ -453,8 +461,7 @@ body {
   opacity: 0;
 
   transition:
-    opacity 0.5s ease;
-
+    opacity 0.4s ease;
 }
 
 
@@ -463,12 +470,11 @@ body {
   opacity: 0;
 
   pointer-events: none;
-
 }
 
 
 /* =========================================
-   VIDEO SCREEN
+   VIDEO
 ========================================= */
 
 .video-screen {
@@ -482,12 +488,6 @@ body {
   align-items: center;
   justify-content: center;
 
-  /*
-    Cream instead of black prevents
-    a harsh black flash before the
-    first video frame appears.
-  */
-
   background: #f7f1e6;
 
   opacity: 0;
@@ -496,7 +496,6 @@ body {
 
   transition:
     opacity 0.35s ease;
-
 }
 
 
@@ -505,7 +504,6 @@ body {
   opacity: 1;
 
   pointer-events: auto;
-
 }
 
 
@@ -517,13 +515,8 @@ body {
   object-fit: contain;
 
   display: block;
-
 }
 
-
-/* =========================================
-   VIDEO → FINAL
-========================================= */
 
 .video-screen.finished {
 
@@ -532,14 +525,13 @@ body {
   pointer-events: none;
 
   transition:
-    opacity 1.6s
+    opacity 1.2s
     cubic-bezier(.77,0,.18,1);
-
 }
 
 
 /* =========================================
-   FINAL SAVE DATE
+   FINAL SCREEN
 ========================================= */
 
 .save-date {
@@ -577,9 +569,7 @@ body {
   pointer-events: none;
 
   transition:
-    opacity 2.2s ease,
-    visibility 0s linear 2.2s;
-
+    opacity 1.2s ease;
 }
 
 
@@ -592,13 +582,12 @@ body {
   pointer-events: auto;
 
   transition:
-    opacity 2.2s ease;
-
+    opacity 1.2s ease;
 }
 
 
 /* =========================================
-   FINAL INTRO
+   INTRO
 ========================================= */
 
 .intro {
@@ -621,20 +610,18 @@ body {
 
   opacity: 0;
 
-  transform: translateY(35px);
-
+  transform: translateY(25px);
 }
 
 
 .save-date.show .intro {
 
   animation:
-    finalIntroReveal
-    3.2s
+    fadeUp
+    2.2s
     cubic-bezier(.22,1,.36,1)
-    1.0s
+    0.2s
     forwards;
-
 }
 
 
@@ -653,22 +640,23 @@ body {
 
   letter-spacing: 0.01em;
 
+  /*
+    RED IMMEDIATELY
+  */
+  color: #861c25;
 }
 
 
 .intro span {
 
-  display: inline-block;
-
-  margin-top: 3px;
+  color: #861c25;
 
   font-weight: 500;
-
 }
 
 
 /* =========================================
-   COUPLE NAMES
+   NAMES
 ========================================= */
 
 .couple {
@@ -683,8 +671,7 @@ body {
 
   opacity: 0;
 
-  transform: translateY(45px) scale(0.96);
-
+  transform: translateY(30px);
 }
 
 
@@ -692,11 +679,10 @@ body {
 
   animation:
     coupleReveal
-    4s
+    2.4s
     cubic-bezier(.16,1,.3,1)
-    3.8s
+    2.1s
     forwards;
-
 }
 
 
@@ -707,7 +693,8 @@ body {
     Impact,
     sans-serif;
 
-  font-size: clamp(43px, 11vw, 78px);
+  font-size:
+    clamp(43px, 11vw, 78px);
 
   line-height: 1;
 
@@ -715,8 +702,7 @@ body {
 
   letter-spacing: 0.015em;
 
-  text-transform: none;
-
+  color: #861c25;
 }
 
 
@@ -736,20 +722,18 @@ body {
 
   opacity: 0;
 
-  transform: translateY(30px);
-
+  transform: translateY(25px);
 }
 
 
 .save-date.show .story {
 
   animation:
-    storyReveal
-    3.5s
+    fadeUp
+    2.2s
     cubic-bezier(.22,1,.36,1)
-    7.5s
+    4.3s
     forwards;
-
 }
 
 
@@ -768,13 +752,13 @@ body {
 
   letter-spacing: 0.01em;
 
+  color: #861c25;
 }
 
 
 .story p + p {
 
   margin-top: 6vh;
-
 }
 
 
@@ -794,8 +778,7 @@ body {
 
   opacity: 0;
 
-  transform: translateY(30px);
-
+  transform: translateY(25px);
 }
 
 
@@ -803,11 +786,10 @@ body {
 
   animation:
     dateReveal
-    3.8s
+    2.4s
     cubic-bezier(.22,1,.36,1)
-    11.5s
+    7s
     forwards;
-
 }
 
 
@@ -818,7 +800,8 @@ body {
     Impact,
     sans-serif;
 
-  font-size: clamp(30px, 8vw, 48px);
+  font-size:
+    clamp(30px, 8vw, 48px);
 
   line-height: 1;
 
@@ -826,6 +809,7 @@ body {
 
   letter-spacing: 0.08em;
 
+  color: #861c25;
 }
 
 
@@ -846,25 +830,24 @@ body {
     7vh;
 
   opacity: 0;
-
 }
 
 
 .save-date.show .share-section {
 
   animation:
-    shareReveal
-    2s
+    fadeIn
+    1.5s
     ease
-    15s
+    9.5s
     forwards;
-
 }
 
 
 .share-button {
 
-  border: 1px solid rgba(134,28,37,0.45);
+  border:
+    1px solid rgba(134,28,37,0.45);
 
   background: transparent;
 
@@ -889,7 +872,6 @@ body {
   transition:
     background 0.4s ease,
     color 0.4s ease;
-
 }
 
 
@@ -898,50 +880,23 @@ body {
   background: #861c25;
 
   color: #f7f1e6;
-
 }
 
 
 /* =========================================
-   FINAL ANIMATIONS
+   ANIMATIONS
 ========================================= */
 
-@keyframes finalIntroReveal {
+@keyframes fadeUp {
 
   0% {
-
     opacity: 0;
-
-    transform:
-      translateY(45px);
-
-    filter: blur(8px);
-
-  }
-
-  35% {
-
-    opacity: 0.35;
-
-  }
-
-  70% {
-
-    opacity: 0.8;
-
-    filter: blur(2px);
-
+    transform: translateY(25px);
   }
 
   100% {
-
     opacity: 1;
-
-    transform:
-      translateY(0);
-
-    filter: blur(0);
-
+    transform: translateY(0);
   }
 
 }
@@ -950,82 +905,17 @@ body {
 @keyframes coupleReveal {
 
   0% {
-
     opacity: 0;
-
     transform:
-      translateY(55px)
-      scale(0.94);
-
-    filter: blur(12px);
-
-  }
-
-  30% {
-
-    opacity: 0.15;
-
-  }
-
-  65% {
-
-    opacity: 0.75;
-
-    filter: blur(3px);
-
+      translateY(35px)
+      scale(0.97);
   }
 
   100% {
-
     opacity: 1;
-
     transform:
       translateY(0)
       scale(1);
-
-    filter: blur(0);
-
-  }
-
-}
-
-
-@keyframes storyReveal {
-
-  0% {
-
-    opacity: 0;
-
-    transform:
-      translateY(40px);
-
-    filter: blur(8px);
-
-  }
-
-  45% {
-
-    opacity: 0.35;
-
-  }
-
-  75% {
-
-    opacity: 0.8;
-
-    filter: blur(2px);
-
-  }
-
-  100% {
-
-    opacity: 1;
-
-    transform:
-      translateY(0);
-
-    filter: blur(0);
-
   }
 
 }
@@ -1034,58 +924,30 @@ body {
 @keyframes dateReveal {
 
   0% {
-
     opacity: 0;
-
     transform:
-      translateY(40px)
-      scale(0.95);
-
-    filter: blur(10px);
-
-  }
-
-  40% {
-
-    opacity: 0.3;
-
-  }
-
-  75% {
-
-    opacity: 0.85;
-
-    filter: blur(2px);
-
+      translateY(25px)
+      scale(0.97);
   }
 
   100% {
-
     opacity: 1;
-
     transform:
       translateY(0)
       scale(1);
-
-    filter: blur(0);
-
   }
 
 }
 
 
-@keyframes shareReveal {
+@keyframes fadeIn {
 
   0% {
-
     opacity: 0;
-
   }
 
   100% {
-
     opacity: 1;
-
   }
 
 }
