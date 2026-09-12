@@ -76,7 +76,7 @@ body {
   top: -15%;
   left: -10%;
 
-  background: rgba(133, 28, 37, 0.14);
+  background: rgba(155, 28, 46, 0.14);
 
   animation:
     ambientFloatOne
@@ -90,7 +90,7 @@ body {
   right: -15%;
   bottom: -15%;
 
-  background: rgba(133, 28, 37, 0.10);
+  background: rgba(155, 28, 46, 0.10);
 
   animation:
     ambientFloatTwo
@@ -298,7 +298,6 @@ body {
 
 /* =================================
    TAP TO BEGIN
-   NO BOX
 ================================= */
 
 .start-button {
@@ -314,7 +313,7 @@ body {
 
   cursor: pointer;
 
-  color: #861c25;
+  color: #9B1C2E;
 
   font-family:
     Arial,
@@ -359,9 +358,10 @@ body {
   bottom: 7px;
 
   width: 0;
+
   height: 1px;
 
-  background: #861c25;
+  background: #9B1C2E;
 
   transform: translateX(-50%);
 
@@ -507,7 +507,6 @@ body {
 ================================= */
 
 .save-date {
-
   position: fixed;
 
   inset: 0;
@@ -528,7 +527,7 @@ body {
   overflow: hidden;
 
   padding:
-    4vh 20px;
+    5vh 20px;
 
   background:
     radial-gradient(
@@ -538,7 +537,7 @@ body {
       #eee3d2 100%
     );
 
-  color: #861c25;
+  color: #9B1C2E;
 
   opacity: 0;
 
@@ -551,12 +550,14 @@ body {
 }
 
 .save-date.show {
-
   opacity: 1;
 
   visibility: visible;
 
   pointer-events: auto;
+
+  transition:
+    opacity 1.3s ease;
 }
 
 
@@ -565,7 +566,6 @@ body {
 ================================= */
 
 .intro {
-
   width: 100%;
 
   min-height: auto;
@@ -580,13 +580,14 @@ body {
 
   padding: 0;
 
+  margin-bottom: 3.5vh;
+
   opacity: 0;
 
   transform: translateY(15px);
 }
 
 .save-date.show .intro {
-
   animation:
     introReveal
     1.6s
@@ -596,24 +597,23 @@ body {
 }
 
 .intro p {
-
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
-  font-size: clamp(16px, 4.5vw, 22px);
+  font-size:
+    clamp(16px, 4.5vw, 22px);
 
   line-height: 1.5;
 
   font-weight: 400;
 
-  color: #861c25;
+  color: #9B1C2E;
 }
 
 .intro span {
-
-  color: #861c25;
+  color: #9B1C2E;
 
   font-weight: 500;
 }
@@ -624,13 +624,14 @@ body {
 ================================= */
 
 .couple {
-
   width: 100%;
 
   text-align: center;
 
   padding:
-    4vh 10px;
+    2vh 10px 3.5vh;
+
+  margin-bottom: 1vh;
 
   opacity: 0;
 
@@ -638,7 +639,6 @@ body {
 }
 
 .save-date.show .couple {
-
   animation:
     coupleReveal
     1.8s
@@ -648,7 +648,6 @@ body {
 }
 
 .couple h1 {
-
   font-family:
     "Anton",
     Impact,
@@ -663,7 +662,7 @@ body {
 
   letter-spacing: 0.015em;
 
-  color: #861c25;
+  color: #9B1C2E;
 }
 
 
@@ -672,13 +671,14 @@ body {
 ================================= */
 
 .story {
-
   width: 100%;
 
   text-align: center;
 
   padding:
-    1vh 10px;
+    1.5vh 10px 2vh;
+
+  margin-bottom: 2vh;
 
   opacity: 0;
 
@@ -686,7 +686,6 @@ body {
 }
 
 .save-date.show .story {
-
   animation:
     storyReveal
     1.7s
@@ -696,7 +695,6 @@ body {
 }
 
 .story p {
-
   font-family:
     Arial,
     Helvetica,
@@ -709,12 +707,11 @@ body {
 
   font-weight: 400;
 
-  color: #861c25;
+  color: #9B1C2E;
 }
 
 .story p + p {
-
-  margin-top: 2.5vh;
+  margin-top: 3vh;
 }
 
 
@@ -723,13 +720,16 @@ body {
 ================================= */
 
 .date {
-
   width: 100%;
 
   text-align: center;
 
   padding:
-    4vh 10px;
+    3vh 10px;
+
+  margin-top: 1vh;
+
+  margin-bottom: 1vh;
 
   opacity: 0;
 
@@ -737,7 +737,6 @@ body {
 }
 
 .save-date.show .date {
-
   animation:
     dateReveal
     1.8s
@@ -747,7 +746,6 @@ body {
 }
 
 .date p {
-
   font-family:
     "Anton",
     Impact,
@@ -762,7 +760,7 @@ body {
 
   letter-spacing: 0.08em;
 
-  color: #861c25;
+  color: #9B1C2E;
 }
 
 
@@ -771,7 +769,6 @@ body {
 ================================= */
 
 .share-section {
-
   width: 100%;
 
   display: flex;
@@ -779,13 +776,12 @@ body {
   justify-content: center;
 
   padding:
-    1vh 10px;
+    1.5vh 10px;
 
   opacity: 0;
 }
 
 .save-date.show .share-section {
-
   animation:
     shareReveal
     1.2s
@@ -795,14 +791,13 @@ body {
 }
 
 .share-button {
-
   border:
     1px solid
-    rgba(134,28,37,0.45);
+    rgba(155,28,46,0.45);
 
   background: transparent;
 
-  color: #861c25;
+  color: #9B1C2E;
 
   padding:
     11px 18px;
@@ -826,8 +821,7 @@ body {
 }
 
 .share-button:hover {
-
-  background: #861c25;
+  background: #9B1C2E;
 
   color: #f7f1e6;
 }
@@ -851,7 +845,6 @@ body {
 
 }
 
-
 @keyframes coupleReveal {
 
   0% {
@@ -870,7 +863,6 @@ body {
 
 }
 
-
 @keyframes storyReveal {
 
   0% {
@@ -884,7 +876,6 @@ body {
   }
 
 }
-
 
 @keyframes dateReveal {
 
@@ -903,7 +894,6 @@ body {
   }
 
 }
-
 
 @keyframes shareReveal {
 
@@ -929,6 +919,10 @@ body {
       2vh 15px;
   }
 
+  .intro {
+    margin-bottom: 2vh;
+  }
+
   .intro p {
     font-size: 15px;
     line-height: 1.45;
@@ -936,11 +930,20 @@ body {
 
   .couple {
     padding:
-      2.5vh 5px;
+      2vh 5px 2.5vh;
+
+    margin-bottom: 0.5vh;
   }
 
   .couple h1 {
     font-size: 40px;
+  }
+
+  .story {
+    padding:
+      1vh 5px 1.5vh;
+
+    margin-bottom: 1vh;
   }
 
   .story p {
@@ -949,12 +952,14 @@ body {
   }
 
   .story p + p {
-    margin-top: 1.8vh;
+    margin-top: 2vh;
   }
 
   .date {
     padding:
-      2.5vh 5px;
+      2vh 5px;
+
+    margin-top: 0.5vh;
   }
 
   .date p {
@@ -979,21 +984,46 @@ body {
 
   .save-date {
     max-width: 900px;
+
     margin: 0 auto;
+
     padding:
       30px 40px;
+  }
+
+  .intro {
+    margin-bottom: 30px;
   }
 
   .intro p {
     font-size: 23px;
   }
 
+  .couple {
+    padding:
+      20px 10px 35px;
+  }
+
   .couple h1 {
     font-size: 70px;
   }
 
+  .story {
+    padding:
+      15px 10px 25px;
+  }
+
   .story p {
     font-size: 18px;
+  }
+
+  .story p + p {
+    margin-top: 25px;
+  }
+
+  .date {
+    padding:
+      25px 10px;
   }
 
   .date p {
