@@ -34,8 +34,6 @@
           content="Shehan & Stephanie">
 
 
-    <!-- TWITTER / SOCIAL -->
-
     <meta name="twitter:card"
           content="summary_large_image">
 
@@ -49,9 +47,7 @@
           content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
 
 
-    <!-- STYLES -->
-
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=8">
 
 </head>
 
@@ -60,31 +56,57 @@
 
 
     <!-- ==================================================
-         OPENING SCREEN
+         CINEMATIC OPENING
     ================================================== -->
 
     <div class="start-screen" id="startScreen">
 
 
-        <!-- RINGS -->
+        <!-- MOVING LIGHT -->
 
-        <div class="rings-area">
+        <div class="light-orb"></div>
+
+        <div class="light-beam"></div>
 
 
-            <!-- MALE RING -->
+        <!-- INTRO -->
 
-            <div class="wedding-ring male-ring">
+        <div class="opening-content" id="openingContent">
 
-                <div class="ring-band"></div>
+
+            <div class="opening-message">
+
+                <p>
+                    Out of every possibility,
+                </p>
+
+                <p>
+                    life chose this one.
+                </p>
+
+                <div class="opening-us">
+                    Us.
+                </div>
 
             </div>
 
 
-            <!-- FEMALE RING -->
+            <!-- TAP -->
 
-            <div class="wedding-ring female-ring">
+            <div class="tap-area">
 
-                <div class="ring-band"></div>
+                <button
+                    id="startButton"
+                    aria-label="Tap to begin"
+                >
+
+                    <span>
+                        TAP TO BEGIN
+                    </span>
+
+                    <i></i>
+
+                </button>
 
             </div>
 
@@ -92,20 +114,12 @@
         </div>
 
 
+        <!-- TOUCH LIGHT -->
 
-        <!-- TAP TO BEGIN -->
-
-        <div class="intro-card">
-
-            <button id="startButton">
-
-                <span>
-                    TAP TO BEGIN
-                </span>
-
-            </button>
-
-        </div>
+        <div
+            class="touch-light"
+            id="touchLight"
+        ></div>
 
 
     </div>
@@ -117,7 +131,6 @@
     ================================================== -->
 
     <div class="video-screen" id="videoScreen">
-
 
         <video
             id="weddingVideo"
@@ -133,7 +146,6 @@
             Your browser does not support video playback.
 
         </video>
-
 
     </div>
 
@@ -151,15 +163,9 @@
         <section class="intro">
 
             <p>
-
                 Out of every possibility,<br>
-
                 life chose this one.<br>
-
-                <span>
-                    Us.
-                </span>
-
+                <span>Us.</span>
             </p>
 
         </section>
@@ -183,21 +189,14 @@
         <section class="story">
 
             <p>
-
                 What began as two separate stories<br>
-
                 will now become one.
-
             </p>
 
-
             <p>
-
                 With love and joy,<br>
-
                 we invite you to celebrate the beginning
                 of our forever.
-
             </p>
 
         </section>
@@ -223,9 +222,7 @@
             href="#"
             id="shareButton"
         >
-
             Share This Save the Date
-
         </a>
 
 
@@ -243,25 +240,79 @@
         const startScreen =
             document.getElementById("startScreen");
 
-
         const startButton =
             document.getElementById("startButton");
-
 
         const videoScreen =
             document.getElementById("videoScreen");
 
-
         const weddingVideo =
             document.getElementById("weddingVideo");
-
 
         const saveDate =
             document.getElementById("saveDate");
 
-
         const shareButton =
             document.getElementById("shareButton");
+
+        const touchLight =
+            document.getElementById("touchLight");
+
+
+
+        /* ==================================================
+           OPENING TOUCH / MOUSE LIGHT
+        ================================================== */
+
+        function moveLight(x, y) {
+
+            touchLight.style.left =
+                x + "px";
+
+            touchLight.style.top =
+                y + "px";
+
+            touchLight.classList.add("active");
+
+        }
+
+
+        document.addEventListener(
+            "pointermove",
+            (event) => {
+
+                if (
+                    !startScreen.classList.contains("hidden")
+                ) {
+
+                    moveLight(
+                        event.clientX,
+                        event.clientY
+                    );
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "pointerdown",
+            (event) => {
+
+                if (
+                    !startScreen.classList.contains("hidden")
+                ) {
+
+                    moveLight(
+                        event.clientX,
+                        event.clientY
+                    );
+
+                }
+
+            }
+        );
 
 
 
@@ -274,10 +325,21 @@
             async () => {
 
 
+                /*
+                 * Add cinematic transition.
+                 */
+
                 startScreen.classList.add(
                     "launching"
                 );
 
+
+                /*
+                 * Start video immediately
+                 * after the user's tap.
+                 *
+                 * This preserves sound on mobile.
+                 */
 
                 try {
 
@@ -295,18 +357,21 @@
                 }
 
 
+                /*
+                 * Reveal video after transition.
+                 */
+
                 setTimeout(() => {
 
                     startScreen.classList.add(
                         "hidden"
                     );
 
-
                     videoScreen.classList.add(
                         "active"
                     );
 
-                }, 900);
+                }, 950);
 
 
             }
@@ -374,9 +439,6 @@
                 };
 
 
-
-                /* MOBILE SHARE */
-
                 if (navigator.share) {
 
 
@@ -398,9 +460,6 @@
 
 
                 }
-
-
-                /* WHATSAPP FALLBACK */
 
                 else {
 
