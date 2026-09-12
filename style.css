@@ -1,6 +1,6 @@
-/* =========================================================
+/* =========================================
    RESET
-========================================================= */
+========================================= */
 
 * {
   margin: 0;
@@ -8,816 +8,449 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+html,
 body {
   width: 100%;
   min-height: 100%;
-
-  overflow-x: hidden;
-
+  font-family: Arial, Helvetica, sans-serif;
   background: #f7f1e6;
-  color: #8f1823;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
 }
 
-button {
-  font: inherit;
+body {
+  overflow-x: hidden;
 }
 
 
-/* =========================================================
+/* =========================================
    OPENING SCREEN
-========================================================= */
+========================================= */
 
 .start-screen {
-
   position: fixed;
   inset: 0;
-
   z-index: 1000;
-
-  width: 100%;
-  height: 100svh;
-
-  overflow: hidden;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  overflow: hidden;
+
   background:
     radial-gradient(
       circle at 50% 50%,
-      #fffefa 0%,
-      #faf5ec 38%,
-      #f4ecdf 72%,
-      #ebe0d0 100%
+      #fffdf8 0%,
+      #f9f3e9 40%,
+      #eee4d5 100%
     );
+
+  opacity: 1;
 
   transition:
-    opacity 0.75s ease,
-    visibility 0.75s ease;
-
+    opacity 1s ease;
 }
 
 
-/* =========================================================
-   AMBIENT LIGHT ONE
-========================================================= */
+/* =========================================
+   AMBIENT LIGHT
+========================================= */
 
-.ambient-one {
-
+.ambient-light {
   position: absolute;
 
-  width: 65vw;
-  height: 65vw;
-
-  max-width: 700px;
-  max-height: 700px;
-
-  top: -30%;
-  left: -20%;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,255,255,0.92) 0%,
-      rgba(255,255,255,0.38) 42%,
-      transparent 72%
-    );
-
-  filter: blur(25px);
-
-  pointer-events: none;
-
-  animation:
-    ambientOne 13s ease-in-out infinite;
-
-}
-
-
-@keyframes ambientOne {
-
-  0%,
-  100% {
-
-    transform:
-      translate3d(0,0,0)
-      scale(1);
-
-    opacity:
-      0.7;
-
-  }
-
-  50% {
-
-    transform:
-      translate3d(18vw,18vh,0)
-      scale(1.18);
-
-    opacity:
-      1;
-
-  }
-
-}
-
-
-/* =========================================================
-   AMBIENT LIGHT TWO
-========================================================= */
-
-.ambient-two {
-
-  position: absolute;
-
-  width: 60vw;
-  height: 60vw;
+  width: 55vw;
+  height: 55vw;
 
   max-width: 650px;
   max-height: 650px;
 
-  right: -25%;
-  bottom: -30%;
-
   border-radius: 50%;
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,255,255,0.82) 0%,
-      rgba(255,255,255,0.32) 40%,
-      transparent 72%
-    );
-
-  filter: blur(30px);
+  filter: blur(90px);
 
   pointer-events: none;
+
+  opacity: 0.38;
+}
+
+.ambient-one {
+  top: -15%;
+  left: -10%;
+
+  background: rgba(133, 28, 37, 0.14);
 
   animation:
-    ambientTwo 16s ease-in-out infinite;
+    ambientFloatOne
+    12s ease-in-out infinite alternate;
+}
 
+.ambient-two {
+  right: -15%;
+  bottom: -15%;
+
+  background: rgba(133, 28, 37, 0.10);
+
+  animation:
+    ambientFloatTwo
+    15s ease-in-out infinite alternate;
 }
 
 
-@keyframes ambientTwo {
+@keyframes ambientFloatOne {
 
-  0%,
+  0% {
+    transform: translate3d(-20px, -10px, 0) scale(0.9);
+  }
+
   100% {
-
-    transform:
-      translate3d(0,0,0)
-      scale(1);
-
-    opacity:
-      0.55;
-
-  }
-
-  50% {
-
-    transform:
-      translate3d(-17vw,-16vh,0)
-      scale(1.2);
-
-    opacity:
-      0.95;
-
+    transform: translate3d(90px, 80px, 0) scale(1.15);
   }
 
 }
 
 
-/* =========================================================
-   CINEMATIC BEAM
-========================================================= */
+@keyframes ambientFloatTwo {
+
+  0% {
+    transform: translate3d(30px, 20px, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(-90px, -70px, 0) scale(1.2);
+  }
+
+}
+
+
+/* =========================================
+   CINEMATIC LIGHT BEAM
+========================================= */
 
 .light-beam {
-
   position: absolute;
 
-  top: -45%;
-  left: -70%;
+  width: 180%;
+  height: 30%;
 
-  width: 220%;
-  height: 65%;
-
-  pointer-events: none;
+  left: -40%;
+  top: 35%;
 
   background:
     linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(255,255,255,0.01) 20%,
-      rgba(255,255,255,0.32) 50%,
-      rgba(255,255,255,0.02) 80%,
-      transparent 100%
+      90deg,
+      transparent,
+      rgba(255,255,255,0.15),
+      rgba(255,255,255,0.75),
+      rgba(255,255,255,0.15),
+      transparent
     );
 
-  filter: blur(28px);
+  filter: blur(35px);
 
-  transform: rotate(-15deg);
-
-  opacity: 0;
+  transform: rotate(-12deg);
 
   animation:
-    cinematicBeam 10s 1s ease-in-out infinite;
+    beamMove
+    8s
+    ease-in-out
+    infinite alternate;
 
+  pointer-events: none;
 }
 
 
-@keyframes cinematicBeam {
+@keyframes beamMove {
 
   0% {
-
     transform:
-      translate3d(-25%,-15%,0)
-      rotate(-15deg);
-
-    opacity:
-      0;
-
-  }
-
-  18% {
-
-    opacity:
-      0.55;
-
+      translateX(-25%)
+      rotate(-12deg);
+    opacity: 0.25;
   }
 
   50% {
-
-    transform:
-      translate3d(15%,35%,0)
-      rotate(-15deg);
-
-    opacity:
-      0.75;
-
-  }
-
-  78% {
-
-    opacity:
-      0.35;
-
+    opacity: 0.75;
   }
 
   100% {
-
     transform:
-      translate3d(40%,75%,0)
-      rotate(-15deg);
-
-    opacity:
-      0;
-
+      translateX(25%)
+      rotate(-12deg);
+    opacity: 0.35;
   }
 
 }
 
 
-/* =========================================================
+/* =========================================
    CENTER GLOW
-========================================================= */
+========================================= */
 
 .center-glow {
-
   position: absolute;
-
-  width: 50vw;
-  height: 50vw;
-
-  max-width: 560px;
-  max-height: 560px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,255,255,0.96) 0%,
-      rgba(255,255,255,0.46) 35%,
-      transparent 72%
-    );
-
-  filter: blur(18px);
-
-  pointer-events: none;
-
-  animation:
-    centerGlow 6s ease-in-out infinite;
-
-}
-
-
-@keyframes centerGlow {
-
-  0%,
-  100% {
-
-    transform:
-      scale(0.88);
-
-    opacity:
-      0.55;
-
-  }
-
-  50% {
-
-    transform:
-      scale(1.1);
-
-    opacity:
-      0.95;
-
-  }
-
-}
-
-
-/* =========================================================
-   FILM GRAIN
-========================================================= */
-
-.grain {
-
-  position: absolute;
-
-  inset: -50%;
-
-  pointer-events: none;
-
-  opacity:
-    0.035;
-
-  background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-
-  animation:
-    grainMove 0.35s steps(2) infinite;
-
-}
-
-
-@keyframes grainMove {
-
-  0% {
-    transform: translate(0,0);
-  }
-
-  25% {
-    transform: translate(2%,-2%);
-  }
-
-  50% {
-    transform: translate(-2%,2%);
-  }
-
-  75% {
-    transform: translate(2%,1%);
-  }
-
-  100% {
-    transform: translate(-1%,-2%);
-  }
-
-}
-
-
-/* =========================================================
-   INTERACTIVE LIGHT
-========================================================= */
-
-.touch-light {
-
-  position: absolute;
-
-  left: 0;
-  top: 0;
 
   width: 280px;
   height: 280px;
 
-  margin-left: -140px;
-  margin-top: -140px;
-
   border-radius: 50%;
-
-  pointer-events: none;
 
   background:
     radial-gradient(
       circle,
-      rgba(255,255,255,0.5) 0%,
-      rgba(255,255,255,0.18) 25%,
-      transparent 70%
+      rgba(255,255,255,0.95) 0%,
+      rgba(255,255,255,0.45) 30%,
+      rgba(255,255,255,0) 72%
     );
 
-  filter:
-    blur(16px);
+  filter: blur(10px);
 
-  opacity:
-    0.6;
+  animation:
+    centerPulse
+    5s
+    ease-in-out
+    infinite;
 
-  mix-blend-mode:
-    screen;
+  pointer-events: none;
+}
+
+
+@keyframes centerPulse {
+
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.85;
+  }
 
 }
 
 
-/* =========================================================
-   CENTER BOX
-========================================================= */
+/* =========================================
+   GRAIN
+========================================= */
 
-.opening-box {
+.grain {
+  position: absolute;
+  inset: 0;
 
-  position: relative;
+  pointer-events: none;
 
-  z-index: 30;
+  opacity: 0.035;
 
-  width:
-    min(78vw, 390px);
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 
-  height:
-    min(42vw, 190px);
+  mix-blend-mode: multiply;
+}
 
-  min-height:
-    150px;
 
-  display:
-    flex;
+/* =========================================
+   TOUCH LIGHT
+========================================= */
 
-  align-items:
-    center;
+.touch-light {
+  position: absolute;
 
-  justify-content:
-    center;
+  width: 180px;
+  height: 180px;
 
-  padding:
-    18px;
+  margin-left: -90px;
+  margin-top: -90px;
+
+  border-radius: 50%;
 
   background:
-    rgba(255,255,255,0.13);
+    radial-gradient(
+      circle,
+      rgba(255,255,255,0.65) 0%,
+      rgba(255,255,255,0.2) 30%,
+      transparent 70%
+    );
 
-  border:
-    1px solid rgba(143,24,35,0.18);
+  filter: blur(20px);
 
-  box-shadow:
-    0 25px 80px rgba(74,28,28,0.08),
-    inset 0 0 50px rgba(255,255,255,0.18);
+  opacity: 0.25;
 
-  backdrop-filter:
-    blur(8px);
+  pointer-events: none;
 
-  -webkit-backdrop-filter:
-    blur(8px);
+  transition:
+    left 0.25s ease-out,
+    top 0.25s ease-out;
+}
 
-  opacity:
-    0;
 
-  transform:
-    translateY(20px)
-    scale(0.96);
+/* =========================================
+   TAP TO BEGIN
+   NO BOX
+========================================= */
+
+.start-button {
+
+  position: relative;
+  z-index: 5;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  padding: 20px 10px;
+
+  cursor: pointer;
+
+  color: #861c25;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.32em;
+
+  text-transform: uppercase;
+
+  appearance: none;
+
+  -webkit-tap-highlight-color: transparent;
+
+  opacity: 0;
 
   animation:
-    boxEntrance 1.5s
-    0.25s
-    cubic-bezier(.16,1,.3,1)
+    tapReveal
+    2s
+    cubic-bezier(.22,1,.36,1)
     forwards;
 
 }
 
 
-.opening-box::before {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  inset:
-    9px;
-
-  border:
-    1px solid rgba(143,24,35,0.08);
-
-  pointer-events:
-    none;
-
-}
-
-
-.opening-box::after {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  width:
-    70px;
-
-  height:
-    70px;
-
-  border-radius:
-    50%;
-
-  background:
-    rgba(255,255,255,0.4);
-
-  filter:
-    blur(22px);
-
-  pointer-events:
-    none;
-
-  animation:
-    boxGlow 5s ease-in-out infinite;
-
-}
-
-
-@keyframes boxEntrance {
-
-  from {
-
-    opacity:
-      0;
-
-    transform:
-      translateY(25px)
-      scale(0.94);
-
-    filter:
-      blur(8px);
-
-  }
-
-  to {
-
-    opacity:
-      1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-    filter:
-      blur(0);
-
-  }
-
-}
-
-
-@keyframes boxGlow {
-
-  0%,
-  100% {
-
-    transform:
-      translate(-45px,-10px)
-      scale(0.8);
-
-    opacity:
-      0.3;
-
-  }
-
-  50% {
-
-    transform:
-      translate(45px,10px)
-      scale(1.2);
-
-    opacity:
-      0.7;
-
-  }
-
-}
-
-
-/* =========================================================
-   BOX INNER
-========================================================= */
-
-.box-inner {
-
-  position:
-    relative;
-
-  z-index:
-    5;
-
-  width:
-    100%;
-
-  height:
-    100%;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-}
-
-
-/* =========================================================
-   TAP TO BEGIN
-========================================================= */
-
-.start-button {
-
-  appearance:
-    none;
-
-  border:
-    0;
-
-  outline:
-    none;
-
-  background:
-    transparent;
-
-  color:
-    #8f1823;
-
-  padding:
-    15px 20px;
-
-  cursor:
-    pointer;
-
-  text-align:
-    center;
-
-  letter-spacing:
-    0.28em;
-
-  font-size:
-    10px;
-
-  font-weight:
-    600;
-
-  position:
-    relative;
-
-  z-index:
-    10;
+.start-button span {
+  position: relative;
+  z-index: 2;
+
+  display: inline-block;
 
   transition:
-    transform 0.35s ease,
-    opacity 0.35s ease;
-
+    letter-spacing 0.6s ease,
+    opacity 0.6s ease;
 }
 
 
-.start-button span {
-
-  display:
-    block;
-
-}
-
+/* Small elegant underline */
 
 .start-button i {
 
-  display:
-    block;
+  position: absolute;
 
-  width:
-    0;
+  left: 50%;
+  bottom: 7px;
 
-  height:
-    1px;
+  width: 0;
+  height: 1px;
 
-  margin:
-    10px auto 0;
+  background: #861c25;
 
-  background:
-    #8f1823;
+  transform: translateX(-50%);
 
   transition:
-    width 0.5s
-    cubic-bezier(.16,1,.3,1);
+    width 0.7s cubic-bezier(.77,0,.18,1);
 
 }
 
 
-.start-button:hover {
-
-  transform:
-    scale(1.03);
-
+.start-button:hover span {
+  letter-spacing: 0.42em;
 }
-
 
 .start-button:hover i {
-
-  width:
-    100%;
-
+  width: 100%;
 }
 
 
 .start-button:active {
+  transform: scale(0.96);
+}
 
-  transform:
-    scale(0.96);
+
+@keyframes tapReveal {
+
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 
 }
 
 
-.start-button:disabled {
-
-  pointer-events:
-    none;
-
-}
-
-
-/* =========================================================
-   OPENING EXIT
-   IMPORTANT: NO BLACK SCREEN
-========================================================= */
+/* =========================================
+   OPENING → VIDEO
+========================================= */
 
 .start-screen.launching {
 
-  opacity:
-    0;
+  opacity: 0;
 
-  visibility:
-    hidden;
+  /*
+    IMPORTANT:
+    No black background.
+    The video underneath becomes visible.
+  */
 
-  transform:
-    none;
+  background: transparent;
 
-  background:
-    transparent;
+  pointer-events: none;
 
   transition:
-    opacity 0.75s ease,
-    visibility 0.75s ease;
-
+    opacity 1s
+    cubic-bezier(.77,0,.18,1);
 }
 
 
-.start-screen.launching
-.opening-box {
+.start-screen.launching .start-button {
 
-  opacity:
-    0;
+  opacity: 0;
 
-  transform:
-    scale(1.08);
+  transform: scale(1.08);
 
-  filter:
-    blur(5px);
+  filter: blur(5px);
 
   transition:
     opacity 0.55s ease,
-    transform 0.75s
-      cubic-bezier(.77,0,.18,1),
+    transform 0.8s cubic-bezier(.77,0,.18,1),
     filter 0.55s ease;
 
 }
 
 
-.start-screen.launching
-.ambient-one,
-.start-screen.launching
-.ambient-two,
-.start-screen.launching
-.center-glow,
-.start-screen.launching
-.touch-light {
+.start-screen.launching .ambient-one,
+.start-screen.launching .ambient-two,
+.start-screen.launching .center-glow,
+.start-screen.launching .touch-light {
 
-  opacity:
-    0;
+  opacity: 0;
+
+  transition:
+    opacity 0.6s ease;
+
+}
+
+
+.start-screen.launching .light-beam {
+
+  opacity: 0;
 
   transition:
     opacity 0.5s ease;
@@ -825,228 +458,170 @@ button {
 }
 
 
-.start-screen.launching
-.light-beam {
-
-  opacity:
-    0;
-
-  transition:
-    opacity 0.4s ease;
-
-}
-
-
 .start-screen.hidden {
 
-  opacity:
-    0;
+  opacity: 0;
 
-  visibility:
-    hidden;
-
-  pointer-events:
-    none;
+  pointer-events: none;
 
 }
 
 
-/* =========================================================
+/* =========================================
    VIDEO SCREEN
-========================================================= */
+========================================= */
 
 .video-screen {
 
-  position:
-    fixed;
+  position: fixed;
+  inset: 0;
 
-  inset:
-    0;
+  z-index: 900;
 
-  z-index:
-    900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  width:
-    100%;
+  /*
+    Cream instead of black prevents
+    a harsh black flash before the
+    first video frame appears.
+  */
 
-  height:
-    100svh;
+  background: #f7f1e6;
 
-  display:
-    flex;
+  opacity: 0;
 
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  background:
-    #000;
-
-  opacity:
-    0;
-
-  visibility:
-    hidden;
-
-  pointer-events:
-    none;
+  pointer-events: none;
 
   transition:
-    opacity 0.35s ease,
-    visibility 0.35s ease;
+    opacity 0.35s ease;
 
 }
 
 
 .video-screen.active {
 
-  opacity:
-    1;
+  opacity: 1;
 
-  visibility:
-    visible;
-
-  pointer-events:
-    auto;
-
-}
-
-
-.video-screen.finished {
-
-  opacity:
-    0;
-
-  visibility:
-    hidden;
-
-  pointer-events:
-    none;
-
-  transition:
-    opacity 1.2s ease,
-    visibility 1.2s ease;
+  pointer-events: auto;
 
 }
 
 
 .video-screen video {
 
-  display:
-    block;
+  width: 100%;
+  height: 100%;
 
-  width:
-    100%;
+  object-fit: contain;
 
-  height:
-    100%;
-
-  object-fit:
-    contain;
-
-  background:
-    #000;
+  display: block;
 
 }
 
 
-/* =========================================================
-   FINAL SAVE THE DATE
-========================================================= */
+/* =========================================
+   VIDEO → FINAL
+========================================= */
+
+.video-screen.finished {
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 1.6s
+    cubic-bezier(.77,0,.18,1);
+
+}
+
+
+/* =========================================
+   FINAL SAVE DATE
+========================================= */
 
 .save-date {
 
-  position:
-    relative;
+  position: relative;
 
-  width:
-    100%;
+  min-height: 100vh;
 
-  min-height:
-    100svh;
+  width: 100%;
 
-  overflow:
-    hidden;
+  display: flex;
 
-  display:
-    flex;
+  flex-direction: column;
 
-  flex-direction:
-    column;
+  align-items: center;
 
-  align-items:
-    center;
+  justify-content: flex-start;
 
-  text-align:
-    center;
+  overflow: hidden;
 
   background:
-    linear-gradient(
-      180deg,
-      #f8f3e9 0%,
-      #f4ecdf 100%
+    radial-gradient(
+      circle at 50% 25%,
+      #fffdf8 0%,
+      #f8f1e5 48%,
+      #eee3d2 100%
     );
 
-  color:
-    #8f1823;
+  color: #861c25;
 
-  opacity:
-    0;
+  opacity: 0;
 
-  visibility:
-    hidden;
+  visibility: hidden;
 
-  pointer-events:
-    none;
+  pointer-events: none;
+
+  transition:
+    opacity 2.2s ease,
+    visibility 0s linear 2.2s;
 
 }
 
 
 .save-date.show {
 
-  opacity:
-    1;
+  opacity: 1;
 
-  visibility:
-    visible;
+  visibility: visible;
 
-  pointer-events:
-    auto;
+  pointer-events: auto;
+
+  transition:
+    opacity 2.2s ease;
 
 }
 
 
-/* =========================================================
-   INTRO
-========================================================= */
+/* =========================================
+   FINAL INTRO
+========================================= */
 
 .intro {
 
-  width:
-    100%;
+  width: 100%;
 
-  min-height:
-    35svh;
+  min-height: 48vh;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    flex-end;
+  align-items: flex-end;
 
-  justify-content:
-    center;
+  justify-content: center;
+
+  text-align: center;
 
   padding:
-    65px 25px 28px;
+    0 25px
+    9vh;
 
-  opacity:
-    0;
+  opacity: 0;
 
-  transform:
-    translateY(30px);
+  transform: translateY(35px);
 
 }
 
@@ -1054,9 +629,10 @@ button {
 .save-date.show .intro {
 
   animation:
-    fadeUp 1.2s
-    0.2s
-    cubic-bezier(.16,1,.3,1)
+    finalIntroReveal
+    3.2s
+    cubic-bezier(.22,1,.36,1)
+    1.0s
     forwards;
 
 }
@@ -1064,64 +640,50 @@ button {
 
 .intro p {
 
-  color:
-    #8f1823;
-
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
-  font-size:
-    clamp(17px,5vw,25px);
+  font-size: 20px;
 
-  line-height:
-    1.55;
+  line-height: 1.65;
 
-  font-weight:
-    400;
+  font-weight: 400;
 
-  letter-spacing:
-    -0.025em;
+  letter-spacing: 0.01em;
 
 }
 
 
 .intro span {
 
-  display:
-    inline-block;
+  display: inline-block;
 
-  margin-top:
-    3px;
+  margin-top: 3px;
 
-  font-size:
-    1.18em;
-
-  font-weight:
-    500;
+  font-weight: 500;
 
 }
 
 
-/* =========================================================
-   COUPLE
-========================================================= */
+/* =========================================
+   COUPLE NAMES
+========================================= */
 
 .couple {
 
-  width:
-    100%;
+  width: 100%;
+
+  text-align: center;
 
   padding:
-    25px 18px;
+    7vh 20px
+    9vh;
 
-  opacity:
-    0;
+  opacity: 0;
 
-  transform:
-    translateY(40px)
-    scale(0.96);
+  transform: translateY(45px) scale(0.96);
 
 }
 
@@ -1129,9 +691,10 @@ button {
 .save-date.show .couple {
 
   animation:
-    coupleReveal 1.5s
-    0.65s
+    coupleReveal
+    4s
     cubic-bezier(.16,1,.3,1)
+    3.8s
     forwards;
 
 }
@@ -1139,82 +702,41 @@ button {
 
 .couple h1 {
 
-  margin:
-    0;
-
-  color:
-    #8f1823;
-
   font-family:
     "Anton",
     Impact,
     sans-serif;
 
-  font-size:
-    clamp(43px,12vw,78px);
+  font-size: clamp(43px, 11vw, 78px);
 
-  line-height:
-    0.95;
+  line-height: 1;
 
-  font-weight:
-    400;
+  font-weight: 400;
 
-  letter-spacing:
-    -0.025em;
+  letter-spacing: 0.015em;
+
+  text-transform: none;
 
 }
 
 
-@keyframes coupleReveal {
-
-  from {
-
-    opacity:
-      0;
-
-    transform:
-      translateY(40px)
-      scale(0.94);
-
-    filter:
-      blur(8px);
-
-  }
-
-  to {
-
-    opacity:
-      1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-    filter:
-      blur(0);
-
-  }
-
-}
-
-
-/* =========================================================
+/* =========================================
    STORY
-========================================================= */
+========================================= */
 
 .story {
 
-  width:
-    100%;
+  width: 100%;
+
+  text-align: center;
 
   padding:
-    30px 25px 25px;
+    5vh 25px
+    8vh;
 
-  opacity:
-    0;
+  opacity: 0;
 
-  transform:
-    translateY(30px);
+  transform: translateY(30px);
 
 }
 
@@ -1222,9 +744,10 @@ button {
 .save-date.show .story {
 
   animation:
-    fadeUp 1.2s
-    1.15s
-    cubic-bezier(.16,1,.3,1)
+    storyReveal
+    3.5s
+    cubic-bezier(.22,1,.36,1)
+    7.5s
     forwards;
 
 }
@@ -1232,54 +755,46 @@ button {
 
 .story p {
 
-  margin-bottom:
-    28px;
-
-  color:
-    #8f1823;
-
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
-  font-size:
-    clamp(15px,4.2vw,20px);
+  font-size: 17px;
 
-  line-height:
-    1.65;
+  line-height: 1.8;
 
-  font-weight:
-    400;
+  font-weight: 400;
 
-}
-
-
-.story p:last-child {
-
-  margin-bottom:
-    0;
+  letter-spacing: 0.01em;
 
 }
 
 
-/* =========================================================
+.story p + p {
+
+  margin-top: 6vh;
+
+}
+
+
+/* =========================================
    DATE
-========================================================= */
+========================================= */
 
 .date {
 
-  width:
-    100%;
+  width: 100%;
+
+  text-align: center;
 
   padding:
-    50px 20px 20px;
+    8vh 20px
+    12vh;
 
-  opacity:
-    0;
+  opacity: 0;
 
-  transform:
-    translateY(25px);
+  transform: translateY(30px);
 
 }
 
@@ -1287,9 +802,10 @@ button {
 .save-date.show .date {
 
   animation:
-    fadeUp 1.2s
-    1.55s
-    cubic-bezier(.16,1,.3,1)
+    dateReveal
+    3.8s
+    cubic-bezier(.22,1,.36,1)
+    11.5s
     forwards;
 
 }
@@ -1297,40 +813,39 @@ button {
 
 .date p {
 
-  color:
-    #8f1823;
-
   font-family:
     "Anton",
     Impact,
     sans-serif;
 
-  font-size:
-    clamp(30px,8vw,48px);
+  font-size: clamp(30px, 8vw, 48px);
 
-  line-height:
-    1;
+  line-height: 1;
 
-  font-weight:
-    400;
+  font-weight: 400;
 
-  letter-spacing:
-    0.02em;
+  letter-spacing: 0.08em;
 
 }
 
 
-/* =========================================================
+/* =========================================
    SHARE
-========================================================= */
+========================================= */
 
 .share-section {
 
-  padding:
-    40px 20px 60px;
+  width: 100%;
 
-  opacity:
-    0;
+  display: flex;
+
+  justify-content: center;
+
+  padding:
+    2vh 20px
+    7vh;
+
+  opacity: 0;
 
 }
 
@@ -1338,9 +853,10 @@ button {
 .save-date.show .share-section {
 
   animation:
-    fadeIn 1s
-    2.1s
+    shareReveal
+    2s
     ease
+    15s
     forwards;
 
 }
@@ -1348,198 +864,343 @@ button {
 
 .share-button {
 
-  appearance:
-    none;
+  border: 1px solid rgba(134,28,37,0.45);
 
-  border:
-    1px solid rgba(143,24,35,0.4);
+  background: transparent;
 
-  background:
-    transparent;
-
-  color:
-    #8f1823;
+  color: #861c25;
 
   padding:
-    13px 20px;
+    14px 22px;
 
-  border-radius:
-    2px;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-  cursor:
-    pointer;
+  font-size: 11px;
 
-  font-size:
-    11px;
+  letter-spacing: 0.14em;
 
-  letter-spacing:
-    0.12em;
+  text-transform: uppercase;
 
-  text-transform:
-    uppercase;
+  cursor: pointer;
 
   transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
+    background 0.4s ease,
+    color 0.4s ease;
 
 }
 
 
 .share-button:hover {
 
-  background:
-    #8f1823;
+  background: #861c25;
 
-  color:
-    #f8f3e9;
+  color: #f7f1e6;
 
 }
 
 
-.share-button:active {
+/* =========================================
+   FINAL ANIMATIONS
+========================================= */
 
-  transform:
-    scale(0.97);
+@keyframes finalIntroReveal {
 
-}
+  0% {
 
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes fadeUp {
-
-  from {
-
-    opacity:
-      0;
+    opacity: 0;
 
     transform:
-      translateY(35px);
+      translateY(45px);
+
+    filter: blur(8px);
 
   }
 
-  to {
+  35% {
 
-    opacity:
-      1;
+    opacity: 0.35;
+
+  }
+
+  70% {
+
+    opacity: 0.8;
+
+    filter: blur(2px);
+
+  }
+
+  100% {
+
+    opacity: 1;
 
     transform:
       translateY(0);
 
-  }
-
-}
-
-
-@keyframes fadeIn {
-
-  from {
-
-    opacity:
-      0;
-
-  }
-
-  to {
-
-    opacity:
-      1;
+    filter: blur(0);
 
   }
 
 }
 
 
-/* =========================================================
+@keyframes coupleReveal {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translateY(55px)
+      scale(0.94);
+
+    filter: blur(12px);
+
+  }
+
+  30% {
+
+    opacity: 0.15;
+
+  }
+
+  65% {
+
+    opacity: 0.75;
+
+    filter: blur(3px);
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter: blur(0);
+
+  }
+
+}
+
+
+@keyframes storyReveal {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translateY(40px);
+
+    filter: blur(8px);
+
+  }
+
+  45% {
+
+    opacity: 0.35;
+
+  }
+
+  75% {
+
+    opacity: 0.8;
+
+    filter: blur(2px);
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+    filter: blur(0);
+
+  }
+
+}
+
+
+@keyframes dateReveal {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translateY(40px)
+      scale(0.95);
+
+    filter: blur(10px);
+
+  }
+
+  40% {
+
+    opacity: 0.3;
+
+  }
+
+  75% {
+
+    opacity: 0.85;
+
+    filter: blur(2px);
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter: blur(0);
+
+  }
+
+}
+
+
+@keyframes shareReveal {
+
+  0% {
+
+    opacity: 0;
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+  }
+
+}
+
+
+/* =========================================
    MOBILE
-========================================================= */
+========================================= */
 
 @media (max-width: 600px) {
 
-  .opening-box {
-
-    width:
-      82vw;
-
-    height:
-      180px;
-
-    min-height:
-      150px;
-
-  }
-
   .start-button {
 
-    font-size:
-      10px;
+    font-size: 11px;
 
-    letter-spacing:
-      0.25em;
+    letter-spacing: 0.28em;
 
   }
 
-  .touch-light {
 
-    width:
-      220px;
+  .intro {
 
-    height:
-      220px;
+    min-height: 45vh;
 
-    margin-left:
-      -110px;
+    padding-bottom: 8vh;
 
-    margin-top:
-      -110px;
+  }
+
+
+  .intro p {
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+  }
+
+
+  .couple {
+
+    padding:
+      7vh 15px
+      9vh;
+
+  }
+
+
+  .couple h1 {
+
+    font-size: 48px;
+
+  }
+
+
+  .story {
+
+    padding:
+      5vh 22px
+      8vh;
+
+  }
+
+
+  .story p {
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+  }
+
+
+  .date {
+
+    padding:
+      8vh 15px
+      11vh;
+
+  }
+
+
+  .date p {
+
+    font-size: 32px;
 
   }
 
 }
 
 
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-height: 700px) {
-
-  .opening-box {
-
-    height:
-      155px;
-
-  }
-
-}
-
-
-/* =========================================================
+/* =========================================
    DESKTOP
-========================================================= */
+========================================= */
 
 @media (min-width: 800px) {
 
-  .opening-box {
+  .save-date {
 
-    width:
-      390px;
+    max-width: 900px;
 
-    height:
-      190px;
+    margin: 0 auto;
 
   }
 
-  .save-date {
 
-    max-width:
-      900px;
+  .intro p {
 
-    margin:
-      0 auto;
+    font-size: 24px;
+
+  }
+
+
+  .story p {
+
+    font-size: 19px;
 
   }
 
