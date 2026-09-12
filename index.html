@@ -11,7 +11,9 @@
     <title>Shehan & Stephanie</title>
 
 
-    <!-- WhatsApp / Social Preview -->
+    <!-- ==================================================
+         WHATSAPP / SOCIAL PREVIEW
+    ================================================== -->
 
     <meta property="og:title"
           content="Shehan & Stephanie">
@@ -32,7 +34,7 @@
           content="Shehan & Stephanie">
 
 
-    <!-- Social Preview -->
+    <!-- TWITTER / SOCIAL -->
 
     <meta name="twitter:card"
           content="summary_large_image">
@@ -47,7 +49,9 @@
           content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
 
 
-    <link rel="stylesheet" href="style.css?v=6">
+    <!-- STYLES -->
+
+    <link rel="stylesheet" href="style.css?v=7">
 
 </head>
 
@@ -61,13 +65,48 @@
 
     <div class="start-screen" id="startScreen">
 
+
+        <!-- RINGS -->
+
+        <div class="rings-area">
+
+
+            <!-- MALE RING -->
+
+            <div class="wedding-ring male-ring">
+
+                <div class="ring-band"></div>
+
+            </div>
+
+
+            <!-- FEMALE RING -->
+
+            <div class="wedding-ring female-ring">
+
+                <div class="ring-band"></div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- TAP TO BEGIN -->
+
         <div class="intro-card">
 
             <button id="startButton">
-                <span>TAP TO BEGIN</span>
+
+                <span>
+                    TAP TO BEGIN
+                </span>
+
             </button>
 
         </div>
+
 
     </div>
 
@@ -78,6 +117,7 @@
     ================================================== -->
 
     <div class="video-screen" id="videoScreen">
+
 
         <video
             id="weddingVideo"
@@ -93,6 +133,7 @@
             Your browser does not support video playback.
 
         </video>
+
 
     </div>
 
@@ -110,9 +151,15 @@
         <section class="intro">
 
             <p>
+
                 Out of every possibility,<br>
+
                 life chose this one.<br>
-                <span>Us.</span>
+
+                <span>
+                    Us.
+                </span>
+
             </p>
 
         </section>
@@ -136,14 +183,21 @@
         <section class="story">
 
             <p>
+
                 What began as two separate stories<br>
+
                 will now become one.
+
             </p>
 
+
             <p>
+
                 With love and joy,<br>
+
                 we invite you to celebrate the beginning
                 of our forever.
+
             </p>
 
         </section>
@@ -169,7 +223,9 @@
             href="#"
             id="shareButton"
         >
+
             Share This Save the Date
+
         </a>
 
 
@@ -213,34 +269,48 @@
            START VIDEO
         ================================================== */
 
-        startButton.addEventListener("click", async () => {
+        startButton.addEventListener(
+            "click",
+            async () => {
 
-            startScreen.classList.add("launching");
 
-
-            try {
-
-                await weddingVideo.play();
-
-            } catch (error) {
-
-                console.log(
-                    "Video could not start:",
-                    error
+                startScreen.classList.add(
+                    "launching"
                 );
 
+
+                try {
+
+                    await weddingVideo.play();
+
+                }
+
+                catch (error) {
+
+                    console.log(
+                        "Video could not start:",
+                        error
+                    );
+
+                }
+
+
+                setTimeout(() => {
+
+                    startScreen.classList.add(
+                        "hidden"
+                    );
+
+
+                    videoScreen.classList.add(
+                        "active"
+                    );
+
+                }, 900);
+
+
             }
-
-
-            setTimeout(() => {
-
-                startScreen.classList.add("hidden");
-
-                videoScreen.classList.add("active");
-
-            }, 900);
-
-        });
+        );
 
 
 
@@ -248,22 +318,32 @@
            VIDEO FINISHED
         ================================================== */
 
-        weddingVideo.addEventListener("ended", () => {
-
-            videoScreen.classList.add("finished");
-
-            saveDate.classList.add("show");
+        weddingVideo.addEventListener(
+            "ended",
+            () => {
 
 
-            window.scrollTo({
+                videoScreen.classList.add(
+                    "finished"
+                );
 
-                top: 0,
 
-                behavior: "smooth"
+                saveDate.classList.add(
+                    "show"
+                );
 
-            });
 
-        });
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior: "smooth"
+
+                });
+
+
+            }
+        );
 
 
 
@@ -271,64 +351,85 @@
            SHARE
         ================================================== */
 
-        shareButton.addEventListener("click", async (event) => {
-
-            event.preventDefault();
-
-
-            const shareData = {
-
-                title:
-                    "Shehan & Stephanie",
-
-                text:
-                    "Shehan & Stephanie\n" +
-                    "12 • 12 • 2026",
-
-                url:
-                    window.location.href
-
-            };
+        shareButton.addEventListener(
+            "click",
+            async (event) => {
 
 
-            if (navigator.share) {
+                event.preventDefault();
 
-                try {
 
-                    await navigator.share(shareData);
+                const shareData = {
 
-                } catch (error) {
+                    title:
+                        "Shehan & Stephanie",
 
-                    console.log(
-                        "Share cancelled."
-                    );
+                    text:
+                        "Shehan & Stephanie\n" +
+                        "12 • 12 • 2026",
+
+                    url:
+                        window.location.href
+
+                };
+
+
+
+                /* MOBILE SHARE */
+
+                if (navigator.share) {
+
+
+                    try {
+
+                        await navigator.share(
+                            shareData
+                        );
+
+                    }
+
+                    catch (error) {
+
+                        console.log(
+                            "Share cancelled."
+                        );
+
+                    }
+
 
                 }
 
-            } else {
 
-                const whatsappText =
-                    encodeURIComponent(
+                /* WHATSAPP FALLBACK */
 
-                        "Shehan & Stephanie\n" +
-                        "12 • 12 • 2026\n\n" +
-                        window.location.href
+                else {
+
+
+                    const whatsappText =
+                        encodeURIComponent(
+
+                            "Shehan & Stephanie\n" +
+                            "12 • 12 • 2026\n\n" +
+                            window.location.href
+
+                        );
+
+
+                    window.open(
+
+                        "https://wa.me/?text=" +
+                        whatsappText,
+
+                        "_blank"
 
                     );
 
 
-                window.open(
+                }
 
-                    "https://wa.me/?text=" +
-                    whatsappText,
-
-                    "_blank"
-
-                );
 
             }
-
-        });
+        );
 
 
     </script>
