@@ -12,12 +12,7 @@ html,
 body {
   width: 100%;
   min-height: 100%;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
+  font-family: Arial, Helvetica, sans-serif;
   background: #f7f1e6;
 }
 
@@ -31,17 +26,12 @@ body {
 ================================= */
 
 .start-screen {
-
   position: fixed;
-
   inset: 0;
-
   z-index: 1000;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   overflow: hidden;
@@ -56,8 +46,7 @@ body {
 
   opacity: 1;
 
-  transition:
-    opacity 0.9s ease;
+  transition: opacity 0.9s ease;
 }
 
 
@@ -66,7 +55,6 @@ body {
 ================================= */
 
 .ambient-light {
-
   position: absolute;
 
   width: 55vw;
@@ -84,14 +72,11 @@ body {
   opacity: 0.38;
 }
 
-
 .ambient-one {
-
   top: -15%;
   left: -10%;
 
-  background:
-    rgba(133, 28, 37, 0.14);
+  background: rgba(133, 28, 37, 0.14);
 
   animation:
     ambientFloatOne
@@ -101,14 +86,11 @@ body {
     alternate;
 }
 
-
 .ambient-two {
-
   right: -15%;
   bottom: -15%;
 
-  background:
-    rgba(133, 28, 37, 0.10);
+  background: rgba(133, 28, 37, 0.10);
 
   animation:
     ambientFloatTwo
@@ -117,7 +99,6 @@ body {
     infinite
     alternate;
 }
-
 
 @keyframes ambientFloatOne {
 
@@ -134,7 +115,6 @@ body {
   }
 
 }
-
 
 @keyframes ambientFloatTwo {
 
@@ -158,7 +138,6 @@ body {
 ================================= */
 
 .light-beam {
-
   position: absolute;
 
   width: 180%;
@@ -191,17 +170,14 @@ body {
   pointer-events: none;
 }
 
-
 @keyframes beamMove {
 
   0% {
-
     transform:
       translateX(-25%)
       rotate(-12deg);
 
     opacity: 0.25;
-
   }
 
   50% {
@@ -209,13 +185,11 @@ body {
   }
 
   100% {
-
     transform:
       translateX(25%)
       rotate(-12deg);
 
     opacity: 0.35;
-
   }
 
 }
@@ -226,7 +200,6 @@ body {
 ================================= */
 
 .center-glow {
-
   position: absolute;
 
   width: 280px;
@@ -253,24 +226,17 @@ body {
   pointer-events: none;
 }
 
-
 @keyframes centerPulse {
 
   0%,
   100% {
-
     transform: scale(0.85);
-
     opacity: 0.45;
-
   }
 
   50% {
-
     transform: scale(1.15);
-
     opacity: 0.85;
-
   }
 
 }
@@ -281,9 +247,7 @@ body {
 ================================= */
 
 .grain {
-
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
@@ -302,7 +266,6 @@ body {
 ================================= */
 
 .touch-light {
-
   position: absolute;
 
   width: 180px;
@@ -339,13 +302,10 @@ body {
 ================================= */
 
 .start-button {
-
   position: relative;
-
   z-index: 5;
 
   border: none;
-
   outline: none;
 
   background: transparent;
@@ -382,11 +342,8 @@ body {
     forwards;
 }
 
-
 .start-button span {
-
   position: relative;
-
   z-index: 2;
 
   display: inline-block;
@@ -395,17 +352,13 @@ body {
     letter-spacing 0.6s ease;
 }
 
-
 .start-button i {
-
   position: absolute;
 
   left: 50%;
-
   bottom: 7px;
 
   width: 0;
-
   height: 1px;
 
   background: #861c25;
@@ -417,50 +370,30 @@ body {
     cubic-bezier(.77,0,.18,1);
 }
 
-
 .start-button:hover span {
-
   letter-spacing: 0.42em;
-
 }
-
 
 .start-button:hover i {
-
   width: 100%;
-
 }
-
 
 .start-button:active {
-
   transform: scale(0.96);
-
 }
-
 
 @keyframes tapReveal {
 
   0% {
-
     opacity: 0;
-
-    transform:
-      translateY(15px);
-
+    transform: translateY(15px);
     filter: blur(8px);
-
   }
 
   100% {
-
     opacity: 1;
-
-    transform:
-      translateY(0);
-
+    transform: translateY(0);
     filter: blur(0);
-
   }
 
 }
@@ -471,7 +404,6 @@ body {
 ================================= */
 
 .start-screen.launching {
-
   opacity: 0;
 
   background: transparent;
@@ -483,9 +415,7 @@ body {
     cubic-bezier(.77,0,.18,1);
 }
 
-
 .start-screen.launching .start-button {
-
   opacity: 0;
 
   transform: scale(1.06);
@@ -499,34 +429,26 @@ body {
     filter 0.45s ease;
 }
 
-
 .start-screen.launching .ambient-one,
 .start-screen.launching .ambient-two,
 .start-screen.launching .center-glow,
 .start-screen.launching .touch-light {
-
   opacity: 0;
 
   transition:
     opacity 0.5s ease;
 }
 
-
 .start-screen.launching .light-beam {
-
   opacity: 0;
 
   transition:
     opacity 0.4s ease;
 }
 
-
 .start-screen.hidden {
-
   opacity: 0;
-
   pointer-events: none;
-
 }
 
 
@@ -535,17 +457,13 @@ body {
 ================================= */
 
 .video-screen {
-
   position: fixed;
-
   inset: 0;
 
   z-index: 900;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   background: #f7f1e6;
@@ -558,31 +476,21 @@ body {
     opacity 0.35s ease;
 }
 
-
 .video-screen.active {
-
   opacity: 1;
-
   pointer-events: auto;
-
 }
 
-
 .video-screen video {
-
   width: 100%;
-
   height: 100%;
 
   object-fit: contain;
 
   display: block;
-
 }
 
-
 .video-screen.finished {
-
   opacity: 0;
 
   pointer-events: none;
@@ -594,16 +502,20 @@ body {
 
 
 /* =================================
-   END CARD
+   FINAL SCREEN
+   ONE FRAME / NO SCROLL
 ================================= */
 
 .save-date {
 
-  position: relative;
+  position: fixed;
 
-  min-height: 100vh;
+  inset: 0;
 
   width: 100%;
+  height: 100dvh;
+
+  min-height: 100vh;
 
   display: flex;
 
@@ -611,9 +523,12 @@ body {
 
   align-items: center;
 
-  justify-content: flex-start;
+  justify-content: center;
 
   overflow: hidden;
+
+  padding:
+    4vh 20px;
 
   background:
     radial-gradient(
@@ -635,7 +550,6 @@ body {
     opacity 1.3s ease;
 }
 
-
 .save-date.show {
 
   opacity: 1;
@@ -643,50 +557,43 @@ body {
   visibility: visible;
 
   pointer-events: auto;
-
-  transition:
-    opacity 1.3s ease;
 }
 
 
 /* =================================
-   FIRST TEXT
+   INTRO
 ================================= */
 
 .intro {
 
   width: 100%;
 
-  min-height: 48vh;
+  min-height: auto;
 
   display: flex;
 
-  align-items: flex-end;
+  align-items: center;
 
   justify-content: center;
 
   text-align: center;
 
-  padding:
-    0 25px
-    9vh;
+  padding: 0;
 
   opacity: 0;
 
-  transform: translateY(20px);
+  transform: translateY(15px);
 }
-
 
 .save-date.show .intro {
 
   animation:
     introReveal
-    1.8s
+    1.6s
     ease-out
     0.2s
     forwards;
 }
-
 
 .intro p {
 
@@ -695,17 +602,14 @@ body {
     Helvetica,
     sans-serif;
 
-  font-size: 20px;
+  font-size: clamp(16px, 4.5vw, 22px);
 
-  line-height: 1.65;
+  line-height: 1.5;
 
   font-weight: 400;
 
-  letter-spacing: 0.01em;
-
   color: #861c25;
 }
-
 
 .intro span {
 
@@ -726,25 +630,22 @@ body {
   text-align: center;
 
   padding:
-    7vh 20px
-    9vh;
+    4vh 10px;
 
   opacity: 0;
 
-  transform: translateY(25px);
+  transform: translateY(20px);
 }
-
 
 .save-date.show .couple {
 
   animation:
     coupleReveal
-    2s
+    1.8s
     ease-out
-    2.2s
+    2s
     forwards;
 }
-
 
 .couple h1 {
 
@@ -754,7 +655,7 @@ body {
     sans-serif;
 
   font-size:
-    clamp(43px, 11vw, 78px);
+    clamp(38px, 10vw, 70px);
 
   line-height: 1;
 
@@ -777,25 +678,22 @@ body {
   text-align: center;
 
   padding:
-    5vh 25px
-    8vh;
+    1vh 10px;
 
   opacity: 0;
 
-  transform: translateY(20px);
+  transform: translateY(15px);
 }
-
 
 .save-date.show .story {
 
   animation:
     storyReveal
-    1.8s
+    1.7s
     ease-out
-    4.2s
+    3.8s
     forwards;
 }
-
 
 .story p {
 
@@ -804,22 +702,19 @@ body {
     Helvetica,
     sans-serif;
 
-  font-size: 17px;
+  font-size:
+    clamp(14px, 3.8vw, 18px);
 
-  line-height: 1.8;
+  line-height: 1.55;
 
   font-weight: 400;
-
-  letter-spacing: 0.01em;
 
   color: #861c25;
 }
 
-
 .story p + p {
 
-  margin-top: 6vh;
-
+  margin-top: 2.5vh;
 }
 
 
@@ -834,25 +729,22 @@ body {
   text-align: center;
 
   padding:
-    8vh 20px
-    12vh;
+    4vh 10px;
 
   opacity: 0;
 
-  transform: translateY(20px);
+  transform: translateY(15px);
 }
-
 
 .save-date.show .date {
 
   animation:
     dateReveal
-    2s
+    1.8s
     ease-out
-    6.7s
+    5.7s
     forwards;
 }
-
 
 .date p {
 
@@ -862,7 +754,7 @@ body {
     sans-serif;
 
   font-size:
-    clamp(30px, 8vw, 48px);
+    clamp(27px, 7vw, 44px);
 
   line-height: 1;
 
@@ -887,23 +779,20 @@ body {
   justify-content: center;
 
   padding:
-    2vh 20px
-    7vh;
+    1vh 10px;
 
   opacity: 0;
 }
-
 
 .save-date.show .share-section {
 
   animation:
     shareReveal
-    1.3s
+    1.2s
     ease
-    9s
+    7.2s
     forwards;
 }
-
 
 .share-button {
 
@@ -916,16 +805,16 @@ body {
   color: #861c25;
 
   padding:
-    14px 22px;
+    11px 18px;
 
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
 
   text-transform: uppercase;
 
@@ -936,38 +825,28 @@ body {
     color 0.4s ease;
 }
 
-
 .share-button:hover {
 
   background: #861c25;
 
   color: #f7f1e6;
-
 }
 
 
 /* =================================
-   END CARD ANIMATIONS
+   ANIMATIONS
 ================================= */
 
 @keyframes introReveal {
 
   0% {
-
     opacity: 0;
-
-    transform:
-      translateY(20px);
-
+    transform: translateY(15px);
   }
 
   100% {
-
     opacity: 1;
-
-    transform:
-      translateY(0);
-
+    transform: translateY(0);
   }
 
 }
@@ -976,23 +855,17 @@ body {
 @keyframes coupleReveal {
 
   0% {
-
     opacity: 0;
-
     transform:
-      translateY(25px)
+      translateY(20px)
       scale(0.98);
-
   }
 
   100% {
-
     opacity: 1;
-
     transform:
       translateY(0)
       scale(1);
-
   }
 
 }
@@ -1001,21 +874,13 @@ body {
 @keyframes storyReveal {
 
   0% {
-
     opacity: 0;
-
-    transform:
-      translateY(20px);
-
+    transform: translateY(15px);
   }
 
   100% {
-
     opacity: 1;
-
-    transform:
-      translateY(0);
-
+    transform: translateY(0);
   }
 
 }
@@ -1024,23 +889,17 @@ body {
 @keyframes dateReveal {
 
   0% {
-
     opacity: 0;
-
     transform:
-      translateY(20px)
+      translateY(15px)
       scale(0.98);
-
   }
 
   100% {
-
     opacity: 1;
-
     transform:
       translateY(0)
       scale(1);
-
   }
 
 }
@@ -1049,100 +908,64 @@ body {
 @keyframes shareReveal {
 
   0% {
-
     opacity: 0;
-
   }
 
   100% {
-
     opacity: 1;
-
   }
 
 }
 
 
 /* =================================
-   MOBILE
+   SMALL PHONES
 ================================= */
 
-@media (max-width: 600px) {
+@media (max-height: 700px) {
 
-  .start-button {
-
-    font-size: 11px;
-
-    letter-spacing: 0.28em;
-
+  .save-date {
+    padding:
+      2vh 15px;
   }
-
-
-  .intro {
-
-    min-height: 45vh;
-
-    padding-bottom: 8vh;
-
-  }
-
 
   .intro p {
-
-    font-size: 18px;
-
-    line-height: 1.7;
-
+    font-size: 15px;
+    line-height: 1.45;
   }
-
 
   .couple {
-
     padding:
-      7vh 15px
-      9vh;
-
+      2.5vh 5px;
   }
-
 
   .couple h1 {
-
-    font-size: 48px;
-
+    font-size: 40px;
   }
-
-
-  .story {
-
-    padding:
-      5vh 22px
-      8vh;
-
-  }
-
 
   .story p {
-
-    font-size: 16px;
-
-    line-height: 1.8;
-
+    font-size: 13px;
+    line-height: 1.45;
   }
 
+  .story p + p {
+    margin-top: 1.8vh;
+  }
 
   .date {
-
     padding:
-      8vh 15px
-      11vh;
-
+      2.5vh 5px;
   }
 
-
   .date p {
+    font-size: 29px;
+  }
 
-    font-size: 32px;
+  .share-button {
+    padding:
+      9px 15px;
 
+    font-size: 9px;
   }
 
 }
@@ -1155,25 +978,26 @@ body {
 @media (min-width: 800px) {
 
   .save-date {
-
     max-width: 900px;
-
     margin: 0 auto;
-
+    padding:
+      30px 40px;
   }
-
 
   .intro p {
-
-    font-size: 24px;
-
+    font-size: 23px;
   }
 
+  .couple h1 {
+    font-size: 70px;
+  }
 
   .story p {
+    font-size: 18px;
+  }
 
-    font-size: 19px;
-
+  .date p {
+    font-size: 44px;
   }
 
 }
