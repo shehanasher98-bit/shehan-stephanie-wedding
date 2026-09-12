@@ -76,7 +76,7 @@ body {
   top: -15%;
   left: -10%;
 
-  background: rgba(155, 28, 46, 0.14);
+  background: rgba(168, 0, 0, 0.14);
 
   animation:
     ambientFloatOne
@@ -90,7 +90,7 @@ body {
   right: -15%;
   bottom: -15%;
 
-  background: rgba(155, 28, 46, 0.10);
+  background: rgba(168, 0, 0, 0.10);
 
   animation:
     ambientFloatTwo
@@ -313,7 +313,7 @@ body {
 
   cursor: pointer;
 
-  color: #9B1C2E;
+  color: #A80000;
 
   font-family:
     Arial,
@@ -361,7 +361,7 @@ body {
 
   height: 1px;
 
-  background: #9B1C2E;
+  background: #A80000;
 
   transform: translateX(-50%);
 
@@ -537,7 +537,7 @@ body {
       #eee3d2 100%
     );
 
-  color: #9B1C2E;
+  color: #A80000;
 
   opacity: 0;
 
@@ -609,11 +609,11 @@ body {
 
   font-weight: 400;
 
-  color: #9B1C2E;
+  color: #A80000;
 }
 
 .intro span {
-  color: #9B1C2E;
+  color: #A80000;
 
   font-weight: 500;
 }
@@ -662,7 +662,7 @@ body {
 
   letter-spacing: 0.015em;
 
-  color: #9B1C2E;
+  color: #A80000;
 }
 
 
@@ -707,7 +707,7 @@ body {
 
   font-weight: 400;
 
-  color: #9B1C2E;
+  color: #A80000;
 }
 
 .story p + p {
@@ -760,7 +760,7 @@ body {
 
   letter-spacing: 0.08em;
 
-  color: #9B1C2E;
+  color: #A80000;
 }
 
 
@@ -793,11 +793,11 @@ body {
 .share-button {
   border:
     1px solid
-    rgba(155,28,46,0.45);
+    rgba(168,0,0,0.45);
 
   background: transparent;
 
-  color: #9B1C2E;
+  color: #A80000;
 
   padding:
     11px 18px;
@@ -821,7 +821,7 @@ body {
 }
 
 .share-button:hover {
-  background: #9B1C2E;
+  background: #A80000;
 
   color: #f7f1e6;
 }
