@@ -6,7 +6,6 @@
 
   <title>Shehan & Stephanie</title>
 
-  <!-- WhatsApp / Social Preview -->
   <meta property="og:title" content="Shehan & Stephanie">
   <meta property="og:description" content="">
   <meta property="og:type" content="website">
@@ -19,7 +18,6 @@
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
 
-  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
@@ -29,9 +27,7 @@
 
 <body>
 
-  <!-- =========================
-       OPENING SCREEN
-  ========================== -->
+  <!-- OPENING -->
   <div class="start-screen" id="startScreen">
 
     <div class="ambient-light ambient-one"></div>
@@ -39,13 +35,11 @@
 
     <div class="light-beam"></div>
     <div class="center-glow"></div>
-
     <div class="grain"></div>
-
     <div class="touch-light" id="touchLight"></div>
 
     <!-- NO BOX -->
-    <button class="start-button" id="startButton" aria-label="Tap to begin">
+    <button class="start-button" id="startButton">
       <span>TAP TO BEGIN</span>
       <i></i>
     </button>
@@ -53,9 +47,7 @@
   </div>
 
 
-  <!-- =========================
-       VIDEO
-  ========================== -->
+  <!-- VIDEO -->
   <div class="video-screen" id="videoScreen">
 
     <video id="weddingVideo" playsinline preload="auto">
@@ -66,9 +58,7 @@
   </div>
 
 
-  <!-- =========================
-       FINAL SAVE THE DATE
-  ========================== -->
+  <!-- END SCREEN -->
   <main class="save-date" id="saveDate">
 
     <section class="intro">
@@ -79,11 +69,9 @@
       </p>
     </section>
 
-
     <section class="couple">
       <h1>Shehan &amp; Stephanie</h1>
     </section>
-
 
     <section class="story">
 
@@ -99,11 +87,9 @@
 
     </section>
 
-
     <section class="date">
       <p>12 • 12 • 2026</p>
     </section>
-
 
     <section class="share-section">
       <button class="share-button" id="shareButton">
@@ -129,53 +115,43 @@
        START VIDEO
     ========================== */
 
-    startButton.addEventListener("click", async function () {
+    startButton.addEventListener("click", function () {
 
       if (startButton.disabled) return;
 
       startButton.disabled = true;
 
-      /* Bring video forward */
       videoScreen.classList.add("active");
 
       weddingVideo.currentTime = 0;
 
-      /*
-        Start playback immediately.
-        We don't wait for the video before
-        beginning the opening transition.
-      */
       const playPromise = weddingVideo.play();
 
       /*
-        Fade the TAP TO BEGIN away.
-        No black transition.
+        Start the opening fade immediately.
+        No black screen.
       */
       requestAnimationFrame(function () {
         startScreen.classList.add("launching");
       });
 
+      if (playPromise !== undefined) {
 
-      try {
-        await playPromise;
-      } catch (error) {
-        console.log("Video playback error:", error);
+        playPromise.catch(function (error) {
+          console.log("Video playback error:", error);
+        });
+
       }
 
-
-      /*
-        Completely remove opening screen
-        after the cinematic fade.
-      */
       setTimeout(function () {
         startScreen.classList.add("hidden");
-      }, 1000);
+      }, 950);
 
     });
 
 
     /* =========================
-       TOUCH / MOUSE LIGHT
+       MOUSE / TOUCH LIGHT
     ========================== */
 
     function moveLight(x, y) {
@@ -188,7 +164,10 @@
 
     document.addEventListener("mousemove", function (event) {
 
-      moveLight(event.clientX, event.clientY);
+      moveLight(
+        event.clientX,
+        event.clientY
+      );
 
     });
 
@@ -208,35 +187,22 @@
 
 
     /* =========================
-       VIDEO END
+       VIDEO ENDS
     ========================== */
 
     weddingVideo.addEventListener("ended", function () {
 
-      /*
-        Slowly fade the video away.
-      */
       videoScreen.classList.add("finished");
 
-
       /*
-        Wait before starting the final
-        cinematic text sequence.
+        Short cinematic pause before
+        the final text begins.
       */
       setTimeout(function () {
 
         saveDate.classList.add("show");
 
-        setTimeout(function () {
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-
-        }, 100);
-
-      }, 1400);
+      }, 800);
 
     });
 
@@ -252,7 +218,6 @@
         text: "Shehan & Stephanie — 12 • 12 • 2026",
         url: window.location.href
       };
-
 
       if (navigator.share) {
 
