@@ -19,52 +19,75 @@
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
 
-  <!-- Fonts -->
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+    rel="stylesheet"
+  >
 
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=11">
 </head>
 
 <body>
 
   <!-- =====================================================
-       OPENING SCREEN
+       CINEMATIC OPENING
   ====================================================== -->
 
   <div class="start-screen" id="startScreen">
 
-    <div class="opening-glow"></div>
+    <!-- Ambient light -->
+    <div class="ambient-light ambient-one"></div>
+    <div class="ambient-light ambient-two"></div>
 
-    <div class="rose-scene" id="roseScene">
+    <!-- Moving cinematic beam -->
+    <div class="light-beam"></div>
 
-      <div class="rose-halo"></div>
+    <!-- Fine atmospheric glow -->
+    <div class="center-glow"></div>
 
-      <div class="rose-shadow"></div>
+    <!-- Opening content -->
+    <div class="opening-content">
 
-      <img
-        src="rose.png"
-        class="rose"
-        id="rose"
-        alt="Elegant rose"
-        draggable="false"
-      >
+      <div class="opening-message">
+
+        <p>Out of every possibility,</p>
+        <p>life chose this one.</p>
+
+        <div class="opening-us">
+          Us.
+        </div>
+
+      </div>
+
+      <div class="tap-area">
+
+        <button
+          id="startButton"
+          class="start-button"
+          aria-label="Tap to begin"
+        >
+          <span>TAP TO BEGIN</span>
+          <i></i>
+        </button>
+
+      </div>
 
     </div>
 
-    <div class="opening-bottom">
+    <!-- Interactive light following pointer -->
+    <div
+      class="touch-light"
+      id="touchLight"
+    ></div>
 
-      <button
-        class="start-button"
-        id="startButton"
-        aria-label="Tap to begin"
-      >
-        <span>TAP TO BEGIN</span>
-        <div class="button-line"></div>
-      </button>
-
-    </div>
+    <!-- Transition flash -->
+    <div
+      class="transition-flash"
+      id="transitionFlash"
+    ></div>
 
   </div>
 
@@ -73,15 +96,24 @@
        VIDEO
   ====================================================== -->
 
-  <div class="video-screen" id="videoScreen">
+  <div
+    class="video-screen"
+    id="videoScreen"
+  >
 
     <video
       id="weddingVideo"
       playsinline
       preload="auto"
     >
-      <source src="save-the-date.mp4" type="video/mp4">
+
+      <source
+        src="save-the-date.mp4"
+        type="video/mp4"
+      >
+
       Your browser does not support video playback.
+
     </video>
 
   </div>
@@ -91,8 +123,12 @@
        FINAL SAVE THE DATE
   ====================================================== -->
 
-  <main class="save-date" id="saveDate">
+  <main
+    class="save-date"
+    id="saveDate"
+  >
 
+    <!-- Intro -->
     <section class="intro">
 
       <p>
@@ -104,6 +140,7 @@
     </section>
 
 
+    <!-- Names -->
     <section class="couple">
 
       <h1>
@@ -113,6 +150,7 @@
     </section>
 
 
+    <!-- Story -->
     <section class="story">
 
       <p>
@@ -128,6 +166,7 @@
     </section>
 
 
+    <!-- Date -->
     <section class="date">
 
       <p>
@@ -137,6 +176,7 @@
     </section>
 
 
+    <!-- Share -->
     <section class="share-section">
 
       <button
@@ -157,162 +197,122 @@
 
   <script>
 
-    const startScreen = document.getElementById("startScreen");
-    const startButton = document.getElementById("startButton");
-    const videoScreen = document.getElementById("videoScreen");
-    const weddingVideo = document.getElementById("weddingVideo");
-    const saveDate = document.getElementById("saveDate");
+    const startScreen =
+      document.getElementById("startScreen");
 
-    const roseScene = document.getElementById("roseScene");
-    const rose = document.getElementById("rose");
+    const startButton =
+      document.getElementById("startButton");
 
-    const shareButton = document.getElementById("shareButton");
+    const videoScreen =
+      document.getElementById("videoScreen");
+
+    const weddingVideo =
+      document.getElementById("weddingVideo");
+
+    const saveDate =
+      document.getElementById("saveDate");
+
+    const shareButton =
+      document.getElementById("shareButton");
+
+    const touchLight =
+      document.getElementById("touchLight");
+
+    const transitionFlash =
+      document.getElementById("transitionFlash");
 
 
     /* =====================================================
-       ROSE INTERACTION
+       INTERACTIVE LIGHT
     ====================================================== */
 
-    let pointerX = 0;
-    let pointerY = 0;
+    let lightX = window.innerWidth / 2;
+    let lightY = window.innerHeight / 2;
 
-    let targetX = 0;
-    let targetY = 0;
-
-    let currentX = 0;
-    let currentY = 0;
-
-    let dragging = false;
-    let lastPointerX = 0;
-
-    let rotation = 0;
-    let velocity = 0;
+    let targetLightX = lightX;
+    let targetLightY = lightY;
 
 
-    function animateRose() {
+    function moveLight(x, y) {
 
-      if (!dragging) {
+      targetLightX = x;
+      targetLightY = y;
 
-        rotation += 0.015;
-
-        velocity *= 0.96;
-
-      }
-
-      currentX += (targetX - currentX) * 0.06;
-      currentY += (targetY - currentY) * 0.06;
-
-      const sway =
-        Math.sin(rotation) * 2.5;
-
-      const rotateY =
-        currentX * 8;
-
-      const rotateX =
-        currentY * -4;
-
-      rose.style.transform = `
-        translate3d(${currentX * 4}px, ${currentY * 3}px, 0)
-        rotateX(${rotateX}deg)
-        rotateY(${rotateY}deg)
-        rotateZ(${sway + velocity}deg)
-      `;
-
-      requestAnimationFrame(animateRose);
     }
 
-    animateRose();
+
+    function animateLight() {
+
+      lightX +=
+        (targetLightX - lightX) * 0.08;
+
+      lightY +=
+        (targetLightY - lightY) * 0.08;
+
+      touchLight.style.transform =
+        `translate3d(${lightX}px, ${lightY}px, 0)`;
+
+      requestAnimationFrame(
+        animateLight
+      );
+
+    }
+
+    animateLight();
 
 
     /* =====================================================
-       POINTER / TOUCH PARALLAX
+       MOUSE
     ====================================================== */
 
-    roseScene.addEventListener(
+    document.addEventListener(
       "pointermove",
       function(event) {
 
-        const rect =
-          roseScene.getBoundingClientRect();
-
-        pointerX =
-          (event.clientX - rect.left) /
-          rect.width - 0.5;
-
-        pointerY =
-          (event.clientY - rect.top) /
-          rect.height - 0.5;
-
-        targetX = pointerX;
-        targetY = pointerY;
-
-        if (dragging) {
-
-          const difference =
-            event.clientX - lastPointerX;
-
-          velocity = difference * 0.08;
-
-          lastPointerX =
-            event.clientX;
+        if (
+          startScreen.classList.contains("hidden")
+        ) {
+          return;
         }
 
-      }
-    );
-
-
-    roseScene.addEventListener(
-      "pointerdown",
-      function(event) {
-
-        dragging = true;
-
-        lastPointerX =
-          event.clientX;
-
-        roseScene.setPointerCapture(
-          event.pointerId
+        moveLight(
+          event.clientX,
+          event.clientY
         );
 
       }
     );
 
 
-    roseScene.addEventListener(
-      "pointerup",
+    /* =====================================================
+       TOUCH
+    ====================================================== */
+
+    document.addEventListener(
+      "touchmove",
       function(event) {
 
-        dragging = false;
+        if (
+          startScreen.classList.contains("hidden")
+        ) {
+          return;
+        }
 
-        roseScene.releasePointerCapture(
-          event.pointerId
-        );
+        if (
+          event.touches &&
+          event.touches.length
+        ) {
 
-      }
-    );
-
-
-    roseScene.addEventListener(
-      "pointercancel",
-      function() {
-
-        dragging = false;
-
-      }
-    );
-
-
-    roseScene.addEventListener(
-      "pointerleave",
-      function() {
-
-        if (!dragging) {
-
-          targetX = 0;
-          targetY = 0;
+          moveLight(
+            event.touches[0].clientX,
+            event.touches[0].clientY
+          );
 
         }
 
+      },
+      {
+        passive: true
       }
     );
 
@@ -325,13 +325,28 @@
       "click",
       async function() {
 
+        if (
+          startButton.disabled
+        ) {
+          return;
+        }
+
         startButton.disabled = true;
 
-        startScreen.classList.add("launching");
 
         /*
-          Start the video immediately after the user's
-          interaction so mobile browsers allow sound.
+          Begin cinematic exit
+        */
+
+        startScreen.classList.add(
+          "launching"
+        );
+
+
+        /*
+          Start video immediately after
+          the user's tap so mobile browsers
+          allow audio.
         */
 
         try {
@@ -351,18 +366,35 @@
 
 
         /*
-          Give the opening animation time to disappear.
+          Bring video forward during the
+          cinematic transition.
         */
 
         setTimeout(
           function() {
 
-            startScreen.classList.add("hidden");
-
-            videoScreen.classList.add("active");
+            videoScreen.classList.add(
+              "active"
+            );
 
           },
-          1100
+          350
+        );
+
+
+        /*
+          Remove opening screen.
+        */
+
+        setTimeout(
+          function() {
+
+            startScreen.classList.add(
+              "hidden"
+            );
+
+          },
+          1200
         );
 
       }
@@ -370,27 +402,39 @@
 
 
     /* =====================================================
-       VIDEO FINISHED
+       VIDEO END
     ====================================================== */
 
     weddingVideo.addEventListener(
       "ended",
       function() {
 
-        videoScreen.classList.add("finished");
+        videoScreen.classList.add(
+          "finished"
+        );
+
+
+        /*
+          Small cinematic pause before
+          final invitation appears.
+        */
 
         setTimeout(
           function() {
 
-            saveDate.classList.add("show");
+            saveDate.classList.add(
+              "show"
+            );
 
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth"
-            });
+            window.scrollTo(
+              {
+                top: 0,
+                behavior: "smooth"
+              }
+            );
 
           },
-          300
+          650
         );
 
       }
@@ -398,7 +442,7 @@
 
 
     /* =====================================================
-       SHARE
+       SHARE BUTTON
     ====================================================== */
 
     shareButton.addEventListener(
@@ -419,6 +463,10 @@
         };
 
 
+        /*
+          Native sharing on mobile
+        */
+
         if (
           navigator.share
         ) {
@@ -437,7 +485,14 @@
 
           }
 
-        } else {
+        }
+
+
+        /*
+          WhatsApp fallback
+        */
+
+        else {
 
           const whatsappText =
             encodeURIComponent(
