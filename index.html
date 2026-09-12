@@ -19,123 +19,69 @@
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
 
-  <!-- Font -->
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- =====================================================
+  <!-- =========================
        OPENING SCREEN
-  ====================================================== -->
-
+  ========================== -->
   <div class="start-screen" id="startScreen">
 
-    <!-- Soft moving lights -->
     <div class="ambient-light ambient-one"></div>
     <div class="ambient-light ambient-two"></div>
 
-    <!-- Cinematic light beam -->
     <div class="light-beam"></div>
-
-    <!-- Central glow -->
     <div class="center-glow"></div>
 
-    <!-- Subtle film grain -->
     <div class="grain"></div>
 
-    <!-- Interactive light -->
     <div class="touch-light" id="touchLight"></div>
 
-
-    <!-- =================================================
-         CENTER BOX
-    ================================================== -->
-
-    <div class="opening-box" id="openingBox">
-
-      <div class="box-inner">
-
-        <button
-          class="start-button"
-          id="startButton"
-          aria-label="Tap to begin"
-        >
-
-          <span>TAP TO BEGIN</span>
-
-          <i></i>
-
-        </button>
-
-      </div>
-
-    </div>
+    <!-- NO BOX -->
+    <button class="start-button" id="startButton" aria-label="Tap to begin">
+      <span>TAP TO BEGIN</span>
+      <i></i>
+    </button>
 
   </div>
 
 
-  <!-- =====================================================
+  <!-- =========================
        VIDEO
-  ====================================================== -->
+  ========================== -->
+  <div class="video-screen" id="videoScreen">
 
-  <div
-    class="video-screen"
-    id="videoScreen"
-  >
-
-    <video
-      id="weddingVideo"
-      playsinline
-      preload="auto"
-    >
-
-      <source
-        src="save-the-date.mp4"
-        type="video/mp4"
-      >
-
+    <video id="weddingVideo" playsinline preload="auto">
+      <source src="save-the-date.mp4" type="video/mp4">
       Your browser does not support video playback.
-
     </video>
 
   </div>
 
 
-  <!-- =====================================================
+  <!-- =========================
        FINAL SAVE THE DATE
-  ====================================================== -->
-
-  <main
-    class="save-date"
-    id="saveDate"
-  >
+  ========================== -->
+  <main class="save-date" id="saveDate">
 
     <section class="intro">
-
       <p>
         Out of every possibility,<br>
         life chose this one.<br>
         <span>Us.</span>
       </p>
-
     </section>
 
 
     <section class="couple">
-
-      <h1>
-        Shehan &amp; Stephanie
-      </h1>
-
+      <h1>Shehan &amp; Stephanie</h1>
     </section>
 
 
@@ -155,335 +101,185 @@
 
 
     <section class="date">
-
-      <p>
-        12 • 12 • 2026
-      </p>
-
+      <p>12 • 12 • 2026</p>
     </section>
 
 
     <section class="share-section">
-
-      <button
-        class="share-button"
-        id="shareButton"
-      >
+      <button class="share-button" id="shareButton">
         Share This Save the Date
       </button>
-
     </section>
 
   </main>
 
 
-  <!-- =====================================================
-       JAVASCRIPT
-  ====================================================== -->
-
   <script>
 
-    const startScreen =
-      document.getElementById("startScreen");
-
-    const openingBox =
-      document.getElementById("openingBox");
-
-    const startButton =
-      document.getElementById("startButton");
-
-    const videoScreen =
-      document.getElementById("videoScreen");
-
-    const weddingVideo =
-      document.getElementById("weddingVideo");
-
-    const saveDate =
-      document.getElementById("saveDate");
-
-    const shareButton =
-      document.getElementById("shareButton");
-
-    const touchLight =
-      document.getElementById("touchLight");
+    const startScreen = document.getElementById("startScreen");
+    const startButton = document.getElementById("startButton");
+    const videoScreen = document.getElementById("videoScreen");
+    const weddingVideo = document.getElementById("weddingVideo");
+    const saveDate = document.getElementById("saveDate");
+    const touchLight = document.getElementById("touchLight");
+    const shareButton = document.getElementById("shareButton");
 
 
-    /* =====================================================
-       INTERACTIVE LIGHT
-    ====================================================== */
+    /* =========================
+       START VIDEO
+    ========================== */
 
-    let lightX =
-      window.innerWidth / 2;
+    startButton.addEventListener("click", async function () {
 
-    let lightY =
-      window.innerHeight / 2;
+      if (startButton.disabled) return;
 
-    let targetX =
-      lightX;
+      startButton.disabled = true;
 
-    let targetY =
-      lightY;
+      /* Bring video forward */
+      videoScreen.classList.add("active");
 
+      weddingVideo.currentTime = 0;
+
+      /*
+        Start playback immediately.
+        We don't wait for the video before
+        beginning the opening transition.
+      */
+      const playPromise = weddingVideo.play();
+
+      /*
+        Fade the TAP TO BEGIN away.
+        No black transition.
+      */
+      requestAnimationFrame(function () {
+        startScreen.classList.add("launching");
+      });
+
+
+      try {
+        await playPromise;
+      } catch (error) {
+        console.log("Video playback error:", error);
+      }
+
+
+      /*
+        Completely remove opening screen
+        after the cinematic fade.
+      */
+      setTimeout(function () {
+        startScreen.classList.add("hidden");
+      }, 1000);
+
+    });
+
+
+    /* =========================
+       TOUCH / MOUSE LIGHT
+    ========================== */
 
     function moveLight(x, y) {
 
-      targetX = x;
-      targetY = y;
+      touchLight.style.left = x + "px";
+      touchLight.style.top = y + "px";
 
     }
 
 
-    function animateLight() {
+    document.addEventListener("mousemove", function (event) {
 
-      lightX +=
-        (targetX - lightX) * 0.055;
+      moveLight(event.clientX, event.clientY);
 
-      lightY +=
-        (targetY - lightY) * 0.055;
-
-      touchLight.style.transform =
-        `translate3d(${lightX}px, ${lightY}px, 0)`;
-
-      requestAnimationFrame(
-        animateLight
-      );
-
-    }
-
-    animateLight();
+    });
 
 
-    /* =====================================================
-       POINTER
-    ====================================================== */
+    document.addEventListener("touchmove", function (event) {
 
-    document.addEventListener(
-      "pointermove",
-      function(event) {
-
-        if (
-          startScreen.classList.contains("hidden")
-        ) {
-          return;
-        }
+      if (event.touches.length > 0) {
 
         moveLight(
-          event.clientX,
-          event.clientY
+          event.touches[0].clientX,
+          event.touches[0].clientY
         );
 
       }
-    );
+
+    }, { passive: true });
 
 
-    /* =====================================================
-       TOUCH
-    ====================================================== */
+    /* =========================
+       VIDEO END
+    ========================== */
 
-    document.addEventListener(
-      "touchmove",
-      function(event) {
+    weddingVideo.addEventListener("ended", function () {
 
-        if (
-          startScreen.classList.contains("hidden")
-        ) {
-          return;
-        }
-
-        if (
-          event.touches.length
-        ) {
-
-          moveLight(
-            event.touches[0].clientX,
-            event.touches[0].clientY
-          );
-
-        }
-
-      },
-      {
-        passive: true
-      }
-    );
+      /*
+        Slowly fade the video away.
+      */
+      videoScreen.classList.add("finished");
 
 
-    /* =====================================================
-       TAP TO BEGIN
-    ====================================================== */
+      /*
+        Wait before starting the final
+        cinematic text sequence.
+      */
+      setTimeout(function () {
 
-    startButton.addEventListener(
-      "click",
-      async function() {
+        saveDate.classList.add("show");
 
-        if (
-          startButton.disabled
-        ) {
-          return;
-        }
+        setTimeout(function () {
 
-        startButton.disabled = true;
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
 
+        }, 100);
 
-        /*
-          1. Put video on screen FIRST.
-          This means there is no black gap.
-        */
+      }, 1400);
 
-        videoScreen.classList.add(
-          "active"
-        );
+    });
 
 
-        /*
-          2. Start video directly from
-          the user's interaction.
-        */
+    /* =========================
+       SHARE
+    ========================== */
+
+    shareButton.addEventListener("click", async function () {
+
+      const shareData = {
+        title: "Shehan & Stephanie",
+        text: "Shehan & Stephanie — 12 • 12 • 2026",
+        url: window.location.href
+      };
+
+
+      if (navigator.share) {
 
         try {
 
-          weddingVideo.currentTime = 0;
-
-          await weddingVideo.play();
+          await navigator.share(shareData);
 
         } catch (error) {
 
-          console.log(
-            "Video playback error:",
-            error
-          );
+          console.log("Share cancelled.");
 
         }
 
+      } else {
 
-        /*
-          3. Fade the opening away.
-          Video is already underneath.
-        */
-
-        requestAnimationFrame(
-          function() {
-
-            startScreen.classList.add(
-              "launching"
-            );
-
-          }
-        );
-
-
-        /*
-          4. Completely remove the
-          opening after transition.
-        */
-
-        setTimeout(
-          function() {
-
-            startScreen.classList.add(
-              "hidden"
-            );
-
-          },
-          850
-        );
-
-      }
-    );
-
-
-    /* =====================================================
-       VIDEO FINISHED
-    ====================================================== */
-
-    weddingVideo.addEventListener(
-      "ended",
-      function() {
-
-        videoScreen.classList.add(
-          "finished"
-        );
-
-
-        setTimeout(
-          function() {
-
-            saveDate.classList.add(
-              "show"
-            );
-
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth"
-            });
-
-          },
-          700
-        );
-
-      }
-    );
-
-
-    /* =====================================================
-       SHARE
-    ====================================================== */
-
-    shareButton.addEventListener(
-      "click",
-      async function() {
-
-        const shareData = {
-
-          title:
-            "Shehan & Stephanie",
-
-          text:
-            "Shehan & Stephanie\n12 • 12 • 2026",
-
-          url:
+        const whatsappURL =
+          "https://wa.me/?text=" +
+          encodeURIComponent(
+            "Shehan & Stephanie — 12 • 12 • 2026\n\n" +
             window.location.href
-
-        };
-
-
-        if (
-          navigator.share
-        ) {
-
-          try {
-
-            await navigator.share(
-              shareData
-            );
-
-          } catch (error) {
-
-            console.log(
-              "Share cancelled."
-            );
-
-          }
-
-        } else {
-
-          const whatsappText =
-            encodeURIComponent(
-              "Shehan & Stephanie\n" +
-              "12 • 12 • 2026\n\n" +
-              window.location.href
-            );
-
-          window.open(
-            "https://wa.me/?text=" +
-            whatsappText,
-            "_blank"
           );
 
-        }
+        window.open(whatsappURL, "_blank");
 
       }
-    );
+
+    });
 
   </script>
 
