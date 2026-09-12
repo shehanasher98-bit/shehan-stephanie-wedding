@@ -6,6 +6,7 @@
 
   <title>Shehan & Stephanie</title>
 
+  <!-- WhatsApp / Social Preview -->
   <meta property="og:title" content="Shehan & Stephanie">
   <meta property="og:description" content="">
   <meta property="og:type" content="website">
@@ -18,6 +19,7 @@
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
 
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
@@ -27,7 +29,10 @@
 
 <body>
 
-  <!-- OPENING -->
+  <!-- =================================
+       OPENING SCREEN
+  ================================== -->
+
   <div class="start-screen" id="startScreen">
 
     <div class="ambient-light ambient-one"></div>
@@ -35,11 +40,17 @@
 
     <div class="light-beam"></div>
     <div class="center-glow"></div>
+
     <div class="grain"></div>
+
     <div class="touch-light" id="touchLight"></div>
 
     <!-- NO BOX -->
-    <button class="start-button" id="startButton">
+    <button
+      class="start-button"
+      id="startButton"
+      aria-label="Tap to begin"
+    >
       <span>TAP TO BEGIN</span>
       <i></i>
     </button>
@@ -47,31 +58,54 @@
   </div>
 
 
-  <!-- VIDEO -->
+  <!-- =================================
+       VIDEO
+  ================================== -->
+
   <div class="video-screen" id="videoScreen">
 
-    <video id="weddingVideo" playsinline preload="auto">
-      <source src="save-the-date.mp4" type="video/mp4">
+    <video
+      id="weddingVideo"
+      playsinline
+      preload="auto"
+    >
+      <source
+        src="save-the-date.mp4"
+        type="video/mp4"
+      >
+
       Your browser does not support video playback.
+
     </video>
 
   </div>
 
 
-  <!-- END SCREEN -->
+  <!-- =================================
+       END CARD
+  ================================== -->
+
   <main class="save-date" id="saveDate">
 
     <section class="intro">
+
       <p>
         Out of every possibility,<br>
         life chose this one.<br>
         <span>Us.</span>
       </p>
+
     </section>
 
+
     <section class="couple">
-      <h1>Shehan &amp; Stephanie</h1>
+
+      <h1>
+        Shehan &amp; Stephanie
+      </h1>
+
     </section>
+
 
     <section class="story">
 
@@ -87,14 +121,25 @@
 
     </section>
 
+
     <section class="date">
-      <p>12 • 12 • 2026</p>
+
+      <p>
+        12 • 12 • 2026
+      </p>
+
     </section>
 
+
     <section class="share-section">
-      <button class="share-button" id="shareButton">
+
+      <button
+        class="share-button"
+        id="shareButton"
+      >
         Share This Save the Date
       </button>
+
     </section>
 
   </main>
@@ -102,57 +147,98 @@
 
   <script>
 
-    const startScreen = document.getElementById("startScreen");
-    const startButton = document.getElementById("startButton");
-    const videoScreen = document.getElementById("videoScreen");
-    const weddingVideo = document.getElementById("weddingVideo");
-    const saveDate = document.getElementById("saveDate");
-    const touchLight = document.getElementById("touchLight");
-    const shareButton = document.getElementById("shareButton");
+    const startScreen =
+      document.getElementById("startScreen");
+
+    const startButton =
+      document.getElementById("startButton");
+
+    const videoScreen =
+      document.getElementById("videoScreen");
+
+    const weddingVideo =
+      document.getElementById("weddingVideo");
+
+    const saveDate =
+      document.getElementById("saveDate");
+
+    const touchLight =
+      document.getElementById("touchLight");
+
+    const shareButton =
+      document.getElementById("shareButton");
 
 
-    /* =========================
+    /* =================================
        START VIDEO
-    ========================== */
+    ================================== */
 
     startButton.addEventListener("click", function () {
 
-      if (startButton.disabled) return;
+      if (startButton.disabled) {
+        return;
+      }
 
       startButton.disabled = true;
 
+
+      /*
+        Show the video immediately.
+      */
+
       videoScreen.classList.add("active");
+
 
       weddingVideo.currentTime = 0;
 
-      const playPromise = weddingVideo.play();
 
       /*
-        Start the opening fade immediately.
-        No black screen.
+        Start playback immediately from
+        the user's tap.
       */
+
+      const playPromise =
+        weddingVideo.play();
+
+
+      /*
+        Fade away the opening screen.
+        No black transition.
+      */
+
       requestAnimationFrame(function () {
+
         startScreen.classList.add("launching");
+
       });
+
 
       if (playPromise !== undefined) {
 
         playPromise.catch(function (error) {
-          console.log("Video playback error:", error);
+
+          console.log(
+            "Video playback error:",
+            error
+          );
+
         });
 
       }
 
+
       setTimeout(function () {
+
         startScreen.classList.add("hidden");
+
       }, 950);
 
     });
 
 
-    /* =========================
-       MOUSE / TOUCH LIGHT
-    ========================== */
+    /* =================================
+       MOVING LIGHT
+    ================================== */
 
     function moveLight(x, y) {
 
@@ -162,89 +248,123 @@
     }
 
 
-    document.addEventListener("mousemove", function (event) {
-
-      moveLight(
-        event.clientX,
-        event.clientY
-      );
-
-    });
-
-
-    document.addEventListener("touchmove", function (event) {
-
-      if (event.touches.length > 0) {
+    document.addEventListener(
+      "mousemove",
+      function (event) {
 
         moveLight(
-          event.touches[0].clientX,
-          event.touches[0].clientY
+          event.clientX,
+          event.clientY
         );
 
       }
-
-    }, { passive: true });
-
-
-    /* =========================
-       VIDEO ENDS
-    ========================== */
-
-    weddingVideo.addEventListener("ended", function () {
-
-      videoScreen.classList.add("finished");
-
-      /*
-        Short cinematic pause before
-        the final text begins.
-      */
-      setTimeout(function () {
-
-        saveDate.classList.add("show");
-
-      }, 800);
-
-    });
+    );
 
 
-    /* =========================
-       SHARE
-    ========================== */
+    document.addEventListener(
+      "touchmove",
+      function (event) {
 
-    shareButton.addEventListener("click", async function () {
+        if (event.touches.length > 0) {
 
-      const shareData = {
-        title: "Shehan & Stephanie",
-        text: "Shehan & Stephanie — 12 • 12 • 2026",
-        url: window.location.href
-      };
-
-      if (navigator.share) {
-
-        try {
-
-          await navigator.share(shareData);
-
-        } catch (error) {
-
-          console.log("Share cancelled.");
+          moveLight(
+            event.touches[0].clientX,
+            event.touches[0].clientY
+          );
 
         }
 
-      } else {
+      },
+      { passive: true }
+    );
 
-        const whatsappURL =
-          "https://wa.me/?text=" +
-          encodeURIComponent(
-            "Shehan & Stephanie — 12 • 12 • 2026\n\n" +
-            window.location.href
-          );
 
-        window.open(whatsappURL, "_blank");
+    /* =================================
+       VIDEO FINISHED
+    ================================== */
+
+    weddingVideo.addEventListener(
+      "ended",
+      function () {
+
+        /*
+          Fade video away.
+        */
+
+        videoScreen.classList.add("finished");
+
+
+        /*
+          Small cinematic pause,
+          then reveal the end card.
+        */
+
+        setTimeout(function () {
+
+          saveDate.classList.add("show");
+
+        }, 800);
 
       }
+    );
 
-    });
+
+    /* =================================
+       SHARE
+    ================================== */
+
+    shareButton.addEventListener(
+      "click",
+      async function () {
+
+        const shareData = {
+
+          title:
+            "Shehan & Stephanie",
+
+          text:
+            "Shehan & Stephanie — 12 • 12 • 2026",
+
+          url:
+            window.location.href
+
+        };
+
+
+        if (navigator.share) {
+
+          try {
+
+            await navigator.share(
+              shareData
+            );
+
+          } catch (error) {
+
+            console.log(
+              "Share cancelled."
+            );
+
+          }
+
+        } else {
+
+          const whatsappURL =
+            "https://wa.me/?text=" +
+            encodeURIComponent(
+              "Shehan & Stephanie — 12 • 12 • 2026\n\n" +
+              window.location.href
+            );
+
+          window.open(
+            whatsappURL,
+            "_blank"
+          );
+
+        }
+
+      }
+    );
 
   </script>
 
