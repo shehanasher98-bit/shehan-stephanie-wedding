@@ -28,7 +28,7 @@
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="style.css?v=14">
 </head>
 
 <body>
@@ -39,36 +39,41 @@
 
   <div class="start-screen" id="startScreen">
 
-    <!-- Ambient cinematic lights -->
+    <!-- Cinematic background -->
     <div class="ambient-light ambient-one"></div>
     <div class="ambient-light ambient-two"></div>
 
-    <!-- Moving light beam -->
     <div class="light-beam"></div>
 
-    <!-- Central soft glow -->
     <div class="center-glow"></div>
 
-    <!-- Very subtle film grain -->
     <div class="grain"></div>
 
-    <!-- Light that follows touch / mouse -->
+    <!-- Interactive light -->
     <div class="touch-light" id="touchLight"></div>
 
-    <!-- CENTERED TAP BUTTON -->
-    <div class="tap-area">
 
-      <button
-        class="start-button"
-        id="startButton"
-        aria-label="Tap to begin"
-      >
+    <!-- =================================================
+         ORIGINAL CENTER BOX
+    ================================================== -->
 
-        <span>TAP TO BEGIN</span>
+    <div class="opening-box" id="openingBox">
 
-        <i></i>
+      <div class="box-inner">
 
-      </button>
+        <button
+          class="start-button"
+          id="startButton"
+          aria-label="Tap to begin"
+        >
+
+          <span>TAP TO BEGIN</span>
+
+          <i></i>
+
+        </button>
+
+      </div>
 
     </div>
 
@@ -111,7 +116,7 @@
     id="saveDate"
   >
 
-    <!-- INTRO -->
+    <!-- Intro -->
 
     <section class="intro">
 
@@ -124,7 +129,7 @@
     </section>
 
 
-    <!-- NAMES -->
+    <!-- Couple -->
 
     <section class="couple">
 
@@ -135,7 +140,7 @@
     </section>
 
 
-    <!-- STORY -->
+    <!-- Story -->
 
     <section class="story">
 
@@ -152,7 +157,7 @@
     </section>
 
 
-    <!-- DATE -->
+    <!-- Date -->
 
     <section class="date">
 
@@ -163,7 +168,7 @@
     </section>
 
 
-    <!-- SHARE -->
+    <!-- Share -->
 
     <section class="share-section">
 
@@ -187,6 +192,9 @@
 
     const startScreen =
       document.getElementById("startScreen");
+
+    const openingBox =
+      document.getElementById("openingBox");
 
     const startButton =
       document.getElementById("startButton");
@@ -325,7 +333,7 @@
 
 
         /*
-          Start cinematic opening exit.
+          Animate the box away.
         */
 
         startScreen.classList.add(
@@ -335,8 +343,8 @@
 
         /*
           Start video immediately after
-          the user's tap so mobile browsers
-          allow sound.
+          the user interaction so sound works
+          on mobile.
         */
 
         try {
@@ -356,7 +364,7 @@
 
 
         /*
-          Bring video into view.
+          Bring video forward.
         */
 
         setTimeout(
@@ -391,7 +399,7 @@
 
 
     /* =====================================================
-       VIDEO FINISHED
+       VIDEO ENDED
     ====================================================== */
 
     weddingVideo.addEventListener(
@@ -404,8 +412,7 @@
 
 
         /*
-          Short cinematic pause before
-          the final invitation.
+          Short pause before final reveal.
         */
 
         setTimeout(
@@ -429,7 +436,7 @@
 
 
     /* =====================================================
-       SHARE BUTTON
+       SHARE
     ====================================================== */
 
     shareButton.addEventListener(
@@ -450,10 +457,6 @@
         };
 
 
-        /*
-          Native phone sharing.
-        */
-
         if (
           navigator.share
         ) {
@@ -472,14 +475,7 @@
 
           }
 
-        }
-
-
-        /*
-          WhatsApp fallback.
-        */
-
-        else {
+        } else {
 
           const whatsappText =
             encodeURIComponent(
