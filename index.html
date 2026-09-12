@@ -22,40 +22,40 @@
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 
 <body>
 
   <!-- =====================================================
        OPENING SCREEN
-       NO MESSAGE / NO ROSE / NO RINGS / NO STARS
   ====================================================== -->
 
   <div class="start-screen" id="startScreen">
 
-    <!-- Large soft cinematic light -->
+    <!-- Ambient cinematic lights -->
     <div class="ambient-light ambient-one"></div>
     <div class="ambient-light ambient-two"></div>
 
     <!-- Moving light beam -->
     <div class="light-beam"></div>
 
-    <!-- Center illumination -->
+    <!-- Central soft glow -->
     <div class="center-glow"></div>
 
-    <!-- Subtle grain -->
+    <!-- Very subtle film grain -->
     <div class="grain"></div>
 
-    <!-- Interactive light -->
+    <!-- Light that follows touch / mouse -->
     <div class="touch-light" id="touchLight"></div>
 
-    <!-- Only CTA -->
+    <!-- CENTERED TAP BUTTON -->
     <div class="tap-area">
 
       <button
@@ -63,8 +63,11 @@
         id="startButton"
         aria-label="Tap to begin"
       >
+
         <span>TAP TO BEGIN</span>
+
         <i></i>
+
       </button>
 
     </div>
@@ -76,7 +79,10 @@
        VIDEO
   ====================================================== -->
 
-  <div class="video-screen" id="videoScreen">
+  <div
+    class="video-screen"
+    id="videoScreen"
+  >
 
     <video
       id="weddingVideo"
@@ -100,9 +106,12 @@
        FINAL SAVE THE DATE
   ====================================================== -->
 
-  <main class="save-date" id="saveDate">
+  <main
+    class="save-date"
+    id="saveDate"
+  >
 
-    <!-- Opening message AFTER video -->
+    <!-- INTRO -->
 
     <section class="intro">
 
@@ -115,7 +124,7 @@
     </section>
 
 
-    <!-- Names -->
+    <!-- NAMES -->
 
     <section class="couple">
 
@@ -126,7 +135,7 @@
     </section>
 
 
-    <!-- Story -->
+    <!-- STORY -->
 
     <section class="story">
 
@@ -143,7 +152,7 @@
     </section>
 
 
-    <!-- Date -->
+    <!-- DATE -->
 
     <section class="date">
 
@@ -154,7 +163,7 @@
     </section>
 
 
-    <!-- Share -->
+    <!-- SHARE -->
 
     <section class="share-section">
 
@@ -169,6 +178,10 @@
 
   </main>
 
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
 
   <script>
 
@@ -240,7 +253,7 @@
 
 
     /* =====================================================
-       POINTER MOVEMENT
+       MOUSE / POINTER
     ====================================================== */
 
     document.addEventListener(
@@ -263,7 +276,7 @@
 
 
     /* =====================================================
-       TOUCH MOVEMENT
+       TOUCH
     ====================================================== */
 
     document.addEventListener(
@@ -295,7 +308,7 @@
 
 
     /* =====================================================
-       START
+       START VIDEO
     ====================================================== */
 
     startButton.addEventListener(
@@ -310,8 +323,9 @@
 
         startButton.disabled = true;
 
+
         /*
-          Start opening transition
+          Start cinematic opening exit.
         */
 
         startScreen.classList.add(
@@ -320,8 +334,9 @@
 
 
         /*
-          Start video immediately from
-          the user's tap so sound is allowed.
+          Start video immediately after
+          the user's tap so mobile browsers
+          allow sound.
         */
 
         try {
@@ -341,8 +356,7 @@
 
 
         /*
-          Bring video in underneath
-          the cinematic transition.
+          Bring video into view.
         */
 
         setTimeout(
@@ -377,7 +391,7 @@
 
 
     /* =====================================================
-       VIDEO ENDED
+       VIDEO FINISHED
     ====================================================== */
 
     weddingVideo.addEventListener(
@@ -390,8 +404,8 @@
 
 
         /*
-          Allow a short cinematic pause
-          before revealing the invitation.
+          Short cinematic pause before
+          the final invitation.
         */
 
         setTimeout(
@@ -415,7 +429,7 @@
 
 
     /* =====================================================
-       SHARE
+       SHARE BUTTON
     ====================================================== */
 
     shareButton.addEventListener(
@@ -436,6 +450,10 @@
         };
 
 
+        /*
+          Native phone sharing.
+        */
+
         if (
           navigator.share
         ) {
@@ -454,7 +472,14 @@
 
           }
 
-        } else {
+        }
+
+
+        /*
+          WhatsApp fallback.
+        */
+
+        else {
 
           const whatsappText =
             encodeURIComponent(
