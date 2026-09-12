@@ -27,67 +27,47 @@
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="style.css?v=12">
 </head>
 
 <body>
 
   <!-- =====================================================
-       CINEMATIC OPENING
+       OPENING SCREEN
+       NO MESSAGE / NO ROSE / NO RINGS / NO STARS
   ====================================================== -->
 
   <div class="start-screen" id="startScreen">
 
-    <!-- Ambient light -->
+    <!-- Large soft cinematic light -->
     <div class="ambient-light ambient-one"></div>
     <div class="ambient-light ambient-two"></div>
 
-    <!-- Moving cinematic beam -->
+    <!-- Moving light beam -->
     <div class="light-beam"></div>
 
-    <!-- Fine atmospheric glow -->
+    <!-- Center illumination -->
     <div class="center-glow"></div>
 
-    <!-- Opening content -->
-    <div class="opening-content">
+    <!-- Subtle grain -->
+    <div class="grain"></div>
 
-      <div class="opening-message">
+    <!-- Interactive light -->
+    <div class="touch-light" id="touchLight"></div>
 
-        <p>Out of every possibility,</p>
-        <p>life chose this one.</p>
+    <!-- Only CTA -->
+    <div class="tap-area">
 
-        <div class="opening-us">
-          Us.
-        </div>
-
-      </div>
-
-      <div class="tap-area">
-
-        <button
-          id="startButton"
-          class="start-button"
-          aria-label="Tap to begin"
-        >
-          <span>TAP TO BEGIN</span>
-          <i></i>
-        </button>
-
-      </div>
+      <button
+        class="start-button"
+        id="startButton"
+        aria-label="Tap to begin"
+      >
+        <span>TAP TO BEGIN</span>
+        <i></i>
+      </button>
 
     </div>
-
-    <!-- Interactive light following pointer -->
-    <div
-      class="touch-light"
-      id="touchLight"
-    ></div>
-
-    <!-- Transition flash -->
-    <div
-      class="transition-flash"
-      id="transitionFlash"
-    ></div>
 
   </div>
 
@@ -96,10 +76,7 @@
        VIDEO
   ====================================================== -->
 
-  <div
-    class="video-screen"
-    id="videoScreen"
-  >
+  <div class="video-screen" id="videoScreen">
 
     <video
       id="weddingVideo"
@@ -123,12 +100,10 @@
        FINAL SAVE THE DATE
   ====================================================== -->
 
-  <main
-    class="save-date"
-    id="saveDate"
-  >
+  <main class="save-date" id="saveDate">
 
-    <!-- Intro -->
+    <!-- Opening message AFTER video -->
+
     <section class="intro">
 
       <p>
@@ -141,6 +116,7 @@
 
 
     <!-- Names -->
+
     <section class="couple">
 
       <h1>
@@ -151,6 +127,7 @@
 
 
     <!-- Story -->
+
     <section class="story">
 
       <p>
@@ -167,6 +144,7 @@
 
 
     <!-- Date -->
+
     <section class="date">
 
       <p>
@@ -177,6 +155,7 @@
 
 
     <!-- Share -->
+
     <section class="share-section">
 
       <button
@@ -190,10 +169,6 @@
 
   </main>
 
-
-  <!-- =====================================================
-       JAVASCRIPT
-  ====================================================== -->
 
   <script>
 
@@ -218,25 +193,28 @@
     const touchLight =
       document.getElementById("touchLight");
 
-    const transitionFlash =
-      document.getElementById("transitionFlash");
-
 
     /* =====================================================
        INTERACTIVE LIGHT
     ====================================================== */
 
-    let lightX = window.innerWidth / 2;
-    let lightY = window.innerHeight / 2;
+    let lightX =
+      window.innerWidth / 2;
 
-    let targetLightX = lightX;
-    let targetLightY = lightY;
+    let lightY =
+      window.innerHeight / 2;
+
+    let targetX =
+      lightX;
+
+    let targetY =
+      lightY;
 
 
     function moveLight(x, y) {
 
-      targetLightX = x;
-      targetLightY = y;
+      targetX = x;
+      targetY = y;
 
     }
 
@@ -244,10 +222,10 @@
     function animateLight() {
 
       lightX +=
-        (targetLightX - lightX) * 0.08;
+        (targetX - lightX) * 0.055;
 
       lightY +=
-        (targetLightY - lightY) * 0.08;
+        (targetY - lightY) * 0.055;
 
       touchLight.style.transform =
         `translate3d(${lightX}px, ${lightY}px, 0)`;
@@ -262,7 +240,7 @@
 
 
     /* =====================================================
-       MOUSE
+       POINTER MOVEMENT
     ====================================================== */
 
     document.addEventListener(
@@ -285,7 +263,7 @@
 
 
     /* =====================================================
-       TOUCH
+       TOUCH MOVEMENT
     ====================================================== */
 
     document.addEventListener(
@@ -299,8 +277,7 @@
         }
 
         if (
-          event.touches &&
-          event.touches.length
+          event.touches.length > 0
         ) {
 
           moveLight(
@@ -318,7 +295,7 @@
 
 
     /* =====================================================
-       START VIDEO
+       START
     ====================================================== */
 
     startButton.addEventListener(
@@ -333,9 +310,8 @@
 
         startButton.disabled = true;
 
-
         /*
-          Begin cinematic exit
+          Start opening transition
         */
 
         startScreen.classList.add(
@@ -344,9 +320,8 @@
 
 
         /*
-          Start video immediately after
-          the user's tap so mobile browsers
-          allow audio.
+          Start video immediately from
+          the user's tap so sound is allowed.
         */
 
         try {
@@ -366,8 +341,8 @@
 
 
         /*
-          Bring video forward during the
-          cinematic transition.
+          Bring video in underneath
+          the cinematic transition.
         */
 
         setTimeout(
@@ -378,7 +353,7 @@
             );
 
           },
-          350
+          400
         );
 
 
@@ -402,7 +377,7 @@
 
 
     /* =====================================================
-       VIDEO END
+       VIDEO ENDED
     ====================================================== */
 
     weddingVideo.addEventListener(
@@ -415,8 +390,8 @@
 
 
         /*
-          Small cinematic pause before
-          final invitation appears.
+          Allow a short cinematic pause
+          before revealing the invitation.
         */
 
         setTimeout(
@@ -426,15 +401,13 @@
               "show"
             );
 
-            window.scrollTo(
-              {
-                top: 0,
-                behavior: "smooth"
-              }
-            );
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
 
           },
-          650
+          700
         );
 
       }
@@ -442,7 +415,7 @@
 
 
     /* =====================================================
-       SHARE BUTTON
+       SHARE
     ====================================================== */
 
     shareButton.addEventListener(
@@ -463,10 +436,6 @@
         };
 
 
-        /*
-          Native sharing on mobile
-        */
-
         if (
           navigator.share
         ) {
@@ -485,14 +454,7 @@
 
           }
 
-        }
-
-
-        /*
-          WhatsApp fallback
-        */
-
-        else {
+        } else {
 
           const whatsappText =
             encodeURIComponent(
