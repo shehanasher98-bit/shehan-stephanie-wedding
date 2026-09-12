@@ -19,7 +19,6 @@ body {
   overflow-x: hidden;
 
   background: #f7f1e6;
-
   color: #8f1823;
 
   font-family:
@@ -40,7 +39,6 @@ button {
 .start-screen {
 
   position: fixed;
-
   inset: 0;
 
   z-index: 1000;
@@ -51,7 +49,6 @@ button {
   overflow: hidden;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -65,16 +62,14 @@ button {
     );
 
   transition:
-    opacity 1s ease,
-    visibility 1s ease,
-    transform 1.2s
-      cubic-bezier(.77,0,.18,1);
+    opacity 0.75s ease,
+    visibility 0.75s ease;
 
 }
 
 
 /* =========================================================
-   AMBIENT LIGHTS
+   AMBIENT LIGHT ONE
 ========================================================= */
 
 .ambient-one {
@@ -100,16 +95,12 @@ button {
       transparent 72%
     );
 
-  filter:
-    blur(25px);
+  filter: blur(25px);
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
   animation:
-    ambientOne 13s
-    ease-in-out
-    infinite;
+    ambientOne 13s ease-in-out infinite;
 
 }
 
@@ -142,6 +133,10 @@ button {
 }
 
 
+/* =========================================================
+   AMBIENT LIGHT TWO
+========================================================= */
+
 .ambient-two {
 
   position: absolute;
@@ -165,16 +160,12 @@ button {
       transparent 72%
     );
 
-  filter:
-    blur(30px);
+  filter: blur(30px);
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
   animation:
-    ambientTwo 16s
-    ease-in-out
-    infinite;
+    ambientTwo 16s ease-in-out infinite;
 
 }
 
@@ -208,7 +199,7 @@ button {
 
 
 /* =========================================================
-   LIGHT BEAM
+   CINEMATIC BEAM
 ========================================================= */
 
 .light-beam {
@@ -221,8 +212,7 @@ button {
   width: 220%;
   height: 65%;
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
   background:
     linear-gradient(
@@ -234,20 +224,14 @@ button {
       transparent 100%
     );
 
-  filter:
-    blur(28px);
+  filter: blur(28px);
 
-  transform:
-    rotate(-15deg);
+  transform: rotate(-15deg);
 
-  opacity:
-    0;
+  opacity: 0;
 
   animation:
-    cinematicBeam 10s
-    1s
-    ease-in-out
-    infinite;
+    cinematicBeam 10s 1s ease-in-out infinite;
 
 }
 
@@ -328,16 +312,12 @@ button {
       transparent 72%
     );
 
-  filter:
-    blur(18px);
+  filter: blur(18px);
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
   animation:
-    centerGlow 6s
-    ease-in-out
-    infinite;
+    centerGlow 6s ease-in-out infinite;
 
 }
 
@@ -378,8 +358,7 @@ button {
 
   inset: -50%;
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
   opacity:
     0.035;
@@ -388,9 +367,7 @@ button {
     url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 
   animation:
-    grainMove 0.35s
-    steps(2)
-    infinite;
+    grainMove 0.35s steps(2) infinite;
 
 }
 
@@ -398,28 +375,23 @@ button {
 @keyframes grainMove {
 
   0% {
-    transform:
-      translate(0,0);
+    transform: translate(0,0);
   }
 
   25% {
-    transform:
-      translate(2%,-2%);
+    transform: translate(2%,-2%);
   }
 
   50% {
-    transform:
-      translate(-2%,2%);
+    transform: translate(-2%,2%);
   }
 
   75% {
-    transform:
-      translate(2%,1%);
+    transform: translate(2%,1%);
   }
 
   100% {
-    transform:
-      translate(-1%,-2%);
+    transform: translate(-1%,-2%);
   }
 
 }
@@ -444,8 +416,7 @@ button {
 
   border-radius: 50%;
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
   background:
     radial-gradient(
@@ -468,7 +439,7 @@ button {
 
 
 /* =========================================================
-   ORIGINAL CENTER BOX
+   CENTER BOX
 ========================================================= */
 
 .opening-box {
@@ -559,10 +530,10 @@ button {
     absolute;
 
   width:
-    60px;
+    70px;
 
   height:
-    60px;
+    70px;
 
   border-radius:
     50%;
@@ -571,15 +542,13 @@ button {
     rgba(255,255,255,0.4);
 
   filter:
-    blur(20px);
+    blur(22px);
 
   pointer-events:
     none;
 
   animation:
-    boxGlow 5s
-    ease-in-out
-    infinite;
+    boxGlow 5s ease-in-out infinite;
 
 }
 
@@ -792,16 +761,27 @@ button {
 
 
 /* =========================================================
-   BOX EXIT
+   OPENING EXIT
+   IMPORTANT: NO BLACK SCREEN
 ========================================================= */
 
 .start-screen.launching {
 
-  background:
-    #17090b;
+  opacity:
+    0;
+
+  visibility:
+    hidden;
 
   transform:
-    scale(1.035);
+    none;
+
+  background:
+    transparent;
+
+  transition:
+    opacity 0.75s ease,
+    visibility 0.75s ease;
 
 }
 
@@ -813,16 +793,16 @@ button {
     0;
 
   transform:
-    scale(1.12);
+    scale(1.08);
 
   filter:
-    blur(10px);
+    blur(5px);
 
   transition:
-    opacity 0.65s ease,
-    transform 1s
+    opacity 0.55s ease,
+    transform 0.75s
       cubic-bezier(.77,0,.18,1),
-    filter 0.7s ease;
+    filter 0.55s ease;
 
 }
 
@@ -832,17 +812,15 @@ button {
 .start-screen.launching
 .ambient-two,
 .start-screen.launching
-.center-glow {
+.center-glow,
+.start-screen.launching
+.touch-light {
 
   opacity:
     0;
 
-  transform:
-    scale(1.35);
-
   transition:
-    opacity 0.6s ease,
-    transform 1s ease;
+    opacity 0.5s ease;
 
 }
 
@@ -851,39 +829,10 @@ button {
 .light-beam {
 
   opacity:
-    1;
+    0;
 
-  animation:
-    beamExit 1s
-    ease
-    forwards;
-
-}
-
-
-@keyframes beamExit {
-
-  from {
-
-    transform:
-      translate3d(-10%,-20%,0)
-      rotate(-15deg);
-
-    opacity:
-      0;
-
-  }
-
-  to {
-
-    transform:
-      translate3d(15%,30%,0)
-      rotate(-15deg);
-
-    opacity:
-      0.9;
-
-  }
+  transition:
+    opacity 0.4s ease;
 
 }
 
@@ -903,7 +852,7 @@ button {
 
 
 /* =========================================================
-   VIDEO
+   VIDEO SCREEN
 ========================================================= */
 
 .video-screen {
@@ -945,8 +894,8 @@ button {
     none;
 
   transition:
-    opacity 0.7s ease,
-    visibility 0.7s ease;
+    opacity 0.35s ease,
+    visibility 0.35s ease;
 
 }
 
@@ -1457,7 +1406,7 @@ button {
 
 
 /* =========================================================
-   GENERAL ANIMATIONS
+   ANIMATIONS
 ========================================================= */
 
 @keyframes fadeUp {
