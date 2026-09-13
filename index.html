@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <title>Shehan & Stephanie</title>
 
   <!-- WhatsApp / Social Preview -->
   <meta property="og:title" content="Shehan & Stephanie">
-  <meta property="og:description" content="">
+  <meta property="og:description" content="Save the Date — 12.12.2026">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/">
   <meta property="og:image" content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
@@ -16,13 +16,15 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Shehan & Stephanie">
-  <meta name="twitter:description" content="">
+  <meta name="twitter:description" content="Save the Date — 12.12.2026">
   <meta name="twitter:image" content="https://shehanasher98-bit.github.io/shehan-stephanie-wedding/preview.png">
 
-  <!-- Font -->
+  <meta name="theme-color" content="#f7f1e6">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -45,15 +47,21 @@
 
     <div class="touch-light" id="touchLight"></div>
 
-    <!-- NO BOX -->
-    <button
-      class="start-button"
-      id="startButton"
-      aria-label="Tap to begin"
-    >
-      <span>TAP TO BEGIN</span>
-      <i></i>
-    </button>
+    <div class="start-inner">
+      <p class="start-eyebrow">Save the Date</p>
+
+      <button
+        class="start-button"
+        id="startButton"
+        aria-label="Tap to begin"
+      >
+        <span class="start-ring"></span>
+        <span>Tap to Begin</span>
+        <i></i>
+      </button>
+
+      <p class="start-names">Shehan <span>&amp;</span> Stephanie</p>
+    </div>
 
   </div>
 
@@ -78,6 +86,10 @@
 
     </video>
 
+    <button class="skip-button" id="skipButton" aria-label="Skip video">
+      Skip <span>›</span>
+    </button>
+
   </div>
 
 
@@ -86,6 +98,11 @@
   ================================== -->
 
   <main class="save-date" id="saveDate">
+
+    <div class="frame-corner corner-tl"></div>
+    <div class="frame-corner corner-tr"></div>
+    <div class="frame-corner corner-bl"></div>
+    <div class="frame-corner corner-br"></div>
 
     <section class="intro">
 
@@ -97,11 +114,12 @@
 
     </section>
 
+    <div class="divider" aria-hidden="true"><span></span><i></i><span></span></div>
 
     <section class="couple">
 
       <h1>
-        Shehan &amp; Stephanie
+        Shehan <em>&amp;</em> Stephanie
       </h1>
 
     </section>
@@ -125,7 +143,7 @@
     <section class="date">
 
       <p>
-        12 • 12 • 2026
+        12 <span>•</span> 12 <span>•</span> 2026
       </p>
 
     </section>
@@ -167,6 +185,29 @@
 
     const shareButton =
       document.getElementById("shareButton");
+
+    const skipButton =
+      document.getElementById("skipButton");
+
+    const prefersReducedMotion =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+    /* =================================
+       REVEAL END CARD
+    ================================== */
+
+    function revealEndCard() {
+
+      videoScreen.classList.add("finished");
+
+      setTimeout(function () {
+
+        saveDate.classList.add("show");
+
+      }, prefersReducedMotion ? 0 : 800);
+
+    }
 
 
     /* =================================
@@ -222,6 +263,14 @@
             error
           );
 
+          /*
+            Autoplay was blocked or the
+            source failed — don't strand
+            the guest on a black screen.
+          */
+
+          revealEndCard();
+
         });
 
       }
@@ -237,7 +286,20 @@
 
 
     /* =================================
-       MOVING LIGHT
+       SKIP VIDEO
+    ================================== */
+
+    skipButton.addEventListener("click", function () {
+
+      weddingVideo.pause();
+
+      revealEndCard();
+
+    });
+
+
+    /* =================================
+       MOVING LIGHT (desktop only)
     ================================== */
 
     function moveLight(x, y) {
@@ -248,17 +310,21 @@
     }
 
 
-    document.addEventListener(
-      "mousemove",
-      function (event) {
+    if (window.matchMedia("(hover: hover)").matches) {
 
-        moveLight(
-          event.clientX,
-          event.clientY
-        );
+      document.addEventListener(
+        "mousemove",
+        function (event) {
 
-      }
-    );
+          moveLight(
+            event.clientX,
+            event.clientY
+          );
+
+        }
+      );
+
+    }
 
 
     document.addEventListener(
@@ -285,27 +351,7 @@
 
     weddingVideo.addEventListener(
       "ended",
-      function () {
-
-        /*
-          Fade video away.
-        */
-
-        videoScreen.classList.add("finished");
-
-
-        /*
-          Small cinematic pause,
-          then reveal the end card.
-        */
-
-        setTimeout(function () {
-
-          saveDate.classList.add("show");
-
-        }, 800);
-
-      }
+      revealEndCard
     );
 
 
