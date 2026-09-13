@@ -367,6 +367,267 @@ body {
 
 
 /* =================================
+   ROSES
+================================= */
+
+.rose-corner {
+  position: absolute;
+
+  width: clamp(90px, 24vw, 170px);
+  height: auto;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  filter: drop-shadow(0 6px 14px rgba(120, 20, 20, 0.12));
+
+  animation:
+    roseReveal
+    1.6s
+    ease-out
+    forwards,
+    roseSway
+    7s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    0.3s,
+    1.9s;
+}
+
+.rose-corner-bl {
+  left: clamp(-24px, -4vw, -6px);
+  bottom: clamp(-30px, -5vw, -10px);
+
+  transform-origin: bottom left;
+}
+
+.rose-corner-br {
+  right: clamp(-24px, -4vw, -6px);
+  bottom: clamp(-30px, -5vw, -10px);
+
+  transform: scaleX(-1);
+  transform-origin: bottom right;
+
+  animation-name: roseReveal, roseSwayFlip;
+}
+
+@keyframes roseReveal {
+
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.92);
+  }
+
+  100% {
+    opacity: 0.95;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+@keyframes roseSway {
+
+  0%,
+  100% {
+    transform: rotate(-2.5deg);
+  }
+
+  50% {
+    transform: rotate(2deg);
+  }
+
+}
+
+@keyframes roseSwayFlip {
+
+  0%,
+  100% {
+    transform: scaleX(-1) rotate(-2.5deg);
+  }
+
+  50% {
+    transform: scaleX(-1) rotate(2deg);
+  }
+
+}
+
+.rose-float {
+  position: absolute;
+
+  width: clamp(30px, 6vw, 46px);
+  height: auto;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  animation:
+    roseFloatReveal
+    1.4s
+    ease-out
+    forwards,
+    roseDrift
+    9s
+    ease-in-out
+    infinite;
+}
+
+.rose-float-1 {
+  top: 12%;
+  left: 10%;
+
+  animation-delay: 0.6s, 2s;
+}
+
+.rose-float-2 {
+  top: 18%;
+  right: 12%;
+
+  animation-delay: 1s, 2.4s;
+}
+
+.rose-float-3 {
+  bottom: 22%;
+  left: 8%;
+
+  width: clamp(24px, 5vw, 36px);
+
+  animation-delay: 1.4s, 2.8s;
+}
+
+@keyframes roseFloatReveal {
+
+  0% {
+    opacity: 0;
+    transform: translateY(10px) rotate(-8deg) scale(0.85);
+  }
+
+  100% {
+    opacity: 0.55;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+
+}
+
+@keyframes roseDrift {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+
+  50% {
+    transform: translateY(-14px) rotate(4deg);
+  }
+
+}
+
+.petal {
+  position: absolute;
+  top: -6%;
+
+  width: 12px;
+  height: 12px;
+
+  background: linear-gradient(135deg, #c23b3b, #A80000);
+
+  border-radius: 0 60% 60% 60%;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  animation:
+    petalFall
+    linear
+    infinite;
+}
+
+.petal-1 {
+  left: 14%;
+  width: 10px;
+  height: 10px;
+  animation-duration: 11s;
+  animation-delay: 0.5s;
+}
+
+.petal-2 {
+  left: 32%;
+  width: 14px;
+  height: 14px;
+  animation-duration: 14s;
+  animation-delay: 3s;
+}
+
+.petal-3 {
+  left: 55%;
+  width: 11px;
+  height: 11px;
+  animation-duration: 12.5s;
+  animation-delay: 1.5s;
+}
+
+.petal-4 {
+  left: 72%;
+  width: 13px;
+  height: 13px;
+  animation-duration: 15.5s;
+  animation-delay: 4.5s;
+}
+
+.petal-5 {
+  left: 88%;
+  width: 9px;
+  height: 9px;
+  animation-duration: 10s;
+  animation-delay: 2.2s;
+}
+
+@keyframes petalFall {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate3d(0, -6vh, 0)
+      rotate(0deg);
+  }
+
+  8% {
+    opacity: 0.75;
+  }
+
+  50% {
+    transform:
+      translate3d(3vw, 55vh, 0)
+      rotate(180deg);
+  }
+
+  92% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate3d(-4vw, 112vh, 0)
+      rotate(360deg);
+  }
+
+}
+
+@media (hover: none) {
+
+  .rose-corner {
+    width: clamp(80px, 30vw, 130px);
+  }
+
+}
+
+
+/* =================================
    TAP TO BEGIN
 ================================= */
 
@@ -602,64 +863,6 @@ body {
     opacity 1.2s
     cubic-bezier(.77,0,.18,1);
 }
-
-.skip-button {
-  position: absolute;
-
-  right: max(18px, env(safe-area-inset-right));
-  bottom: max(24px, env(safe-area-inset-bottom));
-
-  z-index: 5;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 999px;
-
-  background: rgba(0, 0, 0, 0.28);
-
-  color: #fdf8ef;
-
-  padding: 9px 16px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-
-  cursor: pointer;
-
-  -webkit-tap-highlight-color: transparent;
-
-  opacity: 0;
-
-  animation:
-    tapReveal
-    1s
-    ease
-    0.6s
-    forwards;
-
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease;
-}
-
-.skip-button span {
-  font-size: 14px;
-  line-height: 1;
-}
-
-.skip-button:hover {
-  background: rgba(0, 0, 0, 0.45);
-}
-
-.skip-button:active {
-  transform: scale(0.95);
-}
-
 
 /* =================================
    FINAL SCREEN
@@ -1081,78 +1284,6 @@ body {
 
 
 /* =================================
-   SHARE
-================================= */
-
-.share-section {
-  width: 100%;
-
-  display: flex;
-
-  justify-content: center;
-
-  padding:
-    1.2vh 10px;
-
-  opacity: 0;
-}
-
-.save-date.show .share-section {
-  animation:
-    shareReveal
-    1.2s
-    ease
-    7.2s
-    forwards;
-}
-
-.share-button {
-  border:
-    1px solid
-    rgba(168,0,0,0.45);
-
-  border-radius: 999px;
-
-  background: transparent;
-
-  color: #A80000;
-
-  padding:
-    12px 22px;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  font-size: 10px;
-
-  letter-spacing: 0.12em;
-
-  text-transform: uppercase;
-
-  cursor: pointer;
-
-  -webkit-tap-highlight-color: transparent;
-
-  transition:
-    background 0.4s ease,
-    color 0.4s ease,
-    transform 0.3s ease;
-}
-
-.share-button:hover {
-  background: #A80000;
-
-  color: #f7f1e6;
-}
-
-.share-button:active {
-  transform: scale(0.96);
-}
-
-
-/* =================================
    ANIMATIONS
 ================================= */
 
@@ -1220,19 +1351,6 @@ body {
 
 }
 
-@keyframes shareReveal {
-
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-
-}
-
-
 /* =================================
    VERY SMALL / SHORT PHONES
 ================================= */
@@ -1293,13 +1411,6 @@ body {
 
   .date p {
     font-size: 27px;
-  }
-
-  .share-button {
-    padding:
-      9px 18px;
-
-    font-size: 9px;
   }
 
 }
