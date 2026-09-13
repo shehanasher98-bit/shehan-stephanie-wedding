@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <title>Shehan & Stephanie</title>
+  <title>Shehan & Stephenie</title>
 
   <!-- WhatsApp / Social Preview -->
   <meta property="og:title" content="Shehan & Stephanie">
@@ -47,6 +47,43 @@
 
     <div class="touch-light" id="touchLight"></div>
 
+    <!-- Rose artwork (defined once, reused via <use>) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <symbol id="roseBloom" viewBox="-40 -40 40 40">
+          <g>
+            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.92" transform="rotate(0)"/>
+            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.8" transform="rotate(60)"/>
+            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.92" transform="rotate(120)"/>
+            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.8" transform="rotate(180)"/>
+            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.92" transform="rotate(240)"/>
+            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.8" transform="rotate(300)"/>
+            <path d="M-4,-2 C-1,-9 4,-9 5,-3 C6,3 2,5 -2,4 C-6,3 -6,-1 -4,-2 Z" fill="#6e1010"/>
+          </g>
+        </symbol>
+
+        <symbol id="roseSprig" viewBox="-45 -90 90 130">
+          <path d="M0,40 C-4,10 4,-15 0,-38" fill="none" stroke="#7a3030" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M0,14 C-16,10 -26,18 -30,32 C-17,32 -6,26 0,14 Z" fill="#8a3b3b" opacity="0.65"/>
+          <path d="M2,-6 C16,-10 26,-3 28,10 C15,10 6,4 2,-6 Z" fill="#8a3b3b" opacity="0.5"/>
+          <use href="#roseBloom" transform="translate(0,-38) scale(1.15)"/>
+        </symbol>
+      </defs>
+    </svg>
+
+    <svg class="rose-corner rose-corner-bl" viewBox="-45 -90 90 130" aria-hidden="true"><use href="#roseSprig"/></svg>
+    <svg class="rose-corner rose-corner-br" viewBox="-45 -90 90 130" aria-hidden="true"><use href="#roseSprig"/></svg>
+
+    <svg class="rose-float rose-float-1" viewBox="-40 -40 80 80" aria-hidden="true"><use href="#roseBloom"/></svg>
+    <svg class="rose-float rose-float-2" viewBox="-40 -40 80 80" aria-hidden="true"><use href="#roseBloom"/></svg>
+    <svg class="rose-float rose-float-3" viewBox="-40 -40 80 80" aria-hidden="true"><use href="#roseBloom"/></svg>
+
+    <div class="petal petal-1"></div>
+    <div class="petal petal-2"></div>
+    <div class="petal petal-3"></div>
+    <div class="petal petal-4"></div>
+    <div class="petal petal-5"></div>
+
     <div class="start-inner">
       <p class="start-eyebrow">Save the Date</p>
 
@@ -60,7 +97,7 @@
         <i></i>
       </button>
 
-      <p class="start-names">Shehan <span>&amp;</span> Stephanie</p>
+      <p class="start-names">Shehan <span>&amp;</span> Stephenie</p>
     </div>
 
   </div>
@@ -85,10 +122,6 @@
       Your browser does not support video playback.
 
     </video>
-
-    <button class="skip-button" id="skipButton" aria-label="Skip video">
-      Skip <span>›</span>
-    </button>
 
   </div>
 
@@ -148,18 +181,6 @@
 
     </section>
 
-
-    <section class="share-section">
-
-      <button
-        class="share-button"
-        id="shareButton"
-      >
-        Share This Save the Date
-      </button>
-
-    </section>
-
   </main>
 
 
@@ -182,12 +203,6 @@
 
     const touchLight =
       document.getElementById("touchLight");
-
-    const shareButton =
-      document.getElementById("shareButton");
-
-    const skipButton =
-      document.getElementById("skipButton");
 
     const prefersReducedMotion =
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -286,19 +301,6 @@
 
 
     /* =================================
-       SKIP VIDEO
-    ================================== */
-
-    skipButton.addEventListener("click", function () {
-
-      weddingVideo.pause();
-
-      revealEndCard();
-
-    });
-
-
-    /* =================================
        MOVING LIGHT (desktop only)
     ================================== */
 
@@ -352,64 +354,6 @@
     weddingVideo.addEventListener(
       "ended",
       revealEndCard
-    );
-
-
-    /* =================================
-       SHARE
-    ================================== */
-
-    shareButton.addEventListener(
-      "click",
-      async function () {
-
-        const shareData = {
-
-          title:
-            "Shehan & Stephanie",
-
-          text:
-            "Shehan & Stephanie — 12 • 12 • 2026",
-
-          url:
-            window.location.href
-
-        };
-
-
-        if (navigator.share) {
-
-          try {
-
-            await navigator.share(
-              shareData
-            );
-
-          } catch (error) {
-
-            console.log(
-              "Share cancelled."
-            );
-
-          }
-
-        } else {
-
-          const whatsappURL =
-            "https://wa.me/?text=" +
-            encodeURIComponent(
-              "Shehan & Stephanie — 12 • 12 • 2026\n\n" +
-              window.location.href
-            );
-
-          window.open(
-            whatsappURL,
-            "_blank"
-          );
-
-        }
-
-      }
     );
 
   </script>
