@@ -1527,3 +1527,14 @@ body {
   height: auto !important;
   line-height: 1 !important;
 }
+@media (max-width: 600px) {
+  .petal {
+    background: none !important;
+    color: #A80000 !important;
+    border: none !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 14px !important;
+    width: auto !important;
+    height: auto !important;
+  }
+}
