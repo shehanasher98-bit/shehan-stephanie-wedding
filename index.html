@@ -47,44 +47,41 @@
 
     <div class="touch-light" id="touchLight"></div>
 
-    <!-- Rose artwork (defined once, reused via <use>) -->
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-      <defs>
-        <symbol id="roseBloom" viewBox="-40 -40 40 40">
-          <g>
-            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.92" transform="rotate(0)"/>
-            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.8" transform="rotate(60)"/>
-            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.92" transform="rotate(120)"/>
-            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.8" transform="rotate(180)"/>
-            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.92" transform="rotate(240)"/>
-            <path d="M0,-2 C-9,-14 -9,-30 0,-34 C9,-30 9,-14 0,-2 Z" fill="#A80000" opacity="0.8" transform="rotate(300)"/>
-            <path d="M-4,-2 C-1,-9 4,-9 5,-3 C6,3 2,5 -2,4 C-6,3 -6,-1 -4,-2 Z" fill="#6e1010"/>
-          </g>
-        </symbol>
-
-        <symbol id="roseSprig" viewBox="-45 -90 90 130">
-          <path d="M0,40 C-4,10 4,-15 0,-38" fill="none" stroke="#7a3030" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M0,14 C-16,10 -26,18 -30,32 C-17,32 -6,26 0,14 Z" fill="#8a3b3b" opacity="0.65"/>
-          <path d="M2,-6 C16,-10 26,-3 28,10 C15,10 6,4 2,-6 Z" fill="#8a3b3b" opacity="0.5"/>
-          <use href="#roseBloom" transform="translate(0,-38) scale(1.15)"/>
-        </symbol>
-      </defs>
+    <!-- Botanical line-art -->
+    <svg class="botanical-art botanical-top-left" viewBox="0 0 180 260" aria-hidden="true">
+      <path d="M20 245 C45 190 75 135 145 20"/>
+      <path d="M48 190 C28 180 18 160 25 140 C45 145 57 160 48 190"/>
+      <path d="M68 155 C48 142 45 118 57 101 C76 110 82 132 68 155"/>
+      <path d="M91 116 C75 98 78 75 93 61 C108 76 107 98 91 116"/>
+      <path d="M113 80 C101 62 108 40 126 30 C137 48 131 68 113 80"/>
     </svg>
 
-    <svg class="rose-corner rose-corner-bl" viewBox="-45 -90 90 130" aria-hidden="true"><use href="#roseSprig"/></svg>
-    <svg class="rose-corner rose-corner-br" viewBox="-45 -90 90 130" aria-hidden="true"><use href="#roseSprig"/></svg>
+    <svg class="botanical-art botanical-bottom-right" viewBox="0 0 180 260" aria-hidden="true">
+      <path d="M160 15 C135 70 105 125 35 240"/>
+      <path d="M132 70 C152 80 162 100 155 120 C135 115 123 100 132 70"/>
+      <path d="M112 105 C132 118 135 142 123 159 C104 150 98 128 112 105"/>
+      <path d="M89 145 C105 162 102 185 87 199 C72 184 73 163 89 145"/>
+      <path d="M67 182 C79 200 72 222 54 232 C43 214 49 194 67 182"/>
+    </svg>
 
-    <svg class="rose-float rose-float-1" viewBox="-40 -40 80 80" aria-hidden="true"><use href="#roseBloom"/></svg>
-    <svg class="rose-float rose-float-2" viewBox="-40 -40 80 80" aria-hidden="true"><use href="#roseBloom"/></svg>
-    <svg class="rose-float rose-float-3" viewBox="-40 -40 80 80" aria-hidden="true"><use href="#roseBloom"/></svg>
-
-    <div class="petal petal-1"></div>
-    <div class="petal petal-2"></div>
-    <div class="petal petal-3"></div>
-    <div class="petal petal-4"></div>
-    <div class="petal petal-5"></div>
+    <!-- Falling hearts -->
+    <div class="falling-hearts" aria-hidden="true">
+      <span class="fall-heart heart-1">♥</span>
+      <span class="fall-heart heart-2">♥</span>
+      <span class="fall-heart heart-3">♥</span>
+      <span class="fall-heart heart-4">♥</span>
+      <span class="fall-heart heart-5">♥</span>
+      <span class="fall-heart heart-6">♥</span>
+      <span class="fall-heart heart-7">♥</span>
+      <span class="fall-heart heart-8">♥</span>
+      <span class="fall-heart heart-9">♥</span>
+      <span class="fall-heart heart-10">♥</span>
+      <span class="fall-heart heart-11">♥</span>
+      <span class="fall-heart heart-12">♥</span>
+    </div>
 
     <div class="start-inner">
+
       <p class="start-eyebrow">Save the Date</p>
 
       <button
@@ -98,6 +95,7 @@
       </button>
 
       <p class="start-names">Shehan <span>&amp;</span> Stephenie</p>
+
     </div>
 
   </div>
@@ -208,10 +206,6 @@
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 
-    /* =================================
-       REVEAL END CARD
-    ================================== */
-
     function revealEndCard() {
 
       videoScreen.classList.add("finished");
@@ -225,10 +219,6 @@
     }
 
 
-    /* =================================
-       START VIDEO
-    ================================== */
-
     startButton.addEventListener("click", function () {
 
       if (startButton.disabled) {
@@ -237,30 +227,12 @@
 
       startButton.disabled = true;
 
-
-      /*
-        Show the video immediately.
-      */
-
       videoScreen.classList.add("active");
-
 
       weddingVideo.currentTime = 0;
 
-
-      /*
-        Start playback immediately from
-        the user's tap.
-      */
-
       const playPromise =
         weddingVideo.play();
-
-
-      /*
-        Fade away the opening screen.
-        No black transition.
-      */
 
       requestAnimationFrame(function () {
 
@@ -278,12 +250,6 @@
             error
           );
 
-          /*
-            Autoplay was blocked or the
-            source failed — don't strand
-            the guest on a black screen.
-          */
-
           revealEndCard();
 
         });
@@ -299,10 +265,6 @@
 
     });
 
-
-    /* =================================
-       MOVING LIGHT (desktop only)
-    ================================== */
 
     function moveLight(x, y) {
 
@@ -346,10 +308,6 @@
       { passive: true }
     );
 
-
-    /* =================================
-       VIDEO FINISHED
-    ================================== */
 
     weddingVideo.addEventListener(
       "ended",
